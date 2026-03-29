@@ -22,8 +22,8 @@ const observer = new IntersectionObserver((entries) => {
 
 document.querySelectorAll('.fade-up').forEach(el => observer.observe(el));
 
-// Password gate — project pages only
-if (window.location.pathname.includes('/work/')) {
+// Password gate — Fandom project only
+if (window.location.pathname.includes('/work/fandom.html')) {
   const PASS = 'jacopo24';
   const SESSION_KEY = 'portfolio_unlocked';
 
