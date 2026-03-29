@@ -1,0 +1,24 @@
+{
+  "name": "test-website",
+  "version": "1.0.0",
+  "description": "Jacopo Maio's Product Designer Portfolio",
+  "main": "serve.mjs",
+  "scripts": {
+    "start": "node serve.mjs",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/jacopoM18/test-website.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/jacopoM18/test-website/issues"
+  },
+  "homepage": "https://github.com/jacopoM18/test-website#readme",
+  "dependencies": {
+    "@vercel/analytics": "^2.0.1"
+  }
+}
