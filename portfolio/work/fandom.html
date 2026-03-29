@@ -1,0 +1,319 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Fan Experience Platform — Jacopo Maio</title>
+  <meta name="description" content="Designing a gamified rewards platform for sports clubs to re-engage fans year-round — from zero to launch." />
+  <link rel="stylesheet" href="../css/style.css" />
+  <style>
+    .insight-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; margin: 24px 0; }
+    .insight-card { background: var(--pale); border-radius: 10px; padding: 20px; }
+    .insight-card__icon { font-size: 22px; margin-bottom: 10px; }
+    .insight-card__title { font-size: 13px; font-weight: 600; color: var(--ink); margin-bottom: 6px; }
+    .insight-card__text { font-size: 12px; color: var(--muted); line-height: 1.6; }
+    .research-slides { display: grid; grid-template-columns: repeat(2, 1fr); gap: 12px; margin: 24px 0; }
+    .research-slide { border-radius: 8px; overflow: hidden; background: var(--pale); }
+    .research-slide img { width: 100%; height: auto; display: block; }
+    .img-showcase { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; margin-top: 24px; }
+    .img-showcase img { width: 100%; height: auto; border-radius: 8px; object-fit: cover; }
+    .img-showcase .img-wide { grid-column: span 2; }
+    @media (max-width: 768px) {
+      .insight-grid { grid-template-columns: 1fr; }
+      .research-slides { grid-template-columns: 1fr; }
+      .img-showcase { grid-template-columns: 1fr; }
+      .img-showcase .img-wide { grid-column: span 1; }
+    }
+  </style>
+</head>
+<body>
+
+  <nav class="nav">
+    <a href="../index.html" class="nav__logo">
+      Jacopo Maio
+      <span>Product Designer</span>
+    </a>
+    <ul class="nav__links">
+      <li><a href="../index.html#work">Work</a></li>
+      <li><a href="../index.html#about">About</a></li>
+      <li><a href="mailto:jacopo.maio@gmail.com" class="btn-nav">Get in touch</a></li>
+    </ul>
+  </nav>
+
+  <div class="cs-hero cs-hero--fandom">
+    <div class="cs-hero__inner">
+      <a href="../index.html#work" class="cs-hero__back">
+        <svg width="14" height="14" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path d="M19 12H5M12 19l-7-7 7-7"/></svg>
+        All work
+      </a>
+      <div class="cs-hero__tags">
+        <span class="tag tag--blue">SaaS Platform</span>
+        <span class="tag">Cortex</span>
+        <span class="tag">Sports Tech</span>
+        <span class="tag">2025–Present</span>
+      </div>
+      <h1>Fan Experience<br>Platform — Cortex</h1>
+      <p class="lead">
+        Cortex builds fan engagement software for sports organisations. I design their fan experience platform, a gamified product that rewards fans for physical and digital engagement, used by clubs including Arsenal FC, Formula 1 and the MLS.
+      </p>
+      <div class="cs-meta">
+        <div class="cs-meta__item"><div class="cs-meta__label">Role</div><div class="cs-meta__value">Lead Product Designer</div></div>
+        <div class="cs-meta__item"><div class="cs-meta__label">Timeline</div><div class="cs-meta__value">2025–Present</div></div>
+        <div class="cs-meta__item"><div class="cs-meta__label">Platform</div><div class="cs-meta__value">Web SaaS + CMS</div></div>
+        <div class="cs-meta__item"><div class="cs-meta__label">Research</div><div class="cs-meta__value">7 rounds, 35+ participants</div></div>
+      </div>
+    </div>
+  </div>
+
+  <section class="section cs-content">
+    <div class="cs-content__inner">
+
+      <div class="cs-section fade-up">
+        <p class="eyebrow">Context</p>
+        <h2>Cortex and the fan engagement problem</h2>
+        <p>
+          Cortex is a sports technology company that builds software for the world's biggest sports organisations — including Arsenal FC, Formula 1 and the MLS. Their platform helps clubs build immersive, gamified fan ecosystems on owned channels, turning casual viewers into loyal, data-rich audiences.
+        </p>
+        <p>
+          The fan experience platform is Cortex's core SaaS product. It lets clubs reward fans for physical and digital engagement — checking in at a match, completing challenges, competing in leaderboards — all while collecting first-party fan data that drives sponsorship and commercial value.
+        </p>
+        <p>
+          I joined as lead designer to build the platform from zero to one. That meant owning both the fan-facing web experience and the club-side SaaS CMS staff use to create challenges, badges and rewards.
+        </p>
+      </div>
+
+      <div class="cs-section fade-up">
+        <p class="eyebrow">The challenge</p>
+        <h2>What we were designing for</h2>
+        <div class="cs-callout">
+          <p>"How might we create a rewards platform that provides tasks and achievements that fans actually enjoy completing?"</p>
+          <cite>Design framing, Fandom by Cortex</cite>
+        </div>
+        <p>Fandom has four core components — all of which I designed:</p>
+        <ul>
+          <li>Profiles: personalised fan profiles built from SSO and first-party data</li>
+          <li>Moments: points, badges and collectibles earned through physical and digital engagement</li>
+          <li>Connections: real-time social features letting fans compete and share with each other</li>
+          <li>Challenges: achievement-based tasks, leaderboards and mini-leagues to drive repeat engagement</li>
+        </ul>
+        <p>Three outcomes we needed to hit: increase engagement across the full season, open new sponsorship opportunities for clubs, and build a first-party data asset clubs actually own.</p>
+      </div>
+
+    </div>
+  </section>
+
+  <div style="background:var(--pale); padding:clamp(48px,6vw,72px) var(--gutter);">
+    <div style="max-width:var(--max-w); margin:0 auto;">
+      <p class="eyebrow fade-up">User Research · Round 1 — August 2025</p>
+      <h3 class="fade-up" style="margin-top:6px; margin-bottom:8px;">Understanding what fans actually want</h3>
+      <p style="color:var(--secondary); max-width:600px; font-size:14px; line-height:1.65;" class="fade-up">
+        We ran moderated usability sessions with five fans per round, testing onboarding, check-in, challenges and the rewards store. Each round shaped the next iteration directly.
+      </p>
+      <div class="research-slides fade-up">
+        <div class="research-slide"><img src="../assets/fandom/Fandom%20_%20User%20Research%20Round%201.png" alt="Round 1 Research Findings" /></div>
+        <div class="research-slide"><img src="../assets/fandom/Fandom%20_%20User%20Research%20Round%202.png" alt="Research Background Context" /></div>
+        <div class="research-slide"><img src="../assets/fandom/Fandom%20_%20Research.png" alt="Fandom Research" /></div>
+        <div class="research-slide"><img src="../assets/fandom/Fandom%20_%20Research-1.png" alt="Fandom Outcomes" /></div>
+      </div>
+    </div>
+  </div>
+
+  <section class="section cs-content" style="background:var(--white);">
+    <div class="cs-content__inner">
+
+      <div class="cs-section fade-up">
+        <p class="eyebrow">What we learned</p>
+        <h2>Key insights across seven rounds</h2>
+        <p>Clear patterns emerged that shaped every design decision.</p>
+
+        <div class="insight-grid">
+          <div class="insight-card">
+            <div class="insight-card__icon">⏱️</div>
+            <div class="insight-card__title">Earn time is the biggest concern</div>
+            <div class="insight-card__text">All five users in Round 1 raised concern about how long it takes to earn rewards. Tasks need to feel achievable quickly — comparable to Tesco Clubcard or Nectar.</div>
+          </div>
+          <div class="insight-card">
+            <div class="insight-card__icon">⭐</div>
+            <div class="insight-card__title">Favourite player section wins</div>
+            <div class="insight-card__text">The favourite player section was the feature users were most excited about. It gave the app a personal feel that generic loyalty apps simply lack.</div>
+          </div>
+          <div class="insight-card">
+            <div class="insight-card__icon">📍</div>
+            <div class="insight-card__title">Check-in as football history</div>
+            <div class="insight-card__text">One user reframed check-ins as keeping a record of your football history. That's a much stronger value proposition than just collecting points.</div>
+          </div>
+          <div class="insight-card">
+            <div class="insight-card__icon">🏪</div>
+            <div class="insight-card__title">Cheap and free rewards first</div>
+            <div class="insight-card__text">Users found competitions overpriced. Beer, hotdog and 10% off were the clear favourites — accessible rewards users could reach in a single session.</div>
+          </div>
+          <div class="insight-card">
+            <div class="insight-card__icon">🤝</div>
+            <div class="insight-card__title">Community and competition</div>
+            <div class="insight-card__text">Users wanted to see how they ranked against other fans. Community features were consistently cited as a reason they'd keep coming back.</div>
+          </div>
+          <div class="insight-card">
+            <div class="insight-card__icon">🎯</div>
+            <div class="insight-card__title">Personalisation drives enjoyment</div>
+            <div class="insight-card__text">When personalisation was added, satisfaction scores jumped. Generic felt transactional. Personal felt like the club actually cared about the fan.</div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <div style="background:var(--pale); padding:clamp(48px,6vw,72px) var(--gutter);">
+    <div style="max-width:var(--max-w); margin:0 auto;">
+      <p class="eyebrow fade-up">Research rounds 2 to 7</p>
+      <h3 class="fade-up" style="margin-top:6px;">What changed between rounds</h3>
+      <div class="img-showcase fade-up">
+        <img src="../assets/fandom/Fandom%20_%20User%20Research%20Round%205.png" alt="Key Insights" />
+        <img src="../assets/fandom/Fandom%20_%20User%20Research%20Round%206.png" alt="Biggest concern" class="img-wide" />
+        <img src="../assets/fandom/Fandom%20_%20User%20Research%20Round%2010.png" alt="Profile page insights" class="img-wide" />
+        <img src="../assets/fandom/Fandom%20_%20User%20Research%20Round%2012.png" alt="Digital unlocks" />
+        <img src="../assets/fandom/Fandom%20_%20User%20Research%20Round%2014.png" alt="Rewards store" />
+        <img src="../assets/fandom/Fandom%20_%20User%20Research%20Round%204.png" alt="Research overview" class="img-wide" />
+      </div>
+    </div>
+  </div>
+
+  <section class="section cs-content">
+    <div class="cs-content__inner">
+
+      <div class="cs-section fade-up">
+        <p class="eyebrow">Design Process</p>
+        <h2>From insight to interface</h2>
+        <p>
+          Research findings fed directly into design sprints. I worked with the PM and engineers to prioritise what to build, in what order, and at what fidelity.
+        </p>
+        <div class="cs-process">
+          <div class="cs-process__step">
+            <div class="cs-process__step-num">01</div>
+            <div class="cs-process__step-title">Discover</div>
+            <div class="cs-process__step-desc">Stakeholder interviews, competitor analysis, fan journey mapping across clubs</div>
+          </div>
+          <div class="cs-process__step">
+            <div class="cs-process__step-num">02</div>
+            <div class="cs-process__step-title">Define</div>
+            <div class="cs-process__step-desc">HMW framing, user personas, prioritised problem statements per surface</div>
+          </div>
+          <div class="cs-process__step">
+            <div class="cs-process__step-num">03</div>
+            <div class="cs-process__step-title">Design</div>
+            <div class="cs-process__step-desc">Wireframes to prototypes to high-fidelity UI. Seven rounds of iterative refinement</div>
+          </div>
+          <div class="cs-process__step">
+            <div class="cs-process__step-num">04</div>
+            <div class="cs-process__step-title">Deliver</div>
+            <div class="cs-process__step-desc">Dev handoff, design system tokens, QA and post-launch iteration</div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <div style="background:var(--white); padding:clamp(48px,6vw,72px) var(--gutter);">
+    <div style="max-width:var(--max-w); margin:0 auto;">
+      <p class="eyebrow fade-up">Design documentation</p>
+      <h3 class="fade-up" style="margin-top:6px; margin-bottom:8px;">The CMS: what clubs actually build</h3>
+      <p style="color:var(--secondary); max-width:600px; font-size:14px; line-height:1.65;" class="fade-up">
+        The club-side CMS lets staff create challenges, set completion criteria (check-in, match attendance, predictions, article reads), assign badges and configure rewards. It needed to work for non-technical club staff.
+      </p>
+      <div class="research-slides fade-up">
+        <div class="research-slide"><img src="../assets/fandom/Fandom%20_%20Design%20Doc.png" alt="Design Doc" /></div>
+        <div class="research-slide"><img src="../assets/fandom/Fandom%20_%20Design%20Doc-1.png" alt="Design Doc continued" /></div>
+      </div>
+    </div>
+  </div>
+
+  <div style="background:var(--pale); padding:clamp(48px,6vw,72px) var(--gutter);">
+    <div style="max-width:var(--max-w); margin:0 auto;">
+      <p class="eyebrow fade-up">CMS — Challenge Builder</p>
+      <h3 class="fade-up" style="margin-top:6px; margin-bottom:8px;">The challenge creation flow</h3>
+      <p style="color:var(--secondary); max-width:600px; font-size:14px; line-height:1.65;" class="fade-up">
+        The builder supports multiple event types (check-in, poll, form, video, match, predictions) with configurable rules and reward logic — all in one coherent flow.
+      </p>
+      <div class="research-slides fade-up">
+        <div class="research-slide"><img src="../assets/fandom/01.07.png" alt="CMS Challenge Builder step 1" /></div>
+        <div class="research-slide"><img src="../assets/fandom/02.14.png" alt="CMS Challenge Builder step 2" /></div>
+      </div>
+    </div>
+  </div>
+
+  <section class="section cs-content">
+    <div class="cs-content__inner">
+
+      <div class="cs-section fade-up">
+        <p class="eyebrow">My contribution</p>
+        <h2>What I owned end to end</h2>
+        <ul>
+          <li>Designed the full fan-facing web experience: onboarding, challenges, rewards store, check-in, profile and leaderboard</li>
+          <li>Designed the club-side SaaS CMS: challenge builder, badge creator, reward configuration and analytics dashboard</li>
+          <li>Ran and synthesised seven rounds of moderated usability testing with real sports fans</li>
+          <li>Built and maintained the Figma component library and design system for the product</li>
+          <li>Worked with two engineers and one PM in an agile sprint cycle — writing specs, joining standups, reviewing implementation</li>
+          <li>Facilitated design sprints and workshops to align stakeholders on product direction</li>
+        </ul>
+      </div>
+
+      <div class="cs-section fade-up">
+        <p class="eyebrow">Outcomes</p>
+        <h2>What we shipped and what we learned</h2>
+        <div class="cs-outcomes">
+          <div class="cs-outcome">
+            <div class="cs-outcome__num">7</div>
+            <div class="cs-outcome__label">Research rounds completed with real fans</div>
+          </div>
+          <div class="cs-outcome">
+            <div class="cs-outcome__num">35+</div>
+            <div class="cs-outcome__label">Participants tested across the product lifecycle</div>
+          </div>
+          <div class="cs-outcome">
+            <div class="cs-outcome__num">0 to 1</div>
+            <div class="cs-outcome__label">Full product designed from concept to launch</div>
+          </div>
+        </div>
+        <p>
+          We were right that personalisation and challenges drive engagement. We were wrong that users would engage with digital unlocks immediately — most needed tangible, low-cost rewards first. The check-in flow, reframed as a football diary, became one of the most-loved features.
+        </p>
+        <div class="cs-callout">
+          <p>"Challenges and rewards encourage users to spend more time on the app and watching matches. Personalisation made users enjoy the experience more."</p>
+          <cite>Research synthesis, Round 1 — August 2025</cite>
+        </div>
+        <p>
+          The biggest design lesson: users don't want to feel like they're working for rewards. The most successful challenges were built around things fans already do — watch matches, check the app before kick-off, pick a favourite player. Design that aligns with existing behaviour beats design that asks for new behaviour every time.
+        </p>
+      </div>
+
+    </div>
+  </section>
+
+  <div class="next-project">
+    <div class="container">
+      <p class="eyebrow">Next project</p>
+      <h2>Reed Job Search App</h2>
+      <p style="color:var(--muted); max-width:360px; margin:12px auto 28px; font-size:14px; line-height:1.65;">Redesigning the mobile experience for 250,000 daily job seekers.</p>
+      <a href="reed-app.html" class="btn btn--primary">
+        Read case study
+        <svg width="14" height="14" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+      </a>
+    </div>
+  </div>
+
+  <footer class="footer">
+    <div class="footer__inner">
+      <div class="footer__logo">Jacopo Maio</div>
+      <ul class="footer__links">
+        <li><a href="https://www.linkedin.com/in/jacopomaio/" target="_blank" rel="noopener">LinkedIn</a></li>
+        <li><a href="mailto:jacopo.maio@gmail.com">Email</a></li>
+        <li><a href="../index.html#work">Work</a></li>
+      </ul>
+      <p class="footer__copy">© 2026 Jacopo Maio · London</p>
+    </div>
+  </footer>
+
+  <script src="../js/main.js"></script>
+</body>
+</html>

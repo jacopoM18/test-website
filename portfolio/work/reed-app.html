@@ -1,0 +1,538 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Reed App Notifications — Jacopo Maio</title>
+  <meta name="description" content="Competitive research into push, in-app and SMS notifications across 9 job boards — finding the gaps and opportunities for Reed.co.uk." />
+  <link rel="stylesheet" href="../css/style.css" />
+  <style>
+    /* Phone screens */
+    .screens-showcase {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 20px;
+      padding: clamp(48px,6vw,72px) var(--gutter);
+      background: #0A0A14;
+      max-width: 100%;
+    }
+
+    .phone {
+      background: #1C1C1E;
+      border-radius: 24px;
+      overflow: hidden;
+      aspect-ratio: 9/19;
+      display: flex;
+      flex-direction: column;
+      font-family: var(--font);
+      color: white;
+      position: relative;
+      box-shadow: 0 16px 48px rgba(0,0,0,0.5);
+      border: 1px solid rgba(255,255,255,0.06);
+    }
+
+    .phone__status {
+      display: flex; justify-content: space-between;
+      font-size: 8px; color: rgba(255,255,255,0.5);
+      padding: 10px 14px 0;
+    }
+
+    .phone__screen {
+      flex: 1; padding: 10px 12px;
+      display: flex; flex-direction: column;
+      overflow: hidden;
+    }
+
+    .phone__title { font-size: 14px; font-weight: 700; color: white; margin-bottom: 2px; }
+    .phone__sub { font-size: 9px; color: rgba(255,255,255,0.4); margin-bottom: 10px; }
+
+    .phone__bottom-nav {
+      display: flex; justify-content: space-around;
+      padding: 8px 0 10px;
+      border-top: 1px solid rgba(255,255,255,0.07);
+    }
+    .phone__bottom-nav span {
+      display: flex; flex-direction: column; align-items: center; gap: 2px;
+      font-size: 7px; color: rgba(255,255,255,0.35);
+    }
+    .phone__bottom-nav span.active { color: #E5162A; }
+    .phone__bottom-nav svg { width: 14px; height: 14px; }
+
+    /* Lock screen push notification */
+    .lock-screen {
+      background: linear-gradient(160deg, #1a237e 0%, #0d0d2b 100%);
+      flex: 1; display: flex; flex-direction: column;
+      padding: 10px 12px;
+    }
+    .lock-time { font-size: 28px; font-weight: 200; text-align: center; margin: 8px 0 4px; }
+    .lock-date { font-size: 9px; color: rgba(255,255,255,0.6); text-align: center; margin-bottom: 14px; }
+    .push-card {
+      background: rgba(255,255,255,0.14);
+      backdrop-filter: blur(8px);
+      border-radius: 10px; padding: 9px 10px;
+      margin-bottom: 6px;
+    }
+    .push-card__header { display: flex; align-items: center; gap: 6px; margin-bottom: 5px; }
+    .push-card__icon { width: 14px; height: 14px; border-radius: 3px; background: #E5162A; display: flex; align-items: center; justify-content: center; }
+    .push-card__app { font-size: 8px; color: rgba(255,255,255,0.6); font-weight: 500; text-transform: uppercase; letter-spacing: 0.04em; }
+    .push-card__time { font-size: 8px; color: rgba(255,255,255,0.4); margin-left: auto; }
+    .push-card__title { font-size: 10px; font-weight: 600; color: white; margin-bottom: 2px; }
+    .push-card__body { font-size: 9px; color: rgba(255,255,255,0.65); line-height: 1.4; }
+
+    /* In-app notification centre */
+    .notif-header {
+      display: flex; justify-content: space-between; align-items: center;
+      margin-bottom: 10px;
+    }
+    .notif-item {
+      display: flex; gap: 8px;
+      padding: 8px 0; border-bottom: 1px solid rgba(255,255,255,0.06);
+      align-items: flex-start;
+    }
+    .notif-dot {
+      width: 7px; height: 7px; border-radius: 50%;
+      background: #E5162A; flex-shrink: 0; margin-top: 3px;
+    }
+    .notif-dot.read { background: transparent; border: 1px solid rgba(255,255,255,0.2); }
+    .notif-text { font-size: 9px; color: rgba(255,255,255,0.75); line-height: 1.4; }
+    .notif-time { font-size: 8px; color: rgba(255,255,255,0.35); margin-top: 3px; }
+
+    /* Settings screen */
+    .settings-section { margin-bottom: 12px; }
+    .settings-label { font-size: 8px; font-weight: 600; color: rgba(255,255,255,0.4); text-transform: uppercase; letter-spacing: 0.06em; margin-bottom: 6px; }
+    .settings-row {
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 7px 0; border-bottom: 1px solid rgba(255,255,255,0.05);
+    }
+    .settings-row__label { font-size: 9px; color: rgba(255,255,255,0.8); }
+    .toggle {
+      width: 22px; height: 13px; border-radius: 7px;
+      background: rgba(255,255,255,0.15); position: relative;
+      flex-shrink: 0;
+    }
+    .toggle.on { background: #E5162A; }
+    .toggle::after {
+      content: ''; position: absolute;
+      width: 9px; height: 9px; border-radius: 50%;
+      background: white; top: 2px; left: 2px;
+      transition: left 0.15s;
+    }
+    .toggle.on::after { left: 11px; }
+
+    /* Salary insight card */
+    .salary-card {
+      background: rgba(37,99,235,0.18);
+      border: 1px solid rgba(37,99,235,0.35);
+      border-radius: 10px; padding: 10px; margin-bottom: 8px;
+    }
+    .salary-card__label { font-size: 8px; font-weight: 500; color: #93B4F8; margin-bottom: 4px; }
+    .salary-card__title { font-size: 11px; font-weight: 700; color: white; margin-bottom: 4px; }
+    .salary-range { display: flex; gap: 6px; align-items: center; }
+    .salary-range__num { font-size: 13px; font-weight: 700; color: white; }
+    .salary-range__sep { font-size: 10px; color: rgba(255,255,255,0.4); }
+    .salary-bar { height: 4px; background: rgba(255,255,255,0.1); border-radius: 2px; margin-top: 8px; overflow: hidden; }
+    .salary-bar__fill { height: 100%; background: linear-gradient(90deg, #2563EB, #60A5FA); width: 60%; }
+    .salary-card__note { font-size: 8px; color: rgba(255,255,255,0.45); margin-top: 6px; }
+
+    /* Expiry saved-jobs card */
+    .expiry-card {
+      background: rgba(245,158,11,0.15);
+      border: 1px solid rgba(245,158,11,0.3);
+      border-radius: 10px; padding: 10px; margin-bottom: 8px;
+    }
+    .expiry-card__label { font-size: 8px; font-weight: 500; color: #FCD34D; margin-bottom: 4px; }
+    .expiry-card__title { font-size: 10px; font-weight: 600; color: white; margin-bottom: 3px; }
+    .expiry-card__sub { font-size: 9px; color: rgba(255,255,255,0.55); line-height: 1.4; }
+
+    /* Competitor comparison grid */
+    .comp-grid {
+      width: 100%; border-collapse: collapse;
+      font-size: 13px;
+    }
+    .comp-grid th {
+      text-align: left; font-size: 11px; font-weight: 500;
+      color: var(--muted); padding: 10px 14px 10px 0;
+      border-bottom: 1px solid var(--line);
+    }
+    .comp-grid td {
+      padding: 10px 14px 10px 0;
+      border-bottom: 1px solid var(--line);
+      font-size: 13px; color: var(--ink);
+      vertical-align: middle;
+    }
+    .comp-grid tr:last-child td { border-bottom: none; }
+    .comp-grid .tick { color: #10B981; font-weight: 600; }
+    .comp-grid .cross { color: #D1D5DB; }
+    .comp-grid .partial { color: #F59E0B; }
+    .comp-grid td:first-child { font-weight: 500; }
+
+    /* Research slide embed */
+    .slide-embed {
+      border-radius: 10px; overflow: hidden;
+      border: 1px solid var(--line);
+      box-shadow: 0 4px 20px rgba(0,0,0,0.06);
+      margin: 24px 0;
+    }
+    .slide-embed img { width: 100%; height: auto; display: block; }
+    .slide-caption {
+      padding: 12px 16px;
+      background: var(--pale);
+      font-size: 12px; color: var(--muted);
+      line-height: 1.5;
+    }
+
+    .finding-grid {
+      display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin: 24px 0;
+    }
+    .finding-card {
+      background: var(--pale); border-radius: 10px; padding: 20px 22px;
+    }
+    .finding-card__num { font-size: 28px; font-weight: 700; color: var(--ink); line-height: 1; margin-bottom: 6px; }
+    .finding-card__label { font-size: 13px; color: var(--muted); line-height: 1.5; }
+
+    .opp-item {
+      display: flex; gap: 14px; padding: 16px 0;
+      border-bottom: 1px solid var(--line);
+      align-items: flex-start;
+    }
+    .opp-item:last-child { border-bottom: none; }
+    .opp-item__icon {
+      width: 32px; height: 32px; border-radius: 8px;
+      background: var(--pale); display: flex;
+      align-items: center; justify-content: center;
+      flex-shrink: 0;
+    }
+    .opp-item__title { font-size: 14px; font-weight: 600; color: var(--ink); margin-bottom: 4px; }
+    .opp-item__body { font-size: 13px; color: var(--muted); line-height: 1.55; }
+
+    .slides-two-up {
+      display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin: 24px 0;
+    }
+
+    @media (max-width: 700px) {
+      .screens-showcase { grid-template-columns: repeat(2, 1fr); }
+      .finding-grid { grid-template-columns: 1fr; }
+      .slides-two-up { grid-template-columns: 1fr; }
+    }
+    @media (max-width: 480px) {
+      .screens-showcase { grid-template-columns: repeat(2, 1fr); }
+    }
+  </style>
+</head>
+<body>
+
+  <nav class="nav">
+    <a href="../index.html" class="nav__logo">
+      Jacopo Maio
+      <span>Product Designer</span>
+    </a>
+    <ul class="nav__links">
+      <li><a href="../index.html#work">Work</a></li>
+      <li><a href="../index.html#about">About</a></li>
+      <li><a href="mailto:jacopo.maio@gmail.com" class="btn-nav">Get in touch</a></li>
+    </ul>
+  </nav>
+
+  <div class="cs-hero cs-hero--app">
+    <div class="cs-hero__inner">
+      <a href="../index.html#work" class="cs-hero__back">
+        <svg width="14" height="14" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path d="M19 12H5M12 19l-7-7 7-7"/></svg>
+        All work
+      </a>
+      <div class="cs-hero__tags">
+        <span class="tag">Mobile</span>
+        <span class="tag">iOS / Android</span>
+        <span class="tag">Notifications</span>
+        <span class="tag">Research</span>
+        <span class="tag">2022</span>
+      </div>
+      <h1>Reed App<br>Notifications</h1>
+      <p class="lead">
+        Exploratory research into how job board apps use push, in-app, and SMS notifications. The goal was to map the competitive landscape, find where Reed was falling short, and surface the highest-value opportunities.
+      </p>
+      <div class="cs-meta">
+        <div class="cs-meta__item"><div class="cs-meta__label">Role</div><div class="cs-meta__value">Product Designer (Research Lead)</div></div>
+        <div class="cs-meta__item"><div class="cs-meta__label">Timeline</div><div class="cs-meta__value">Q2 2022</div></div>
+        <div class="cs-meta__item"><div class="cs-meta__label">Method</div><div class="cs-meta__value">Competitive analysis, 9 platforms</div></div>
+        <div class="cs-meta__item"><div class="cs-meta__label">Output</div><div class="cs-meta__value">Opportunity map + design brief</div></div>
+      </div>
+    </div>
+  </div>
+
+  <section class="section cs-content">
+    <div class="cs-content__inner">
+
+      <div class="cs-section fade-up">
+        <p class="eyebrow">Context</p>
+        <h2>Notifications were an afterthought</h2>
+        <p>
+          Reed.co.uk had a solid job search product, but the app's notification system had grown piecemeal. Job alert emails existed, a basic push setup existed, but nobody had looked at the full picture: what were competitors doing, where were the gaps, and what would actually bring users back to the app?
+        </p>
+        <p>
+          I was asked to run an exploratory research piece before any design work started. The brief was deliberately open: understand the notification landscape across the market, identify what Reed was missing, and come back with a prioritised set of opportunities.
+        </p>
+      </div>
+
+      <div class="cs-section fade-up">
+        <p class="eyebrow">Method</p>
+        <h2>9 platforms, 4 notification channels</h2>
+        <p>
+          I audited the notification systems of every major job board available in the UK: Reed, Indeed, Glassdoor, LinkedIn, Welcome to the Jungle, Monster, Totaljobs, CV Library and Adzuna. For each platform I mapped every notification type across four channels: email, push, in-app and SMS.
+        </p>
+
+        <div class="slide-embed fade-up">
+          <img src="../assets/reed-research/slide-04.png" alt="Overview of 9 job board platforms audited" />
+          <div class="slide-caption">The 9 platforms included in the audit — ranging from global players like LinkedIn and Indeed to UK-specific boards like CV Library and Welcome to the Jungle.</div>
+        </div>
+
+        <p>
+          For each platform I installed the iOS app, created a fresh account, and mapped every configurable notification setting and every notification type I could trigger. I also cross-referenced with their web settings panels, since some platforms split notification management across devices.
+        </p>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- Key numbers -->
+  <div style="background:var(--pale); padding:clamp(48px,6vw,72px) var(--gutter);">
+    <div style="max-width:var(--max-w); margin:0 auto;">
+      <p class="eyebrow fade-up">Key findings at a glance</p>
+      <h3 class="fade-up" style="margin:8px 0 24px;">The market was less sophisticated than expected</h3>
+      <div class="finding-grid fade-up">
+        <div class="finding-card">
+          <div class="finding-card__num">2/7</div>
+          <div class="finding-card__label">apps actually used the in-app notification channel. Most assumed push would always be seen.</div>
+        </div>
+        <div class="finding-card">
+          <div class="finding-card__num">1/9</div>
+          <div class="finding-card__label">platforms (Indeed) sent SMS notifications. A channel almost entirely untapped.</div>
+        </div>
+        <div class="finding-card">
+          <div class="finding-card__num">3/9</div>
+          <div class="finding-card__label">competitors offered salary insight notifications. Glassdoor led — but Reed already had the data.</div>
+        </div>
+        <div class="finding-card">
+          <div class="finding-card__num">0/9</div>
+          <div class="finding-card__label">competitors had cracked profile views + search appearances as a re-engagement hook outside LinkedIn.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <section class="section cs-content">
+    <div class="cs-content__inner">
+
+      <div class="cs-section fade-up">
+        <p class="eyebrow">Finding 1</p>
+        <h2>Email dominates. Everything else is an afterthought.</h2>
+        <p>
+          Across all 9 platforms, email was the one notification channel that everyone had. Push existed in most but was used narrowly — almost exclusively for job alerts. The more nuanced notification types (company updates, recruiter outreach, expiry reminders) barely appeared anywhere.
+        </p>
+        <p>
+          Totaljobs, CV Library and Adzuna were at the bottom of the pack. They offered bare-minimum job alert notifications with no personalisation and no secondary channels.
+        </p>
+
+        <div class="slide-embed fade-up">
+          <img src="../assets/reed-research/slide-05.png" alt="Job alerts notification comparison table across 9 platforms" />
+          <div class="slide-caption">Job alerts feature comparison — email, push, in-app and SMS across all 9 platforms. Reed had email and push but was missing in-app entirely.</div>
+        </div>
+      </div>
+
+      <div class="cs-section fade-up">
+        <p class="eyebrow">Finding 2</p>
+        <h2>In-app is the fallback nobody built</h2>
+        <p>
+          Push notifications depend on users granting permission. Many don't. Of the 7 app-based platforms in the audit, only 2 had built an in-app notification centre that would catch alerts when push wasn't available or hadn't been seen.
+        </p>
+        <p>
+          The logic is simple: if a user opens the app and has a pending job alert they never received as a push, there's nowhere to surface it. The in-app channel closes that gap. Reed had nothing in this space.
+        </p>
+
+        <div class="slides-two-up fade-up">
+          <div class="slide-embed" style="margin:0;">
+            <img src="../assets/reed-research/slide-07.png" alt="In-app notifications are a rarely used channel" />
+            <div class="slide-caption">Only 2 of 7 app-based platforms used in-app notifications as a fallback for missed push alerts.</div>
+          </div>
+          <div class="slide-embed" style="margin:0;">
+            <img src="../assets/reed-research/slide-08.png" alt="SMS notifications are a rarely used channel" />
+            <div class="slide-caption">SMS was almost entirely untapped. Only Indeed used it, covering recruiter invites, employer responses and interview updates.</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="cs-section fade-up">
+        <p class="eyebrow">Finding 3</p>
+        <h2>Company following was LinkedIn's moat</h2>
+        <p>
+          Company-specific notifications — following a company and getting alerts when they post jobs — was only available in a small number of platforms. LinkedIn had built this well. Glassdoor allowed following on web but forced users to manage it in the app. Otta (now Welcome to the Jungle) had a version too.
+        </p>
+        <p>
+          For Reed, this was a gap. Job seekers targeting specific employers had no way to follow them and get notified. They had to rely on keyword alerts, which generate too much noise.
+        </p>
+
+        <div class="slides-two-up fade-up">
+          <div class="slide-embed" style="margin:0;">
+            <img src="../assets/reed-research/slide-10.png" alt="Company related notifications only available in a handful of apps" />
+            <div class="slide-caption">Company-following notifications existed only on LinkedIn, Otta and Glassdoor — all with different implementations and limitations.</div>
+          </div>
+          <div class="slide-embed" style="margin:0;">
+            <img src="../assets/reed-research/slide-11.png" alt="Company outreach notifications — niche functionality" />
+            <div class="slide-caption">In-app messages from companies to candidates existed in only 3 of 7 apps. A clear differentiator for the platforms that had it.</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="cs-section fade-up">
+        <p class="eyebrow">Finding 4</p>
+        <h2>Expiry reminders: obvious, almost nobody did it</h2>
+        <p>
+          Users save jobs and forget them. Job listings expire. Monster and Totaljobs had both built reminders that fire before a saved job closes. Totaljobs had recently removed theirs — but the fact it existed at all validated the concept. Reed had no equivalent.
+        </p>
+        <p>
+          This is a low-effort, high-value notification type. It requires no new data. Reed already knew when listings expired. The reminder just needed to be built.
+        </p>
+
+        <div class="slide-embed fade-up">
+          <img src="../assets/reed-research/slide-12.png" alt="Expiring saved jobs notification comparison" />
+          <div class="slide-caption">Monster and Totaljobs both surfaced expiry reminders. Totaljobs had removed theirs by the time of this research — but prior existence proved the concept worked.</div>
+        </div>
+      </div>
+
+      <div class="cs-section fade-up">
+        <p class="eyebrow">Finding 5</p>
+        <h2>Salary insights: Reed had the data. Nobody was using it to re-engage.</h2>
+        <p>
+          Glassdoor was the only identified competitor using salary insights as a notification surface. They pushed salary range updates for roles users had saved or searched for. Reed already had a salary checker tool — but it was passive. Users had to find it.
+        </p>
+        <p>
+          Turning salary data into a proactive notification was an opportunity nobody else was taking. Done right, it brings users back to the app for a reason that isn't "you have a new job alert" — which creates variety and reduces notification fatigue.
+        </p>
+
+        <div class="slide-embed fade-up">
+          <img src="../assets/reed-research/slide-13.png" alt="Salary insights feature comparison — Glassdoor vs Reed" />
+          <div class="slide-caption">Glassdoor was the only competitor delivering salary insights as a notification. Reed already had comparable salary data — it just wasn't being surfaced proactively.</div>
+        </div>
+      </div>
+
+      <div class="cs-section fade-up">
+        <p class="eyebrow">Finding 6</p>
+        <h2>Profile views: a hook LinkedIn owned but nobody else used</h2>
+        <p>
+          LinkedIn's "your profile appeared in X searches this week" is a powerful re-engagement mechanic. It triggers a response ("who was it?"), nudges users to optimise their profile, and brings them back to the app with positive intent rather than task-based urgency.
+        </p>
+        <p>
+          No other job board in the audit had replicated this. Reed's tech team already tracked profile views from recruiters. The notification itself would need investment, but the data existed.
+        </p>
+
+        <div class="slide-embed fade-up">
+          <img src="../assets/reed-research/slide-14.png" alt="Profile views and search appearances — LinkedIn's unique hook" />
+          <div class="slide-caption">Search appearances paired with profile improvement suggestions create a strong re-engagement loop. Reed had the underlying data — the notification layer was the missing piece.</div>
+        </div>
+      </div>
+
+      <div class="cs-section fade-up">
+        <p class="eyebrow">Opportunities</p>
+        <h2>Six things Reed could do that most competitors hadn't</h2>
+
+        <div style="margin-top:20px;">
+          <div class="opp-item">
+            <div class="opp-item__icon">
+              <svg width="16" height="16" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path d="M15 17h5l-1.405-1.405A2.032 2.032 0 0118 14.158V11a6.002 6.002 0 00-4-5.659V5a2 2 0 10-4 0v.341C7.67 6.165 6 8.388 6 11v3.159c0 .538-.214 1.055-.595 1.436L4 17h5m6 0v1a3 3 0 11-6 0v-1m6 0H9"/></svg>
+            </div>
+            <div>
+              <div class="opp-item__title">In-app notification centre</div>
+              <div class="opp-item__body">Build a persistent inbox inside the app so users who miss push alerts still see them when they open Reed. The lowest effort, highest reliability improvement.</div>
+            </div>
+          </div>
+          <div class="opp-item">
+            <div class="opp-item__icon">
+              <svg width="16" height="16" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+            </div>
+            <div>
+              <div class="opp-item__title">Saved job expiry reminders</div>
+              <div class="opp-item__body">Alert users when a saved listing is about to close. No new data required — the expiry date already exists in the system.</div>
+            </div>
+          </div>
+          <div class="opp-item">
+            <div class="opp-item__icon">
+              <svg width="16" height="16" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"/></svg>
+            </div>
+            <div>
+              <div class="opp-item__title">Proactive salary insights</div>
+              <div class="opp-item__body">Push salary updates for roles users have searched or saved. Reed already had the salary checker data — this just turns it into a re-engagement channel.</div>
+            </div>
+          </div>
+          <div class="opp-item">
+            <div class="opp-item__icon">
+              <svg width="16" height="16" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"/></svg>
+            </div>
+            <div>
+              <div class="opp-item__title">Profile views as re-engagement</div>
+              <div class="opp-item__body">Tell users how many recruiters searched their profile this week. Creates positive intent, drives profile completion, and brings people back without task pressure.</div>
+            </div>
+          </div>
+          <div class="opp-item">
+            <div class="opp-item__icon">
+              <svg width="16" height="16" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-2 10v-5a1 1 0 00-1-1h-2a1 1 0 00-1 1v5m4 0H9"/></svg>
+            </div>
+            <div>
+              <div class="opp-item__title">Company following</div>
+              <div class="opp-item__body">Let users follow specific employers and get notified when they post. Reduces alert noise for people with targeted job searches — a gap competitors hadn't closed.</div>
+            </div>
+          </div>
+          <div class="opp-item">
+            <div class="opp-item__icon">
+              <svg width="16" height="16" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z"/></svg>
+            </div>
+            <div>
+              <div class="opp-item__title">Recruiter SMS for high-intent moments</div>
+              <div class="opp-item__body">Only Indeed used SMS. For time-sensitive events — interview invites, application updates — SMS outperforms push on open rate. Worth piloting for opted-in users.</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="cs-section fade-up">
+        <p class="eyebrow">What I took away</p>
+        <h2>Research as a product lever</h2>
+        <p>
+          The most useful thing this research did was give the team permission to prioritise. Before it, notifications were seen as a low-priority engineering task. After it, we had a clear picture of where Reed was behind, which gaps were cheap to close, and which would require tech investment.
+        </p>
+        <p>
+          The in-app notification centre and expiry reminders went into the next sprint. Salary insights and profile views were scoped as a larger initiative. Company following became part of a longer product roadmap conversation.
+        </p>
+        <p>
+          Competitive research isn't always glamorous. But knowing exactly what the market has built — and hasn't — is what makes design decisions defensible.
+        </p>
+      </div>
+
+    </div>
+  </section>
+
+  <div class="next-project">
+    <div class="container">
+      <p class="eyebrow">Next project</p>
+      <h2>Reed Course Discovery</h2>
+      <p style="color:var(--muted); max-width:380px; margin:12px auto 28px; font-size:14px; line-height:1.65;">Redesigning the course card and discovery flow on Reed.co.uk to reduce abandonment and lift enrolment.</p>
+      <a href="reed-web.html" class="btn btn--primary">
+        Read case study
+        <svg width="14" height="14" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+      </a>
+    </div>
+  </div>
+
+  <footer class="footer">
+    <div class="footer__inner">
+      <div class="footer__logo">Jacopo Maio</div>
+      <ul class="footer__links">
+        <li><a href="https://www.linkedin.com/in/jacopomaio/" target="_blank" rel="noopener">LinkedIn</a></li>
+        <li><a href="mailto:jacopo.maio@gmail.com">Email</a></li>
+        <li><a href="../index.html#work">Work</a></li>
+      </ul>
+      <p class="footer__copy">© 2026 Jacopo Maio · London</p>
+    </div>
+  </footer>
+
+  <script src="../js/main.js"></script>
+</body>
+</html>

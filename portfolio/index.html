@@ -1,0 +1,485 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Jacopo Maio — Product Designer</title>
+  <meta name="description" content="Product Designer with 7+ years designing SaaS platforms, mobile apps and web products in London." />
+  <link rel="stylesheet" href="css/style.css" />
+  <style>
+    /* Hero */
+    .hero {
+      min-height: 100svh;
+      display: flex; flex-direction: column; justify-content: center;
+      padding: 120px var(--gutter) clamp(56px, 8vw, 80px);
+      background: var(--white);
+    }
+
+    .hero__inner {
+      max-width: var(--max-w); margin: 0 auto; width: 100%;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 64px;
+      align-items: center;
+    }
+
+    .hero__photo-col {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+    }
+
+    .hero__photo {
+      width: 100%;
+      max-width: 420px;
+      aspect-ratio: 4/5;
+      border-radius: 12px;
+      overflow: hidden;
+      background: var(--pale);
+    }
+
+    .hero__photo img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: top center;
+      filter: grayscale(10%);
+    }
+
+    .hero__photo-caption {
+      margin-top: 14px;
+      display: flex;
+      flex-direction: column;
+      gap: 2px;
+    }
+
+    .hero__photo-caption strong {
+      font-size: 15px;
+      font-weight: 600;
+      color: var(--ink);
+    }
+
+    .hero__photo-caption span {
+      font-size: 13px;
+      color: var(--muted);
+    }
+
+    .hero__content {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+    }
+
+    .hero__headline {
+      font-size: clamp(44px, 6vw, 80px);
+      line-height: 1.0;
+      letter-spacing: -0.03em;
+      font-weight: 700;
+      color: var(--ink);
+      margin-bottom: 28px;
+    }
+
+    .hero__headline em {
+      font-style: italic;
+      font-weight: 300;
+      color: var(--muted);
+    }
+
+    .hero__meta p {
+      font-size: 15px;
+      line-height: 1.75;
+      color: var(--secondary);
+    }
+
+    .hero__meta p + p { margin-top: 12px; }
+
+    .hero__actions {
+      display: flex; gap: 12px; flex-wrap: wrap;
+      margin-top: 32px;
+    }
+
+    /* Project icon thumbnails */
+    .work-card__icon {
+      width: 160px; height: 100px;
+      border-radius: 8px;
+      display: flex; align-items: center; justify-content: center;
+      flex-shrink: 0;
+      transition: transform 0.25s var(--ease);
+    }
+    .work-card:hover .work-card__icon { transform: scale(1.04); }
+
+    .featured-card__icon {
+      min-height: 320px;
+      display: flex; align-items: center; justify-content: center;
+    }
+
+    @media (max-width: 900px) {
+      .hero__inner { grid-template-columns: 1fr; gap: 40px; }
+      .hero__photo { max-width: 240px; aspect-ratio: 1; }
+      .hero__photo-col { flex-direction: row; align-items: center; gap: 20px; }
+      .hero__photo-caption { margin-top: 0; }
+    }
+
+    @media (max-width: 600px) {
+      .hero__photo-col { flex-direction: column; align-items: flex-start; }
+      .hero__photo { max-width: 180px; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Nav -->
+  <nav class="nav">
+    <a href="index.html" class="nav__logo">
+      Jacopo Maio
+      <span>Product Designer</span>
+    </a>
+    <ul class="nav__links">
+      <li><a href="#work">Work</a></li>
+      <li><a href="#about">About</a></li>
+      <li><a href="mailto:jacopo.maio@gmail.com" class="btn-nav">Get in touch</a></li>
+    </ul>
+  </nav>
+
+  <!-- Hero -->
+  <section class="hero">
+    <div class="hero__inner">
+
+      <!-- Photo col -->
+      <div class="hero__photo-col">
+        <div class="hero__photo">
+          <img src="assets/jacopo.png" alt="Jacopo Maio, Product Designer" />
+        </div>
+        <div class="hero__photo-caption">
+          <strong>Jacopo Maio</strong>
+          <span>Senior Product Designer · London</span>
+        </div>
+      </div>
+
+      <!-- Content col -->
+      <div class="hero__content">
+        <h1 class="hero__headline">
+          Product<br>
+          Design<br>
+          <em>that ships.</em>
+        </h1>
+        <div class="hero__meta">
+          <p style="font-weight:500; color:var(--ink);">
+            Senior Product Designer architecting cross-platform B2B and B2C ecosystems across iOS, Android, and Web.
+          </p>
+          <p style="font-weight:300;">
+            With 7+ years of experience at Cortex (Enterprise Data) and Reed (10M+ users), I specialise in turning complex technical logic into frictionless mobile and desktop experiences. I bridge the gap between user empathy and engineering reality to deliver products that scale.
+          </p>
+        </div>
+        <div class="hero__actions">
+          <a href="#work" class="btn btn--primary">
+            See my work
+            <svg width="14" height="14" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+          </a>
+          <a href="mailto:jacopo.maio@gmail.com" class="btn btn--outline">Say hello</a>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- Stats -->
+  <div class="stats-bar">
+    <div class="container">
+      <div class="stats-bar__inner">
+        <div class="stat fade-up"><div class="stat__num">7+</div><div class="stat__label">Years experience</div></div>
+        <div class="stat fade-up"><div class="stat__num">12+</div><div class="stat__label">Products shipped</div></div>
+        <div class="stat fade-up"><div class="stat__num">3M+</div><div class="stat__label">Users reached</div></div>
+        <div class="stat fade-up"><div class="stat__num">B2B + B2C</div><div class="stat__label">SaaS, mobile, web</div></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Work -->
+  <section class="section" id="work">
+    <div class="container">
+
+      <div class="section-header fade-up">
+        <div>
+          <p class="eyebrow">Selected work</p>
+          <h2>What I've shipped.</h2>
+        </div>
+        <p style="max-width:280px; font-size:13px; color:var(--muted); padding-bottom:4px;">
+          Each project starts with a real problem. Here's how I found the right answer.
+        </p>
+      </div>
+
+      <!-- Work list -->
+      <div class="work-list">
+
+        <!-- Cortex / Fandom -->
+        <a href="work/fandom.html" class="work-card fade-up">
+          <div class="work-card__logo"><img src="assets/logo-cortex.jpg" alt="Cortex" /></div>
+          <div class="work-card__body">
+            <div class="work-card__tags">
+              <span class="tag">SaaS Platform</span>
+              <span class="tag">Cortex</span>
+              <span class="tag">2025–Present</span>
+            </div>
+            <div class="work-card__title">Fan Experience Platform — Cortex</div>
+            <p class="work-card__desc">Designing a gamified fan engagement SaaS from zero to one — helping sports clubs like Arsenal FC and Formula 1 build first-party audience data on owned channels.</p>
+            <div class="work-card__outcomes">
+              <span class="work-card__outcome">2 enterprise clients won through UX research</span>
+              <span class="work-card__outcome">Zero to one SaaS product</span>
+              <span class="work-card__outcome">7 research rounds, 35+ participants</span>
+            </div>
+          </div>
+          <div class="work-card__arrow">
+            <svg width="14" height="14" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+          </div>
+        </a>
+
+        <!-- Reed App -->
+        <a href="work/reed-app.html" class="work-card fade-up">
+          <div class="work-card__logo"><img src="assets/logo-reed.jpg" alt="Reed" /></div>
+          <div class="work-card__body">
+            <div class="work-card__tags">
+              <span class="tag">Mobile</span>
+              <span class="tag">Research</span>
+              <span class="tag">Reed</span>
+              <span class="tag tag--platform"><svg width="10" height="12" viewBox="0 0 814 1000" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><path d="M788.1 340.9c-5.8 4.5-108.2 62.2-108.2 190.5 0 148.4 130.3 200.9 134.2 202.2-.6 3.2-20.7 71.9-68.7 141.9-42.8 61.6-87.5 123.1-155.5 123.1s-85.5-39.5-164-39.5c-76 0-103.7 40.8-165.9 40.8s-105-37.5-155.5-108.6c-43.6-62.8-84.3-149.4-84.3-231.6 0-163.6 107.5-250.4 213.2-250.4 56.3 0 103.1 37.5 138.5 37.5 33.8 0 86.8-39.5 150.2-39.5 24.3 0 108.3 2.6 168.5 81.6zm-98.9-184.5c31.4-37.5 53.9-89.7 53.9-141.9 0-7.1-.6-14.3-1.9-20.7-50.6 1.9-110.8 33.7-147.1 75.8-28.5 32.4-55.1 84.7-55.1 137.5 0 7.8 1.3 15.6 1.9 18.1 3.2.6 8.4 1.3 13.6 1.3 45.4 0 102.5-30.4 134.7-70.1z"/></svg> iOS</span>
+              <span class="tag tag--platform"><svg width="11" height="12" viewBox="0 0 48 48" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><path d="M7.5 18.5C7.5 16.567 9.067 15 11 15h1v18h-1c-1.933 0-3.5-1.567-3.5-3.5v-11zM37 15h1c1.933 0 3.5 1.567 3.5 3.5v11c0 1.933-1.567 3.5-3.5 3.5h-1V15zM14 14h20v21.5a2.5 2.5 0 0 1-2.5 2.5h-1.5v5a2 2 0 0 1-4 0v-5h-4v5a2 2 0 0 1-4 0v-5H16.5A2.5 2.5 0 0 1 14 35.5V14zM30.5 8.196l2.5-4.33a.5.5 0 0 0-.866-.5l-2.55 4.415A14.93 14.93 0 0 0 24 7c-2.09 0-4.07.426-5.869 1.194L15.58 3.366a.5.5 0 0 0-.866.5l2.5 4.33A15.04 15.04 0 0 0 9 19h30a15.04 15.04 0 0 0-8.5-10.804zM20 14.5a1.5 1.5 0 1 1 0-3 1.5 1.5 0 0 1 0 3zm8 0a1.5 1.5 0 1 1 0-3 1.5 1.5 0 0 1 0 3z"/></svg> Android</span>
+            </div>
+            <div class="work-card__title">Reed App Notifications</div>
+            <p class="work-card__desc">Competitive analysis of push, in-app and SMS notifications across 9 job board platforms — mapping gaps and surfacing design opportunities.</p>
+            <div class="work-card__outcomes">
+              <span class="work-card__outcome">9 platforms audited</span>
+              <span class="work-card__outcome">6 design opportunities surfaced</span>
+              <span class="work-card__outcome">2 shipped within the next sprint</span>
+            </div>
+          </div>
+          <div class="work-card__arrow">
+            <svg width="14" height="14" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+          </div>
+        </a>
+
+        <!-- Reed Web -->
+        <a href="work/reed-web.html" class="work-card fade-up">
+          <div class="work-card__logo"><img src="assets/logo-reed.jpg" alt="Reed" /></div>
+          <div class="work-card__body">
+            <div class="work-card__tags">
+              <span class="tag">Web</span>
+              <span class="tag">Ecommerce</span>
+              <span class="tag">Reed</span>
+            </div>
+            <div class="work-card__title">Reed Course Discovery</div>
+            <p class="work-card__desc">Redesigning the course card and search flow on Reed.co.uk — giving users the trust signals they needed to commit without clicking into every listing.</p>
+            <div class="work-card__outcomes">
+              <span class="work-card__outcome">+41% card click-through rate</span>
+              <span class="work-card__outcome">+19% enrolment conversion</span>
+              <span class="work-card__outcome">-28% search abandonment</span>
+            </div>
+          </div>
+          <div class="work-card__arrow">
+            <svg width="14" height="14" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+          </div>
+        </a>
+
+        <!-- Sony -->
+        <a href="work/sony.html" class="work-card fade-up">
+          <div class="work-card__logo"><img src="assets/logo-sony.svg" alt="Sony" /></div>
+          <div class="work-card__body">
+            <div class="work-card__tags">
+              <span class="tag">Web App</span>
+              <span class="tag">B2B SaaS</span>
+              <span class="tag">Let's Create</span>
+              <span class="tag tag--platform"><svg width="10" height="12" viewBox="0 0 814 1000" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><path d="M788.1 340.9c-5.8 4.5-108.2 62.2-108.2 190.5 0 148.4 130.3 200.9 134.2 202.2-.6 3.2-20.7 71.9-68.7 141.9-42.8 61.6-87.5 123.1-155.5 123.1s-85.5-39.5-164-39.5c-76 0-103.7 40.8-165.9 40.8s-105-37.5-155.5-108.6c-43.6-62.8-84.3-149.4-84.3-231.6 0-163.6 107.5-250.4 213.2-250.4 56.3 0 103.1 37.5 138.5 37.5 33.8 0 86.8-39.5 150.2-39.5 24.3 0 108.3 2.6 168.5 81.6zm-98.9-184.5c31.4-37.5 53.9-89.7 53.9-141.9 0-7.1-.6-14.3-1.9-20.7-50.6 1.9-110.8 33.7-147.1 75.8-28.5 32.4-55.1 84.7-55.1 137.5 0 7.8 1.3 15.6 1.9 18.1 3.2.6 8.4 1.3 13.6 1.3 45.4 0 102.5-30.4 134.7-70.1z"/></svg> iOS</span>
+              <span class="tag tag--platform"><svg width="11" height="12" viewBox="0 0 48 48" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><path d="M7.5 18.5C7.5 16.567 9.067 15 11 15h1v18h-1c-1.933 0-3.5-1.567-3.5-3.5v-11zM37 15h1c1.933 0 3.5 1.567 3.5 3.5v11c0 1.933-1.567 3.5-3.5 3.5h-1V15zM14 14h20v21.5a2.5 2.5 0 0 1-2.5 2.5h-1.5v5a2 2 0 0 1-4 0v-5h-4v5a2 2 0 0 1-4 0v-5H16.5A2.5 2.5 0 0 1 14 35.5V14zM30.5 8.196l2.5-4.33a.5.5 0 0 0-.866-.5l-2.55 4.415A14.93 14.93 0 0 0 24 7c-2.09 0-4.07.426-5.869 1.194L15.58 3.366a.5.5 0 0 0-.866.5l2.5 4.33A15.04 15.04 0 0 0 9 19h30a15.04 15.04 0 0 0-8.5-10.804zM20 14.5a1.5 1.5 0 1 1 0-3 1.5 1.5 0 0 1 0 3zm8 0a1.5 1.5 0 1 1 0-3 1.5 1.5 0 0 1 0 3z"/></svg> Android</span>
+            </div>
+            <div class="work-card__title">Sony eLearning Platform</div>
+            <p class="work-card__desc">Internal training SaaS helping Sony retailers learn and sell products — designed for non-technical staff across multiple markets.</p>
+            <div class="work-card__outcomes">
+              <span class="work-card__outcome">B2B SaaS · multi-market rollout</span>
+              <span class="work-card__outcome">Retailer onboarding time reduced</span>
+            </div>
+          </div>
+          <div class="work-card__arrow">
+            <svg width="14" height="14" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+          </div>
+        </a>
+
+        <!-- Let's Create -->
+        <a href="work/lets-create.html" class="work-card fade-up">
+          <div class="work-card__logo"><img src="assets/logo-lets-create.png" alt="Let's Create" /></div>
+          <div class="work-card__body">
+            <div class="work-card__tags">
+              <span class="tag">Web</span>
+              <span class="tag">Webflow</span>
+              <span class="tag">Let's Create</span>
+            </div>
+            <div class="work-card__title">Let's Create Agency Website</div>
+            <p class="work-card__desc">Responsive website for a London creative agency — from UX strategy and visual design through to Webflow build and launch.</p>
+            <div class="work-card__outcomes">
+              <span class="work-card__outcome">Design to launch, end to end</span>
+              <span class="work-card__outcome">Delivered on time and on brief</span>
+            </div>
+          </div>
+          <div class="work-card__arrow">
+            <svg width="14" height="14" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+          </div>
+        </a>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- About -->
+  <section class="section" id="about" style="background:var(--pale); border-top:1px solid var(--line);">
+    <div class="container">
+      <div class="about-grid">
+
+        <div>
+          <p class="eyebrow">About</p>
+          <h2 style="margin-bottom:20px;">I design for people, not pixels.</h2>
+          <p>
+            Senior Product Designer based in London with 7 years across the full product cycle, from early discovery and research to UI polish and dev handoff.
+          </p>
+          <p>
+            Currently at Cortex, designing their fan experience platform for sports clubs like Arsenal FC and Formula 1. Before that I spent three years at Reed leading design across mobile, web and internal tools. Earlier at Let's Create I built responsive sites for brands end to end.
+          </p>
+          <p>
+            I work best where design has a seat at the table and shipping something good matters.
+          </p>
+
+          <div class="experience-list">
+            <div class="exp-item">
+              <div class="exp-item__company">Cortex</div>
+              <div class="exp-item__role">Senior Product Designer — Fan Experience</div>
+              <div class="exp-item__period">Jul 2025 – Present</div>
+            </div>
+            <div class="exp-item">
+              <div class="exp-item__company">Reed Online</div>
+              <div class="exp-item__role">Product Designer — Mobile, Web, Internal Tools</div>
+              <div class="exp-item__period">Nov 2021 – Feb 2025</div>
+            </div>
+            <div class="exp-item">
+              <div class="exp-item__company">mmob</div>
+              <div class="exp-item__role">Product Designer — Embedded Finance</div>
+              <div class="exp-item__period">Jul 2021 – Sep 2021</div>
+            </div>
+            <div class="exp-item">
+              <div class="exp-item__company">Let's Create</div>
+              <div class="exp-item__role">Product Designer — Digital Agency</div>
+              <div class="exp-item__period">Mar 2019 – Jul 2021</div>
+            </div>
+            <div class="exp-item">
+              <div class="exp-item__company">Freelance</div>
+              <div class="exp-item__role">UX/UI Designer</div>
+              <div class="exp-item__period">Sep 2018 – Jul 2019</div>
+            </div>
+          </div>
+        </div>
+
+        <div>
+          <p class="eyebrow">Skills</p>
+          <div class="skills-grid" style="margin-top:16px;">
+            <div class="skill-group">
+              <div class="skill-group__label">Design</div>
+              <div class="skill-group__items">
+                <div class="skill-item">Product Design</div>
+                <div class="skill-item">UX Research</div>
+                <div class="skill-item">UI / Visual Design</div>
+                <div class="skill-item">Design Systems</div>
+                <div class="skill-item">Prototyping</div>
+              </div>
+            </div>
+            <div class="skill-group">
+              <div class="skill-group__label">Tools</div>
+              <div class="skill-group__items">
+                <div class="skill-item">Figma</div>
+                <div class="skill-item">Webflow</div>
+                <div class="skill-item">HTML / CSS</div>
+                <div class="skill-item">Maze / UserZoom</div>
+                <div class="skill-item">VS Code</div>
+              </div>
+            </div>
+            <div class="skill-group">
+              <div class="skill-group__label">AI</div>
+              <div class="skill-group__items">
+                <div class="skill-item">Claude Code</div>
+                <div class="skill-item">Figma Make</div>
+                <div class="skill-item">Antigravity</div>
+                <div class="skill-item">Stitch</div>
+              </div>
+            </div>
+            <div class="skill-group">
+              <div class="skill-group__label">Platforms</div>
+              <div class="skill-group__items">
+                <div class="skill-item">iOS + Android</div>
+                <div class="skill-item">SaaS / B2B</div>
+                <div class="skill-item">Ecommerce</div>
+                <div class="skill-item">Responsive web</div>
+              </div>
+            </div>
+            <div class="skill-group">
+              <div class="skill-group__label">Process</div>
+              <div class="skill-group__items">
+                <div class="skill-item">Agile / Scrum</div>
+                <div class="skill-item">User testing</div>
+                <div class="skill-item">A/B testing</div>
+                <div class="skill-item">Stakeholder alignment</div>
+              </div>
+            </div>
+          </div>
+
+          <div style="margin-top:32px; padding:20px; background:var(--white); border-radius:10px; border:1px solid var(--line);">
+            <p class="eyebrow" style="margin-bottom:12px;">Education</p>
+            <div style="margin-bottom:12px;">
+              <div style="font-size:13px; font-weight:600; color:var(--ink);">Interaction Design Foundation</div>
+              <div style="font-size:12px; color:var(--muted);">UX Design</div>
+            </div>
+            <div style="margin-bottom:12px;">
+              <div style="font-size:13px; font-weight:600; color:var(--ink);">City University London</div>
+              <div style="font-size:12px; color:var(--muted);">MSc Project Management</div>
+            </div>
+            <div style="margin-bottom:12px;">
+              <div style="font-size:13px; font-weight:600; color:var(--ink);">Università degli Studi Roma Tre</div>
+              <div style="font-size:12px; color:var(--muted);">BSc Business Administration</div>
+            </div>
+            <div>
+              <div style="font-size:13px; font-weight:600; color:var(--ink);">ITIS Armellini</div>
+              <div style="font-size:12px; color:var(--muted);">Diploma in Industrial Informatics Engineering</div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section class="cta-section">
+    <div class="container" style="text-align:center;">
+      <p class="eyebrow" style="text-align:center;">Let's work together</p>
+      <h2 style="margin:12px 0 16px;">Got a problem worth solving?</h2>
+      <p style="color:var(--muted); max-width:400px; margin:0 auto 32px; font-size:15px; line-height:1.7;">
+        If you're building something where design matters, I'd like to hear about it.
+      </p>
+      <a href="mailto:jacopo.maio@gmail.com" class="btn btn--primary">
+        jacopo.maio@gmail.com
+        <svg width="14" height="14" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+      </a>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="footer__inner">
+      <div class="footer__logo">Jacopo Maio</div>
+      <ul class="footer__links">
+        <li><a href="https://www.linkedin.com/in/jacopomaio/" target="_blank" rel="noopener">LinkedIn</a></li>
+        <li><a href="mailto:jacopo.maio@gmail.com">Email</a></li>
+        <li><a href="#work">Work</a></li>
+      </ul>
+      <p class="footer__copy">© 2026 Jacopo Maio · London</p>
+    </div>
+  </footer>
+
+  <script src="js/main.js"></script>
+</body>
+</html>

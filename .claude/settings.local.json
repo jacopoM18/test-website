@@ -1,0 +1,9 @@
+{
+  "permissions": {
+    "allow": [
+      "WebFetch(domain:jacopo-maio-designer.webflow.io)",
+      "WebFetch(domain:apps.apple.com)",
+      "WebSearch"
+    ]
+  }
+}
