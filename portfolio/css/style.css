@@ -98,7 +98,7 @@ p + p { margin-top: 16px; }
   padding: 140px var(--gutter) clamp(56px, 8vw, 88px);
   background: var(--white);
 }
-.hero__inner { max-width: var(--max-w); margin: 0 auto; width: 100%; display: grid; grid-template-columns: 1fr 360px; gap: 48px; align-items: flex-end; }
+.hero__inner { max-width: var(--max-w); margin: 0 auto; width: 100%; display: grid; grid-template-columns: 280px 1fr; gap: 64px; align-items: center; }
 .hero__headline { font-size: clamp(48px, 7.5vw, 100px); line-height: 0.97; letter-spacing: -0.03em; font-weight: 700; color: var(--ink); }
 .hero__headline em { font-style: italic; font-weight: 300; color: var(--muted); }
 .hero__meta p { font-size: 15px; line-height: 1.7; color: var(--secondary); margin-bottom: 28px; }
