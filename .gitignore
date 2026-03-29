@@ -1,0 +1,16 @@
+# Dependencies
+node_modules/
+
+# Build artifacts
+dist/
+build/
+.next/
+.turbo/
+*.tsbuildinfo
+
+# Misc
+.DS_Store
+.env
+.env.local
+.env.production.local
+.vercel
