@@ -1,0 +1,11 @@
+{
+  "name": "test-website",
+  "version": "1.0.0",
+  "description": "Jacopo Maio Portfolio Website",
+  "scripts": {
+    "dev": "node serve.mjs"
+  },
+  "dependencies": {
+    "@vercel/analytics": "^1.4.1"
+  }
+}
