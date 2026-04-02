@@ -25,16 +25,72 @@
       font-size: 13px; color: var(--muted); line-height: 1.6;
     }
 
-    .img-showcase-solo { margin: 32px 0 0; border-radius: 10px; overflow: hidden; }
-    .img-showcase-solo img { width: 100%; height: auto; display: block; }
     .img-caption {
       font-size: 11px; color: var(--muted); margin-top: 10px; line-height: 1.5;
       letter-spacing: 0.02em;
     }
 
+    /* Wireframes */
+    .wf-wrap { display: grid; grid-template-columns: 1fr 1fr; gap: 32px; margin-top: 32px; }
+    .wf-label { font-size: 10px; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; color: var(--muted); margin-bottom: 10px; }
+
+    /* Web wireframe */
+    .wf-browser { background: #F4F4F4; border-radius: 8px; overflow: hidden; border: 1px solid #E0E0E0; }
+    .wf-browser__bar { background: #E0E0E0; padding: 8px 12px; display: flex; align-items: center; gap: 6px; }
+    .wf-browser__dot { width: 8px; height: 8px; border-radius: 50%; background: #C8C8C8; }
+    .wf-browser__url { flex: 1; height: 10px; background: #D0D0D0; border-radius: 3px; margin-left: 8px; }
+    .wf-browser__body { display: grid; grid-template-columns: 120px 1fr; }
+    .wf-browser__sidebar { background: #ECECEC; padding: 12px; border-right: 1px solid #DCDCDC; }
+    .wf-browser__sidebar-title { height: 8px; background: #C8C8C8; border-radius: 2px; margin-bottom: 10px; width: 70%; }
+    .wf-browser__sidebar-item { height: 7px; background: #D8D8D8; border-radius: 2px; margin-bottom: 7px; }
+    .wf-browser__sidebar-item.active { background: #ABABAB; width: 75%; }
+    .wf-browser__main { padding: 12px; }
+    .wf-browser__search { height: 22px; background: white; border: 1px solid #D8D8D8; border-radius: 4px; margin-bottom: 12px; display: flex; align-items: center; padding: 0 8px; gap: 6px; }
+    .wf-browser__search-icon { width: 10px; height: 10px; background: #D0D0D0; border-radius: 50%; flex-shrink: 0; }
+    .wf-browser__search-text { height: 6px; background: #E8E8E8; border-radius: 2px; flex: 1; }
+    .wf-browser__progress { display: flex; align-items: center; gap: 8px; margin-bottom: 12px; }
+    .wf-browser__progress-bar { flex: 1; height: 6px; background: #E0E0E0; border-radius: 3px; overflow: hidden; }
+    .wf-browser__progress-fill { width: 62%; height: 100%; background: #ABABAB; border-radius: 3px; }
+    .wf-browser__progress-text { font-size: 8px; color: #ABABAB; white-space: nowrap; }
+    .wf-browser__cards { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; }
+    .wf-card { background: white; border: 1px solid #E0E0E0; border-radius: 5px; overflow: hidden; }
+    .wf-card__img { height: 44px; background: #E8E8E8; }
+    .wf-card__body { padding: 7px; }
+    .wf-card__tag { height: 6px; background: #D0D0D0; border-radius: 2px; width: 40%; margin-bottom: 5px; }
+    .wf-card__title { height: 6px; background: #C8C8C8; border-radius: 2px; margin-bottom: 4px; }
+    .wf-card__title.short { width: 70%; }
+    .wf-card__meta { height: 5px; background: #E0E0E0; border-radius: 2px; width: 55%; margin-bottom: 7px; }
+    .wf-card__btn { height: 14px; background: #CACACA; border-radius: 3px; }
+
+    /* Mobile wireframe */
+    .wf-phone-wrap { display: flex; justify-content: center; }
+    .wf-phone { width: 140px; background: #F4F4F4; border-radius: 20px; border: 2px solid #D8D8D8; overflow: hidden; box-shadow: 0 4px 16px rgba(0,0,0,0.08); }
+    .wf-phone__notch { height: 16px; background: #E0E0E0; display: flex; justify-content: center; align-items: flex-end; padding-bottom: 3px; }
+    .wf-phone__notch-bar { width: 36px; height: 6px; background: #C8C8C8; border-radius: 3px; }
+    .wf-phone__screen { padding: 8px; }
+    .wf-phone__hero { height: 60px; background: #E0E0E0; border-radius: 6px; margin-bottom: 8px; }
+    .wf-phone__product-name { height: 7px; background: #C0C0C0; border-radius: 2px; margin-bottom: 5px; }
+    .wf-phone__product-sub { height: 6px; background: #D8D8D8; border-radius: 2px; width: 65%; margin-bottom: 10px; }
+    .wf-phone__spec-row { display: flex; gap: 5px; margin-bottom: 5px; align-items: center; }
+    .wf-phone__spec-dot { width: 5px; height: 5px; background: #CACACA; border-radius: 50%; flex-shrink: 0; }
+    .wf-phone__spec-line { height: 5px; background: #DCDCDC; border-radius: 2px; flex: 1; }
+    .wf-phone__divider { height: 1px; background: #E0E0E0; margin: 8px 0; }
+    .wf-phone__btn { height: 20px; background: #CACACA; border-radius: 5px; margin-top: 8px; }
+    .wf-phone__nav { height: 28px; background: #E8E8E8; border-top: 1px solid #DCDCDC; display: flex; justify-content: space-around; align-items: center; padding: 0 8px; margin-top: 4px; }
+    .wf-phone__nav-dot { width: 18px; height: 18px; background: #D8D8D8; border-radius: 4px; }
+    .wf-phone__nav-dot.active { background: #ABABAB; }
+
+    /* Final product images */
+    .final-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; margin-top: 32px; }
+    .final-grid__wide { grid-column: span 2; }
+    .final-img { width: 100%; height: auto; display: block; border-radius: 8px; }
+
     @media (max-width: 640px) {
       .component-row { grid-template-columns: 24px 1fr; }
       .component-row__desc { grid-column: 2; }
+      .wf-wrap { grid-template-columns: 1fr; }
+      .final-grid { grid-template-columns: 1fr; }
+      .final-grid__wide { grid-column: span 1; }
     }
   </style>
 </head>
@@ -146,16 +202,6 @@
           <div class="component-row__desc">A management-facing dashboard giving Sony visibility into completion rates, regional performance and engagement patterns. For the first time, they could see whether training was working — and where it wasn't.</div>
         </div>
       </div>
-      <div style="display:grid; grid-template-columns: 1fr 1fr; gap: 24px; margin-top: 32px;" class="fade-up">
-        <div>
-          <img src="../assets/sony/sony-header%201.png" alt="Sony eLearning Platform — course browsing and training interface" style="width:100%; height:auto; display:block; border-radius:8px;" />
-          <p class="img-caption">The eLearning platform: course browsing, progress tracking and module navigation — designed for non-technical retail staff across 15+ markets.</p>
-        </div>
-        <div>
-          <img src="../assets/sony/sony-mobile.png" alt="Sony mobile pocket guide app" style="width:100%; height:auto; display:block; border-radius:8px;" />
-          <p class="img-caption">The mobile pocket guide: on-floor access to product specs and selling points — no login friction, always current with the latest Sony catalogue.</p>
-        </div>
-      </div>
     </div>
   </div>
 
@@ -194,25 +240,121 @@
             <div class="cs-process__step-desc">Three months of aggressive post-launch iteration based on analytics data and user engagement patterns</div>
           </div>
         </div>
+
+        <div class="wf-wrap fade-up">
+          <div>
+            <p class="wf-label">Web platform — early wireframe</p>
+            <div class="wf-browser">
+              <div class="wf-browser__bar">
+                <div class="wf-browser__dot"></div>
+                <div class="wf-browser__dot"></div>
+                <div class="wf-browser__dot"></div>
+                <div class="wf-browser__url"></div>
+              </div>
+              <div class="wf-browser__body">
+                <div class="wf-browser__sidebar">
+                  <div class="wf-browser__sidebar-title"></div>
+                  <div class="wf-browser__sidebar-item active"></div>
+                  <div class="wf-browser__sidebar-item" style="width:85%"></div>
+                  <div class="wf-browser__sidebar-item" style="width:60%"></div>
+                  <div class="wf-browser__sidebar-item" style="width:90%"></div>
+                  <div class="wf-browser__sidebar-item" style="width:70%"></div>
+                  <div class="wf-browser__sidebar-item" style="width:55%"></div>
+                </div>
+                <div class="wf-browser__main">
+                  <div class="wf-browser__search">
+                    <div class="wf-browser__search-icon"></div>
+                    <div class="wf-browser__search-text"></div>
+                  </div>
+                  <div class="wf-browser__progress">
+                    <div class="wf-browser__progress-bar">
+                      <div class="wf-browser__progress-fill"></div>
+                    </div>
+                    <div class="wf-browser__progress-text">62% complete</div>
+                  </div>
+                  <div class="wf-browser__cards">
+                    <div class="wf-card">
+                      <div class="wf-card__img"></div>
+                      <div class="wf-card__body">
+                        <div class="wf-card__tag"></div>
+                        <div class="wf-card__title"></div>
+                        <div class="wf-card__title short"></div>
+                        <div class="wf-card__meta"></div>
+                        <div class="wf-card__btn"></div>
+                      </div>
+                    </div>
+                    <div class="wf-card">
+                      <div class="wf-card__img"></div>
+                      <div class="wf-card__body">
+                        <div class="wf-card__tag"></div>
+                        <div class="wf-card__title"></div>
+                        <div class="wf-card__title short"></div>
+                        <div class="wf-card__meta"></div>
+                        <div class="wf-card__btn"></div>
+                      </div>
+                    </div>
+                    <div class="wf-card">
+                      <div class="wf-card__img"></div>
+                      <div class="wf-card__body">
+                        <div class="wf-card__tag"></div>
+                        <div class="wf-card__title"></div>
+                        <div class="wf-card__title short"></div>
+                        <div class="wf-card__meta"></div>
+                        <div class="wf-card__btn"></div>
+                      </div>
+                    </div>
+                    <div class="wf-card">
+                      <div class="wf-card__img"></div>
+                      <div class="wf-card__body">
+                        <div class="wf-card__tag"></div>
+                        <div class="wf-card__title"></div>
+                        <div class="wf-card__title short"></div>
+                        <div class="wf-card__meta"></div>
+                        <div class="wf-card__btn"></div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <p class="img-caption">Course browser: sidebar category filters, persistent progress tracker, module cards — establishing the core information hierarchy for the eLearning platform.</p>
+          </div>
+          <div>
+            <p class="wf-label">Mobile pocket guide — early wireframe</p>
+            <div class="wf-phone-wrap">
+              <div class="wf-phone">
+                <div class="wf-phone__notch">
+                  <div class="wf-phone__notch-bar"></div>
+                </div>
+                <div class="wf-phone__screen">
+                  <div class="wf-phone__hero"></div>
+                  <div class="wf-phone__product-name"></div>
+                  <div class="wf-phone__product-sub"></div>
+                  <div class="wf-phone__spec-row"><div class="wf-phone__spec-dot"></div><div class="wf-phone__spec-line"></div></div>
+                  <div class="wf-phone__spec-row"><div class="wf-phone__spec-dot"></div><div class="wf-phone__spec-line" style="width:75%"></div></div>
+                  <div class="wf-phone__spec-row"><div class="wf-phone__spec-dot"></div><div class="wf-phone__spec-line" style="width:85%"></div></div>
+                  <div class="wf-phone__spec-row"><div class="wf-phone__spec-dot"></div><div class="wf-phone__spec-line" style="width:60%"></div></div>
+                  <div class="wf-phone__divider"></div>
+                  <div class="wf-phone__spec-row"><div class="wf-phone__spec-dot"></div><div class="wf-phone__spec-line"></div></div>
+                  <div class="wf-phone__spec-row"><div class="wf-phone__spec-dot"></div><div class="wf-phone__spec-line" style="width:70%"></div></div>
+                  <div class="wf-phone__btn"></div>
+                </div>
+                <div class="wf-phone__nav">
+                  <div class="wf-phone__nav-dot active"></div>
+                  <div class="wf-phone__nav-dot"></div>
+                  <div class="wf-phone__nav-dot"></div>
+                  <div class="wf-phone__nav-dot"></div>
+                </div>
+              </div>
+            </div>
+            <p class="img-caption">Mobile pocket guide: product hero image, key specs in scannable list format, direct CTA — designed for a retail floor context where time and attention are scarce.</p>
+          </div>
+        </div>
+
       </div>
 
     </div>
   </section>
-
-  <!-- Build image -->
-  <div style="background:var(--pale); padding:clamp(48px,6vw,72px) var(--gutter);">
-    <div style="max-width:var(--max-w); margin:0 auto;">
-      <p class="eyebrow fade-up">Platform design</p>
-      <h3 class="fade-up" style="margin-top:6px; margin-bottom:8px;">Built for scale, designed for clarity</h3>
-      <p style="color:var(--secondary); max-width:600px; font-size:14px; line-height:1.65;" class="fade-up">
-        The design had to work across 15+ markets without regional customisation of core UI — every interaction pattern had to be immediately understandable to a retail staff member regardless of language or prior platform experience.
-      </p>
-      <div class="img-showcase-solo fade-up">
-        <img src="../assets/sony/3-build-image-p-2000%201.png" alt="Sony eLearning Platform — authoring tools and course builder" />
-        <p class="img-caption">The content authoring environment: Sony's central team uses this to create courses once, configure translations, and publish to all 15+ markets — no regional rebuild required.</p>
-      </div>
-    </div>
-  </div>
 
   <section class="section cs-content">
     <div class="cs-content__inner">
@@ -230,6 +372,37 @@
           <li><strong>Localisation as a feature, not a fix.</strong> The content architecture was designed around the assumption that all content would exist in multiple languages. Translation wasn't an afterthought — it was built into the authoring workflow from day one.</li>
         </ul>
       </div>
+
+    </div>
+  </section>
+
+  <!-- Final product -->
+  <div style="background:var(--pale); padding:clamp(48px,6vw,72px) var(--gutter);">
+    <div style="max-width:var(--max-w); margin:0 auto;">
+      <p class="eyebrow fade-up">Final product</p>
+      <h3 class="fade-up" style="margin-top:6px; margin-bottom:8px;">What shipped across 15 markets</h3>
+      <p style="color:var(--secondary); max-width:600px; font-size:14px; line-height:1.65;" class="fade-up">
+        The eLearning platform, mobile companion app and authoring tooling — all designed from scratch and deployed simultaneously across all regions at launch.
+      </p>
+      <div class="final-grid fade-up">
+        <div>
+          <img src="../assets/sony/sony-header%201.png" alt="Sony eLearning Platform — course browsing and training interface" class="final-img" />
+          <p class="img-caption">Web platform: the course browser with category filters, progress tracking and structured module navigation.</p>
+        </div>
+        <div>
+          <img src="../assets/sony/sony-mobile.png" alt="Sony mobile pocket guide app" class="final-img" />
+          <p class="img-caption">Mobile pocket guide: on-floor access to product specs and key selling points — no desk, no login, no friction.</p>
+        </div>
+        <div class="final-grid__wide">
+          <img src="../assets/sony/3-build-image-p-2000%201.png" alt="Sony eLearning Platform — content authoring and course builder" class="final-img" />
+          <p class="img-caption">Content authoring environment: Sony's central team creates courses once, configures translations, and publishes to all markets — no regional rebuild required.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <section class="section cs-content">
+    <div class="cs-content__inner">
 
       <div class="cs-section fade-up">
         <p class="eyebrow">Results</p>
