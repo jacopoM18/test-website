@@ -270,15 +270,35 @@
         <p class="eyebrow">Discovery flow</p>
         <h2>The card was only half the problem</h2>
         <p>
-          Phase two was the discovery flow itself — filters, sorting and browse experience. Users were struggling with filters that required too many clicks, a default sort order that felt arbitrary, and no feedback when a filter combination returned zero results.
+          Phase two was the discovery flow itself — filters, sorting and the zero-results state. Users were struggling with filters that gave no feedback, a default sort that felt arbitrary, and a blank page when filters returned nothing.
         </p>
         <div class="cs-callout">
           <p>"I added three filters and got zero results. I thought the site was broken."</p>
           <cite>Usability testing, Round 2</cite>
         </div>
-        <p>
-          We added live result counts to all filter options, introduced quick-filter chips at the top of results for the most common queries, and changed the default sort to "Most popular". Those three changes alone cut filter abandonment significantly.
-        </p>
+
+        <div style="margin-top:24px; background:var(--pale); padding:24px; border-radius:10px;">
+          <div class="change-row">
+            <div class="change-row__label">Filter options</div>
+            <div class="change-row__old">No indication of how many results each filter had</div>
+            <div class="change-row__new">Live result count on every filter option — users see impact before committing</div>
+          </div>
+          <div class="change-row">
+            <div class="change-row__label">Default sort</div>
+            <div class="change-row__old">"Most recent" — surfaced low-quality listings, felt arbitrary</div>
+            <div class="change-row__new">"Most popular" — matched how users searched mentally, improved first-impression quality</div>
+          </div>
+          <div class="change-row">
+            <div class="change-row__label">Zero results state</div>
+            <div class="change-row__old">Blank page — users assumed the site was broken</div>
+            <div class="change-row__new">Smart suggestions and filter relaxation prompts — users stayed in the flow</div>
+          </div>
+          <div class="change-row">
+            <div class="change-row__label">Quick-filter chips</div>
+            <div class="change-row__old">No shortcuts — common queries required 4+ filter steps</div>
+            <div class="change-row__new">Top-level chips for the 5 most-searched filter combinations — one tap to the right results</div>
+          </div>
+        </div>
       </div>
 
       <div class="cs-section fade-up">
@@ -290,16 +310,16 @@
             <div class="cs-outcome__label">Course card click-through rate after launch</div>
           </div>
           <div class="cs-outcome">
-            <div class="cs-outcome__num">-28%</div>
-            <div class="cs-outcome__label">Search abandonment before clicking any card</div>
-          </div>
-          <div class="cs-outcome">
             <div class="cs-outcome__num">+19%</div>
             <div class="cs-outcome__label">Enrolment conversion from card view to purchase</div>
           </div>
+          <div class="cs-outcome">
+            <div class="cs-outcome__num">-35%</div>
+            <div class="cs-outcome__label">Support tickets about course level confusion — within 8 weeks of launch</div>
+          </div>
         </div>
         <p>
-          Support tickets about course level confusion dropped 35% within eight weeks of launch. Users were enrolling in the right courses first time rather than requesting refunds.
+          Search abandonment dropped 28% — users who previously left without clicking anything were now engaging with results. The support ticket reduction proved the design was solving the right problem: users were enrolling in the correct courses first time rather than requesting refunds after the fact.
         </p>
       </div>
 

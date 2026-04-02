@@ -146,6 +146,19 @@
     .expiry-card__title { font-size: 10px; font-weight: 600; color: white; margin-bottom: 3px; }
     .expiry-card__sub { font-size: 9px; color: rgba(255,255,255,0.55); line-height: 1.4; }
 
+    .component-row {
+      display: grid; grid-template-columns: 32px 1fr 1fr; gap: 16px;
+      padding: 18px 0; border-bottom: 1px solid var(--line); align-items: start;
+    }
+    .component-row:last-child { border-bottom: none; }
+    .component-row__num { font-size: 11px; font-weight: 600; color: var(--muted); letter-spacing: 0.05em; padding-top: 2px; }
+    .component-row__name { font-size: 13px; font-weight: 600; color: var(--ink); line-height: 1.45; }
+    .component-row__desc { font-size: 13px; color: var(--muted); line-height: 1.6; }
+    @media (max-width: 640px) {
+      .component-row { grid-template-columns: 24px 1fr; }
+      .component-row__desc { grid-column: 2; }
+    }
+
     /* Competitor comparison grid */
     .comp-grid {
       width: 100%; border-collapse: collapse;
@@ -294,6 +307,174 @@
 
     </div>
   </section>
+
+  <!-- Phone screens showcase -->
+  <div class="screens-showcase">
+    <!-- Push notification -->
+    <div class="phone">
+      <div class="phone__status"><span>9:41</span><span>●●●</span></div>
+      <div class="lock-screen">
+        <div class="lock-time">9:41</div>
+        <div class="lock-date">Tuesday, 3 September</div>
+        <div class="push-card">
+          <div class="push-card__header">
+            <div class="push-card__icon">
+              <svg width="8" height="8" viewBox="0 0 24 24" fill="white"><path d="M20 21v-2a4 4 0 00-4-4H8a4 4 0 00-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+            </div>
+            <span class="push-card__app">Reed Jobs</span>
+            <span class="push-card__time">now</span>
+          </div>
+          <div class="push-card__title">3 new jobs matching "UX Designer"</div>
+          <div class="push-card__body">New roles from Figma, Monzo and 1 other employer in London.</div>
+        </div>
+        <div class="push-card">
+          <div class="push-card__header">
+            <div class="push-card__icon">
+              <svg width="8" height="8" viewBox="0 0 24 24" fill="white"><path d="M20 21v-2a4 4 0 00-4-4H8a4 4 0 00-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+            </div>
+            <span class="push-card__app">Reed Jobs</span>
+            <span class="push-card__time">2m ago</span>
+          </div>
+          <div class="push-card__title">Saved job expiring soon</div>
+          <div class="push-card__body">"Senior Product Designer – Babylon Health" closes in 24 hours.</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- In-app notification centre -->
+    <div class="phone">
+      <div class="phone__status"><span>9:41</span><span>●●●</span></div>
+      <div class="phone__screen">
+        <div class="phone__title">Notifications</div>
+        <div class="phone__sub">Today</div>
+        <div class="notif-item">
+          <div class="notif-dot"></div>
+          <div>
+            <div class="notif-text"><strong>3 new jobs</strong> matching "UX Designer" in London</div>
+            <div class="notif-time">Just now</div>
+          </div>
+        </div>
+        <div class="notif-item">
+          <div class="notif-dot"></div>
+          <div>
+            <div class="notif-text"><strong>Expiring:</strong> Senior Product Designer – Babylon Health closes in 24 hrs</div>
+            <div class="notif-time">1 hour ago</div>
+          </div>
+        </div>
+        <div class="notif-item">
+          <div class="notif-dot read"></div>
+          <div>
+            <div class="notif-text">Your profile appeared in <strong>14 recruiter searches</strong> this week</div>
+            <div class="notif-time">Yesterday</div>
+          </div>
+        </div>
+        <div class="notif-item">
+          <div class="notif-dot read"></div>
+          <div>
+            <div class="notif-text">Salary update for UX Designer roles in London: <strong>£62k–£85k</strong></div>
+            <div class="notif-time">2 days ago</div>
+          </div>
+        </div>
+      </div>
+      <div class="phone__bottom-nav">
+        <span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z"/></svg>Home</span>
+        <span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><path d="M21 21l-4.35-4.35"/></svg>Search</span>
+        <span class="active"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 8A6 6 0 006 8c0 7-3 9-3 9h18s-3-2-3-9M13.73 21a2 2 0 01-3.46 0"/></svg>Alerts</span>
+        <span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 21v-2a4 4 0 00-4-4H8a4 4 0 00-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>Profile</span>
+      </div>
+    </div>
+
+    <!-- Notification settings -->
+    <div class="phone">
+      <div class="phone__status"><span>9:41</span><span>●●●</span></div>
+      <div class="phone__screen">
+        <div class="phone__title">Notification settings</div>
+        <div class="phone__sub">Manage what Reed sends you</div>
+        <div class="settings-section">
+          <div class="settings-label">Job alerts</div>
+          <div class="settings-row"><span class="settings-row__label">New matching jobs</span><div class="toggle on"></div></div>
+          <div class="settings-row"><span class="settings-row__label">Saved job expiry</span><div class="toggle on"></div></div>
+          <div class="settings-row"><span class="settings-row__label">Company job posts</span><div class="toggle"></div></div>
+        </div>
+        <div class="settings-section">
+          <div class="settings-label">Profile & insights</div>
+          <div class="settings-row"><span class="settings-row__label">Profile views</span><div class="toggle on"></div></div>
+          <div class="settings-row"><span class="settings-row__label">Salary insights</span><div class="toggle on"></div></div>
+          <div class="settings-row"><span class="settings-row__label">Recruiter messages</span><div class="toggle on"></div></div>
+        </div>
+        <div class="settings-section">
+          <div class="settings-label">Channels</div>
+          <div class="settings-row"><span class="settings-row__label">Push</span><div class="toggle on"></div></div>
+          <div class="settings-row"><span class="settings-row__label">In-app</span><div class="toggle on"></div></div>
+          <div class="settings-row"><span class="settings-row__label">SMS (high-intent)</span><div class="toggle"></div></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Salary insight -->
+    <div class="phone">
+      <div class="phone__status"><span>9:41</span><span>●●●</span></div>
+      <div class="phone__screen">
+        <div class="phone__title">Salary insight</div>
+        <div class="phone__sub">Based on your saved searches</div>
+        <div class="salary-card">
+          <div class="salary-card__label">UX Designer · London</div>
+          <div class="salary-card__title">Salaries have risen 8% in the last 6 months</div>
+          <div class="salary-range">
+            <span class="salary-range__num">£52k</span>
+            <span class="salary-range__sep">–</span>
+            <span class="salary-range__num">£85k</span>
+          </div>
+          <div class="salary-bar"><div class="salary-bar__fill"></div></div>
+          <div class="salary-card__note">Based on 340 jobs posted in the last 30 days</div>
+        </div>
+        <div class="expiry-card">
+          <div class="expiry-card__label">⏰ Expiring in 24 hours</div>
+          <div class="expiry-card__title">Senior Product Designer – Babylon Health</div>
+          <div class="expiry-card__sub">£70,000 · Hybrid · London — apply before it closes</div>
+        </div>
+      </div>
+      <div class="phone__bottom-nav">
+        <span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z"/></svg>Home</span>
+        <span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><path d="M21 21l-4.35-4.35"/></svg>Search</span>
+        <span class="active"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 8A6 6 0 006 8c0 7-3 9-3 9h18s-3-2-3-9M13.73 21a2 2 0 01-3.46 0"/></svg>Alerts</span>
+        <span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 21v-2a4 4 0 00-4-4H8a4 4 0 00-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>Profile</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- What this produced -->
+  <div style="background:var(--pale); padding:clamp(48px,6vw,72px) var(--gutter);">
+    <div style="max-width:var(--max-w); margin:0 auto;">
+      <p class="eyebrow fade-up">What this produced</p>
+      <h3 class="fade-up" style="margin-top:6px; margin-bottom:8px;">Four outputs, one sprint-ready brief</h3>
+      <p style="color:var(--secondary); max-width:600px; font-size:14px; line-height:1.65; margin-bottom:4px;" class="fade-up">
+        The research wasn't exploratory for its own sake — every output was designed to give the PM and engineering team something they could act on immediately.
+      </p>
+      <div style="margin-top:24px;" class="fade-up">
+        <div class="component-row">
+          <div class="component-row__num">01</div>
+          <div class="component-row__name">Competitive audit — 9 platforms, 4 channels</div>
+          <div class="component-row__desc">A structured map of every notification type across push, in-app, email and SMS for every major UK job board. Reed had no baseline — this created one.</div>
+        </div>
+        <div class="component-row">
+          <div class="component-row__num">02</div>
+          <div class="component-row__name">Gap analysis with evidence</div>
+          <div class="component-row__desc">Six specific gaps where Reed was behind or where the whole market had missed an opportunity — each backed by screenshots and platform data, not opinion.</div>
+        </div>
+        <div class="component-row">
+          <div class="component-row__num">03</div>
+          <div class="component-row__name">Prioritised opportunity map</div>
+          <div class="component-row__desc">Opportunities ranked by effort vs. impact: some required no new data (expiry reminders), others needed new infrastructure (profile views). The priority order was clear.</div>
+        </div>
+        <div class="component-row">
+          <div class="component-row__num">04</div>
+          <div class="component-row__name">Design concepts for each opportunity</div>
+          <div class="component-row__desc">Illustrative screen designs for each notification type — turning abstract opportunities into concrete visuals the team could immediately evaluate and scope.</div>
+        </div>
+      </div>
+    </div>
+  </div>
 
   <!-- Key numbers -->
   <div style="background:var(--pale); padding:clamp(48px,6vw,72px) var(--gutter);">
@@ -495,13 +676,32 @@
       </div>
 
       <div class="cs-section fade-up">
+        <p class="eyebrow">Results</p>
+        <h2>What got built</h2>
+        <div class="cs-outcomes">
+          <div class="cs-outcome">
+            <div class="cs-outcome__num">2</div>
+            <div class="cs-outcome__label">Opportunities shipped in the next sprint — in-app notification centre and saved job expiry reminders</div>
+          </div>
+          <div class="cs-outcome">
+            <div class="cs-outcome__num">4</div>
+            <div class="cs-outcome__label">Further opportunities scoped into the product roadmap — salary insights, profile views, company following, SMS</div>
+          </div>
+          <div class="cs-outcome">
+            <div class="cs-outcome__num">9</div>
+            <div class="cs-outcome__label">Platforms audited — giving the team a shared evidence base where none existed before</div>
+          </div>
+        </div>
+        <p>
+          Before this research, notifications were seen as a low-priority engineering task with no agreed direction. After it, the team had a shared evidence base, a prioritised backlog, and two items in the next sprint. The research didn't just surface opportunities — it changed what the team thought was worth building.
+        </p>
+      </div>
+
+      <div class="cs-section fade-up">
         <p class="eyebrow">What I took away</p>
         <h2>Research as a product lever</h2>
         <p>
           The most useful thing this research did was give the team permission to prioritise. Before it, notifications were seen as a low-priority engineering task. After it, we had a clear picture of where Reed was behind, which gaps were cheap to close, and which would require tech investment.
-        </p>
-        <p>
-          The in-app notification centre and expiry reminders went into the next sprint. Salary insights and profile views were scoped as a larger initiative. Company following became part of a longer product roadmap conversation.
         </p>
         <p>
           Competitive research isn't always glamorous. But knowing exactly what the market has built — and hasn't — is what makes design decisions defensible.

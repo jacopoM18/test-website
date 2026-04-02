@@ -9,6 +9,24 @@
   <script>window.va = window.va || function () { (window.vaq = window.vaq || []).push(arguments); };</script>
   <script defer src="/_vercel/insights/script.js"></script>
   <style>
+    .component-row {
+      display: grid; grid-template-columns: 32px 1fr 1fr; gap: 16px;
+      padding: 18px 0; border-bottom: 1px solid var(--line); align-items: start;
+    }
+    .component-row:last-child { border-bottom: none; }
+    .component-row__num { font-size: 11px; font-weight: 600; color: var(--muted); letter-spacing: 0.05em; padding-top: 2px; }
+    .component-row__name { font-size: 13px; font-weight: 600; color: var(--ink); line-height: 1.45; }
+    .component-row__desc { font-size: 13px; color: var(--muted); line-height: 1.6; }
+    .img-caption { font-size: 11px; color: var(--muted); margin-top: 10px; line-height: 1.5; letter-spacing: 0.02em; }
+    .final-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; margin-top: 32px; }
+    .final-grid__wide { grid-column: span 2; }
+    .final-img { width: 100%; height: auto; display: block; border-radius: 8px; }
+    @media (max-width: 640px) {
+      .component-row { grid-template-columns: 24px 1fr; }
+      .component-row__desc { grid-column: 2; }
+      .final-grid { grid-template-columns: 1fr; }
+      .final-grid__wide { grid-column: span 1; }
+    }
     .insight-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; margin: 24px 0; }
     .insight-card { background: var(--pale); border-radius: 10px; padding: 20px; }
     .insight-card__icon { font-size: 22px; margin-bottom: 10px; }
@@ -91,20 +109,46 @@
           <p>"How might we create a rewards platform that provides tasks and achievements that fans actually enjoy completing?"</p>
           <cite>Design framing, Fandom by Cortex</cite>
         </div>
-        <p>Fandom has four core components — all of which I designed:</p>
-        <ul>
-          <li>Profiles: personalised fan profiles built from SSO and first-party data</li>
-          <li>Moments: points, badges and collectibles earned through physical and digital engagement</li>
-          <li>Connections: real-time social features letting fans compete and share with each other</li>
-          <li>Challenges: achievement-based tasks, leaderboards and mini-leagues to drive repeat engagement</li>
-        </ul>
         <p>Three outcomes we needed to hit: increase engagement across the full season, open new sponsorship opportunities for clubs, and build a first-party data asset clubs actually own.</p>
       </div>
 
     </div>
   </section>
 
+  <!-- What I owned -->
   <div style="background:var(--pale); padding:clamp(48px,6vw,72px) var(--gutter);">
+    <div style="max-width:var(--max-w); margin:0 auto;">
+      <p class="eyebrow fade-up">What I owned</p>
+      <h3 class="fade-up" style="margin-top:6px; margin-bottom:8px;">Four surfaces, designed solo from zero</h3>
+      <p style="color:var(--secondary); max-width:600px; font-size:14px; line-height:1.65; margin-bottom:4px;" class="fade-up">
+        No other designer on the project. I owned the full fan-facing experience and the club-side tooling — every screen, every component, every research round.
+      </p>
+      <div style="margin-top:24px;" class="fade-up">
+        <div class="component-row">
+          <div class="component-row__num">01</div>
+          <div class="component-row__name">Fan-facing web experience</div>
+          <div class="component-row__desc">Onboarding, challenges, rewards store, check-in, profile and leaderboard — the full fan journey from first visit to repeat engagement.</div>
+        </div>
+        <div class="component-row">
+          <div class="component-row__num">02</div>
+          <div class="component-row__name">Gamified challenge system</div>
+          <div class="component-row__desc">Achievement-based tasks tied to things fans already do — watching matches, checking in, picking a favourite player. Engagement that doesn't feel like work.</div>
+        </div>
+        <div class="component-row">
+          <div class="component-row__num">03</div>
+          <div class="component-row__name">Club-side SaaS CMS</div>
+          <div class="component-row__desc">Challenge builder, badge creator, reward configuration and analytics dashboard — designed for non-technical club staff who needed to run the platform without developer support.</div>
+        </div>
+        <div class="component-row">
+          <div class="component-row__num">04</div>
+          <div class="component-row__name">Figma design system</div>
+          <div class="component-row__desc">Component library and token system built to scale across multiple clubs with different branding — so every new club could be onboarded without a redesign.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div style="background:var(--pale); padding:clamp(48px,6vw,72px) var(--gutter); background:white;">
     <div style="max-width:var(--max-w); margin:0 auto;">
       <p class="eyebrow fade-up">User Research · Round 1 — August 2025</p>
       <h3 class="fade-up" style="margin-top:6px; margin-bottom:8px;">Understanding what fans actually want</h3>
@@ -265,16 +309,16 @@
         <h2>What we shipped and what we learned</h2>
         <div class="cs-outcomes">
           <div class="cs-outcome">
-            <div class="cs-outcome__num">7</div>
-            <div class="cs-outcome__label">Research rounds completed with real fans</div>
+            <div class="cs-outcome__num">3</div>
+            <div class="cs-outcome__label">Major sports organisations live at launch — Arsenal FC, Formula 1 and the MLS</div>
           </div>
           <div class="cs-outcome">
-            <div class="cs-outcome__num">35+</div>
-            <div class="cs-outcome__label">Participants tested across the product lifecycle</div>
+            <div class="cs-outcome__num">7 rounds</div>
+            <div class="cs-outcome__label">35+ real fans tested across the full product lifecycle — every decision validated before it shipped</div>
           </div>
           <div class="cs-outcome">
-            <div class="cs-outcome__num">0 to 1</div>
-            <div class="cs-outcome__label">Full product designed from concept to launch</div>
+            <div class="cs-outcome__num">0 → 1</div>
+            <div class="cs-outcome__label">Full platform designed solo — fan experience, CMS, challenge builder and design system</div>
           </div>
         </div>
         <p>
@@ -291,6 +335,31 @@
 
     </div>
   </section>
+
+  <!-- Final product -->
+  <div style="background:var(--pale); padding:clamp(48px,6vw,72px) var(--gutter);">
+    <div style="max-width:var(--max-w); margin:0 auto;">
+      <p class="eyebrow fade-up">Final product</p>
+      <h3 class="fade-up" style="margin-top:6px; margin-bottom:8px;">What shipped to Arsenal FC, Formula 1 and the MLS</h3>
+      <p style="color:var(--secondary); max-width:600px; font-size:14px; line-height:1.65;" class="fade-up">
+        The fan-facing experience and the club-side CMS — designed from zero, tested across seven rounds, and handed to engineering with a complete design system.
+      </p>
+      <div class="final-grid fade-up">
+        <div>
+          <img src="../assets/fandom/01.07.png" alt="Fandom CMS — challenge builder step 1" class="final-img" />
+          <p class="img-caption">Club CMS — challenge builder: club staff configure event type, completion criteria, points and badge reward in a single guided flow.</p>
+        </div>
+        <div>
+          <img src="../assets/fandom/02.14.png" alt="Fandom CMS — challenge builder step 2" class="final-img" />
+          <p class="img-caption">Challenge builder continued: reward logic, scheduling and publish controls — built so non-technical club staff can run the platform without developer support.</p>
+        </div>
+        <div class="final-grid__wide">
+          <img src="../assets/fandom/Fandom%20_%20Design%20Doc.png" alt="Fandom design documentation" class="final-img" />
+          <p class="img-caption">Design documentation: component specs, interaction states and handoff notes — the design system that lets every new club onboard without a redesign.</p>
+        </div>
+      </div>
+    </div>
+  </div>
 
   <div class="next-project">
     <div class="container">
