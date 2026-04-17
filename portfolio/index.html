@@ -45,7 +45,7 @@
       width: 100%;
       height: 100%;
       object-fit: cover;
-      object-position: top center;
+      object-position: center center;
       filter: grayscale(10%);
     }
 
@@ -101,31 +101,181 @@
       margin-top: 32px;
     }
 
-    /* Project icon thumbnails */
-    .work-card__icon {
-      width: 160px; height: 100px;
-      border-radius: 8px;
-      display: flex; align-items: center; justify-content: center;
-      flex-shrink: 0;
-      transition: transform 0.25s var(--ease);
+    /* ── Featured project card ───────────────────────────── */
+    .featured-project {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      min-height: 360px;
+      border-radius: 16px;
+      overflow: hidden;
+      text-decoration: none;
+      color: inherit;
+      background: linear-gradient(135deg, #0D1B4B 0%, #162A5A 60%, #1A3580 100%);
+      transition: transform 0.25s var(--ease), box-shadow 0.25s var(--ease);
+      margin-bottom: 16px;
     }
-    .work-card:hover .work-card__icon { transform: scale(1.04); }
+    .featured-project:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 20px 60px rgba(13,27,75,0.35);
+    }
+    .featured-project__content {
+      padding: 48px;
+      display: flex; flex-direction: column; justify-content: center;
+    }
+    .featured-project__header {
+      display: flex; align-items: center; gap: 0px; margin-bottom: 20px; margin-left: -24px;
+    }
+    .featured-project__logo {
+      width: 80px; height: 20px; flex-shrink: 0;
+      display: flex; align-items: center; justify-content: flex-start;
+    }
+    .featured-project__logo img { width: 100%; height: 100%; object-fit: contain; }
+    .featured-project__tags { display: flex; gap: 6px; flex-wrap: wrap; }
+    .featured-project__tags .tag { background: rgba(255,255,255,0.1); color: rgba(255,255,255,0.75); }
+    .featured-project__title {
+      font-size: clamp(24px, 3vw, 38px);
+      font-weight: 700; color: white;
+      letter-spacing: -0.02em; line-height: 1.15;
+      margin-bottom: 12px;
+    }
+    .featured-project__desc {
+      font-size: 14px; color: rgba(255,255,255,0.6);
+      line-height: 1.65; margin-bottom: 28px; max-width: 360px;
+    }
+    .featured-project__stats {
+      display: flex; gap: 28px; margin-bottom: 32px; flex-wrap: wrap;
+    }
+    .featured-project__stat-num {
+      font-size: 26px; font-weight: 700; color: white;
+      letter-spacing: -0.02em; line-height: 1;
+    }
+    .featured-project__stat-label {
+      font-size: 11px; color: rgba(255,255,255,0.5);
+      margin-top: 3px; line-height: 1.4;
+    }
+    .featured-project__cta {
+      display: inline-flex; align-items: center; gap: 8px;
+      font-size: 13px; font-weight: 600; color: white;
+      background: rgba(255,255,255,0.12);
+      border: 1px solid rgba(255,255,255,0.2);
+      padding: 10px 20px; border-radius: 8px;
+      width: fit-content;
+      transition: background 0.2s, border-color 0.2s;
+    }
+    .featured-project:hover .featured-project__cta {
+      background: rgba(255,255,255,0.2);
+      border-color: rgba(255,255,255,0.35);
+    }
+    .featured-project__image {
+      display: flex; align-items: flex-end; justify-content: center;
+      padding: 24px 16px 0;
+      overflow: hidden;
+      position: relative;
+    }
+    .featured-project__image img {
+      width: 100%;
+      max-width: 560px;
+      height: auto;
+      object-fit: contain;
+      object-position: bottom center;
+      transform: scale(1.55) translateY(8px);
+      transform-origin: bottom center;
+      transition: transform 0.35s var(--ease);
+    }
+    .featured-project:hover .featured-project__image img { transform: scale(1.55) translateY(4px); }
 
-    .featured-card__icon {
-      min-height: 320px;
-      display: flex; align-items: center; justify-content: center;
+    /* ── Project grid ─────────────────────────────────────── */
+    .project-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 16px;
+      margin-bottom: 16px;
     }
+    .project-card {
+      display: flex; flex-direction: column;
+      border-radius: 16px; overflow: hidden;
+      border: 1px solid var(--line);
+      background: var(--white);
+      text-decoration: none; color: inherit;
+      transition: transform 0.25s var(--ease), box-shadow 0.25s var(--ease), border-color 0.25s var(--ease);
+    }
+    .project-card:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 12px 40px rgba(35,30,29,0.09);
+      border-color: rgba(35,30,29,0.18);
+    }
+    .project-card__img {
+      width: 100%; height: 220px; overflow: hidden;
+      flex-shrink: 0; background: var(--pale);
+    }
+    .project-card__img img {
+      width: 100%; height: 100%; object-fit: cover;
+      transition: transform 0.35s var(--ease);
+    }
+    .project-card:hover .project-card__img img { transform: scale(1.04); }
+    .project-card__body { padding: 24px; flex: 1; display: flex; flex-direction: column; }
+    .project-card__header { display: flex; align-items: center; gap: 10px; margin-bottom: 14px; }
+    .project-card__logo {
+      width: 28px; height: 28px; border-radius: 6px;
+      border: 1px solid var(--line); padding: 4px;
+      display: flex; align-items: center; justify-content: center;
+      flex-shrink: 0; background: white;
+    }
+    .project-card__logo img { width: 100%; height: 100%; object-fit: contain; }
+    .project-card__tags { display: flex; gap: 5px; flex-wrap: wrap; }
+    .project-card__title {
+      font-size: 18px; font-weight: 600; color: var(--ink);
+      letter-spacing: -0.01em; line-height: 1.2;
+      margin-bottom: 6px;
+      transition: color 0.2s;
+    }
+    .project-card:hover .project-card__title { color: var(--blue); }
+    .project-card__stat {
+      font-size: 28px; font-weight: 700; color: var(--ink);
+      letter-spacing: -0.02em; line-height: 1;
+      margin: 12px 0 4px;
+    }
+    .project-card__stat-label {
+      font-size: 12px; color: var(--muted); margin-bottom: 16px;
+    }
+    .project-card__cta {
+      margin-top: auto;
+      font-size: 12px; font-weight: 600; color: var(--blue);
+      display: flex; align-items: center; gap: 5px;
+    }
+    .project-card__cta svg { transition: transform 0.2s; }
+    .project-card:hover .project-card__cta svg { transform: translateX(3px); }
+
+    /* ── Wide project card (Sony) ─────────────────────────── */
+    .project-card--wide {
+      flex-direction: row;
+      min-height: 260px;
+    }
+    .project-card--wide .project-card__img {
+      width: 340px; height: auto; flex-shrink: 0;
+    }
+    .project-card--wide .project-card__body {
+      padding: 32px 36px;
+    }
+    .project-card--wide .project-card__stat { font-size: 36px; }
 
     @media (max-width: 900px) {
       .hero__inner { grid-template-columns: 1fr; gap: 40px; }
       .hero__photo { max-width: 240px; aspect-ratio: 1; }
       .hero__photo-col { flex-direction: row; align-items: center; gap: 20px; }
       .hero__photo-caption { margin-top: 0; }
+      .featured-project { grid-template-columns: 1fr; }
+      .featured-project__image { display: none; }
+      .project-card--wide { flex-direction: column; }
+      .project-card--wide .project-card__img { width: 100%; height: 200px; }
     }
 
-    @media (max-width: 600px) {
+    @media (max-width: 640px) {
       .hero__photo-col { flex-direction: column; align-items: flex-start; }
       .hero__photo { max-width: 180px; }
+      .project-grid { grid-template-columns: 1fr; }
+      .featured-project__content { padding: 32px 24px; }
+      .featured-project__stats { gap: 20px; }
     }
   </style>
 </head>
@@ -151,11 +301,11 @@
       <!-- Photo col -->
       <div class="hero__photo-col">
         <div class="hero__photo">
-          <img src="assets/jacopo.png" alt="Jacopo Maio, Product Designer" />
+          <img src="assets/hero-image-v2.png" alt="Jacopo Maio, Product Designer" />
         </div>
         <div class="hero__photo-caption">
           <strong>Jacopo Maio</strong>
-          <span>Senior Product Designer · London</span>
+          <span>Senior Product Designer</span>
         </div>
       </div>
 
@@ -164,7 +314,7 @@
         <h1 class="hero__headline">
           Product<br>
           Design<br>
-          <em>that ships.</em>
+          <em>that ships</em>
         </h1>
         <div class="hero__meta">
           <p style="font-weight:500; color:var(--ink);">
@@ -231,126 +381,218 @@
       <div class="section-header fade-up">
         <div>
           <p class="eyebrow">Selected work</p>
-          <h2>What I've shipped.</h2>
+          <h2>What I've shipped</h2>
+          <p style="font-size:13px; color:var(--muted); margin-top:8px;">
+            Each project starts with a real problem. Here's how I found the right answer.
+          </p>
         </div>
-        <p style="max-width:280px; font-size:13px; color:var(--muted); padding-bottom:4px;">
-          Each project starts with a real problem. Here's how I found the right answer.
-        </p>
       </div>
 
-      <!-- Work list -->
-      <div class="work-list">
-
-        <!-- Cortex / Fandom -->
-        <a href="work/fandom.html" class="work-card fade-up">
-          <div class="work-card__logo"><img src="assets/logo-cortex.jpg" alt="Cortex" /></div>
-          <div class="work-card__body">
-            <div class="work-card__tags">
+      <!-- Featured: Fandom / Cortex -->
+      <a href="work/fandom.html" class="featured-project fade-up">
+        <div class="featured-project__content">
+          <div class="featured-project__header">
+            <div class="featured-project__logo">
+              <img src="assets/cortex-logo-v2.png" alt="Cortex" />
+            </div>
+            <div class="featured-project__tags">
               <span class="tag">SaaS Platform</span>
-              <span class="tag">Cortex</span>
-              <span class="tag">2025–Present</span>
-            </div>
-            <div class="work-card__title">Fan Experience Platform — Cortex</div>
-            <p class="work-card__desc">Designing a gamified fan engagement SaaS from zero to one — helping sports clubs like Arsenal FC and Formula 1 build first-party audience data on owned channels.</p>
-            <div class="work-card__outcomes">
-              <span class="work-card__outcome">2 enterprise clients won through UX research</span>
-              <span class="work-card__outcome">Zero to one SaaS product</span>
+              <span class="tag">Sports Tech</span>
             </div>
           </div>
-          <div class="work-card__thumb">
-            <img src="assets/cortex-n1.webp" alt="Cortex project preview" loading="lazy" />
+          <div class="featured-project__title">Fan Experience<br>Platform — Cortex</div>
+          <p class="featured-project__desc">Gamified rewards SaaS for sports clubs — built solo from zero to one, used by Arsenal FC, Formula 1, Wembley and 47 other organisations worldwide.</p>
+          <div class="featured-project__stats">
+            <div>
+              <div class="featured-project__stat-num">50+</div>
+              <div class="featured-project__stat-label">sports organisations</div>
+            </div>
+            <div>
+              <div class="featured-project__stat-num">7</div>
+              <div class="featured-project__stat-label">research rounds</div>
+            </div>
+            <div>
+              <div class="featured-project__stat-num">0→1</div>
+              <div class="featured-project__stat-label">built solo</div>
+            </div>
+          </div>
+          <span class="featured-project__cta">
+            Read case study
+            <svg width="14" height="14" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+          </span>
+        </div>
+        <div class="featured-project__image">
+          <img src="assets/cortex%20project%20n1%20v2.png" alt="Cortex Fan Experience Platform" />
+        </div>
+      </a>
+
+      <!-- 2-column grid -->
+      <div class="project-grid">
+
+        <!-- Reed Combo Apply -->
+        <a href="work/reed-app.html" class="project-card fade-up">
+          <div class="project-card__img">
+            <img src="assets/reed%20project%20n2%20v2.png" alt="Reed Combo Apply" loading="lazy" />
+          </div>
+          <div class="project-card__body">
+            <div class="project-card__header">
+              <div class="project-card__logo"><img src="assets/logo-reed.jpg" alt="Reed" /></div>
+              <div class="project-card__tags">
+                <span class="tag">Mobile</span>
+                <span class="tag">iOS / Android</span>
+              </div>
+            </div>
+            <div class="project-card__title">Reed Combo Apply</div>
+            <div class="project-card__stat">+13%</div>
+            <div class="project-card__stat-label">application growth after shipping</div>
+            <span class="project-card__cta">
+              Read case study
+              <svg width="12" height="12" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+            </span>
           </div>
         </a>
 
-        <!-- Reed App -->
-        <a href="work/reed-app.html" class="work-card fade-up">
-          <div class="work-card__logo"><img src="assets/logo-reed.jpg" alt="Reed" /></div>
-          <div class="work-card__body">
-            <div class="work-card__tags">
-              <span class="tag">Mobile</span>
-              <span class="tag">Research</span>
-              <span class="tag">Reed</span>
-              <span class="tag tag--platform"><img src="assets/logo-apple.png" alt="iOS" style="width:10px;height:12px;object-fit:contain;vertical-align:middle;filter:brightness(0);display:inline-block;"> iOS</span>
-              <span class="tag tag--platform"><img src="assets/logo-google-play.png" alt="Android" style="width:12px;height:12px;object-fit:contain;vertical-align:middle;display:inline-block;"> Android</span>
-            </div>
-            <div class="work-card__title">Reed App Notifications</div>
-            <p class="work-card__desc">Competitive analysis of push, in-app and SMS notifications across 9 job board platforms — mapping gaps and surfacing design opportunities.</p>
-            <div class="work-card__outcomes">
-              <span class="work-card__outcome">9 platforms audited</span>
-              <span class="work-card__outcome">6 design opportunities surfaced</span>
-              <span class="work-card__outcome">2 shipped within the next sprint</span>
-            </div>
+        <!-- Reed Course Discovery -->
+        <a href="work/reed-web.html" class="project-card fade-up">
+          <div class="project-card__img">
+            <img src="assets/reed%20project%20n3%20v3.png" alt="Reed Course Discovery" loading="lazy" />
           </div>
-          <div class="work-card__thumb">
-            <img src="assets/reed-n2.webp" alt="Reed App project preview" loading="lazy" />
-          </div>
-        </a>
-
-        <!-- Reed Web -->
-        <a href="work/reed-web.html" class="work-card fade-up">
-          <div class="work-card__logo"><img src="assets/logo-reed.jpg" alt="Reed" /></div>
-          <div class="work-card__body">
-            <div class="work-card__tags">
-              <span class="tag">Web</span>
-              <span class="tag">Ecommerce</span>
-              <span class="tag">Reed</span>
+          <div class="project-card__body">
+            <div class="project-card__header">
+              <div class="project-card__logo"><img src="assets/logo-reed.jpg" alt="Reed" /></div>
+              <div class="project-card__tags">
+                <span class="tag">Web</span>
+                <span class="tag">Ecommerce</span>
+              </div>
             </div>
-            <div class="work-card__title">Reed Course Discovery</div>
-            <p class="work-card__desc">Redesigning the course card and search flow on Reed.co.uk — giving users the trust signals they needed to commit without clicking into every listing.</p>
-            <div class="work-card__outcomes">
-              <span class="work-card__outcome">+14% card click-through rate</span>
-              <span class="work-card__outcome">+19% enrolment conversion</span>
-              <span class="work-card__outcome">-28% search abandonment</span>
-            </div>
-          </div>
-          <div class="work-card__thumb">
-            <img src="assets/reed-n3.webp" alt="Reed Web project preview" loading="lazy" />
+            <div class="project-card__title">Reed Course Discovery</div>
+            <div class="project-card__stat">+19%</div>
+            <div class="project-card__stat-label">enrolment conversion after redesign</div>
+            <span class="project-card__cta">
+              Read case study
+              <svg width="12" height="12" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+            </span>
           </div>
         </a>
 
-        <!-- Sony -->
-        <a href="work/sony.html" class="work-card fade-up">
-          <div class="work-card__logo"><img src="assets/logo-sony.svg" alt="Sony" /></div>
-          <div class="work-card__body">
-            <div class="work-card__tags">
-              <span class="tag">Web App</span>
+      </div>
+
+      <!-- Sony — wide card -->
+      <a href="work/sony.html" class="project-card project-card--wide fade-up">
+        <div class="project-card__img">
+          <img src="assets/sony-n4.webp" alt="Sony eLearning Platform" loading="lazy" />
+        </div>
+        <div class="project-card__body">
+          <div class="project-card__header">
+            <div class="project-card__logo"><img src="assets/logo-sony.svg" alt="Sony" /></div>
+            <div class="project-card__tags">
+              <span class="tag">eLearning</span>
               <span class="tag">B2B SaaS</span>
-              <span class="tag">Let's Create</span>
-              <span class="tag tag--platform"><img src="assets/logo-apple.png" alt="iOS" style="width:10px;height:12px;object-fit:contain;vertical-align:middle;filter:brightness(0);display:inline-block;"> iOS</span>
-              <span class="tag tag--platform"><img src="assets/logo-google-play.png" alt="Android" style="width:12px;height:12px;object-fit:contain;vertical-align:middle;display:inline-block;"> Android</span>
-            </div>
-            <div class="work-card__title">Sony eLearning Platform</div>
-            <p class="work-card__desc">Internal training SaaS helping Sony retailers learn and sell products — designed for non-technical staff across multiple markets.</p>
-            <div class="work-card__outcomes">
-              <span class="work-card__outcome">B2B SaaS · multi-market rollout</span>
-              <span class="work-card__outcome">Retailer onboarding time reduced</span>
+              <span class="tag">15 countries</span>
             </div>
           </div>
-          <div class="work-card__thumb">
-            <img src="assets/sony-n4.webp" alt="Sony project preview" loading="lazy" />
-          </div>
-        </a>
+          <div class="project-card__title">Sony eLearning Platform</div>
+          <div class="project-card__stat">98%</div>
+          <div class="project-card__stat-label">course completion rate across 15 countries and 11 languages</div>
+          <span class="project-card__cta" style="margin-top:20px;">
+            Read case study
+            <svg width="12" height="12" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+          </span>
+        </div>
+      </a>
+    </div>
+  </section>
 
-        <!-- Let's Create -->
-        <a href="work/lets-create.html" class="work-card fade-up">
-          <div class="work-card__logo"><img src="assets/logo-lets-create.png" alt="Let's Create" /></div>
-          <div class="work-card__body">
-            <div class="work-card__tags">
-              <span class="tag">Web</span>
-              <span class="tag">Webflow</span>
-              <span class="tag">Let's Create</span>
+  <!-- AI Workflow -->
+  <section class="section" style="background:#07091A; border-top:1px solid rgba(255,255,255,0.06); position:relative; overflow:hidden;">
+    <!-- Background glows -->
+    <div style="position:absolute;top:-160px;left:-80px;width:500px;height:500px;background:radial-gradient(circle,rgba(147,51,234,0.12) 0%,transparent 70%);pointer-events:none;"></div>
+    <div style="position:absolute;bottom:-160px;right:-80px;width:500px;height:500px;background:radial-gradient(circle,rgba(6,182,212,0.1) 0%,transparent 70%);pointer-events:none;"></div>
+    <div class="container" style="position:relative;">
+      <div style="max-width:600px; margin-bottom:56px;">
+        <p class="eyebrow" style="color:rgba(255,255,255,0.4);">How I work</p>
+        <h2 style="color:#fff; margin-bottom:16px;">AI-native from day one</h2>
+        <p style="color:rgba(255,255,255,0.55); font-size:1rem; line-height:1.75; margin:0;">I use AI across every phase of design — not to replace craft, but to spend more time on the thinking that matters.</p>
+      </div>
+
+      <!-- Cards -->
+      <div style="display:grid; grid-template-columns:repeat(3,1fr); gap:1px; margin-bottom:40px; background:linear-gradient(135deg,rgba(147,51,234,0.5),rgba(6,182,212,0.5)); border-radius:20px; padding:1px;">
+
+        <!-- Card: Early concepts -->
+        <div style="background:#0D1023; border-radius:19px 4px 4px 19px; padding:36px 32px; display:flex; flex-direction:column;">
+          <div style="display:flex; align-items:center; justify-content:space-between; margin-bottom:28px;">
+            <div style="font-size:11px; font-weight:700; letter-spacing:0.08em; text-transform:uppercase; color:rgba(255,255,255,0.35);">Early concepts</div>
+            <div style="background:rgba(192,132,252,0.12); border:1px solid rgba(192,132,252,0.25); border-radius:20px; padding:3px 10px; font-size:11px; font-weight:700; color:#C084FC; letter-spacing:0.02em;">−75% time</div>
+          </div>
+          <div style="font-size:13px; color:rgba(255,255,255,0.3); text-decoration:line-through; margin-bottom:6px;">1–2 days</div>
+          <div style="display:flex; align-items:baseline; gap:8px; margin-bottom:20px;">
+            <span style="font-size:48px; font-weight:800; line-height:1; background:linear-gradient(135deg,#C084FC,#67E8F9); -webkit-background-clip:text; -webkit-text-fill-color:transparent; background-clip:text;">3–6</span>
+            <span style="font-size:18px; font-weight:500; color:rgba(255,255,255,0.5);">hrs</span>
+          </div>
+          <p style="font-size:13px; color:rgba(255,255,255,0.4); line-height:1.65; margin:0 0 auto;">From brief to multiple directions before the afternoon standup.</p>
+          <div style="margin-top:24px; display:flex; align-items:center; gap:8px; flex-wrap:wrap;">
+            <div style="display:flex;align-items:center;gap:5px;background:rgba(255,255,255,0.05);border-radius:6px;padding:4px 8px;">
+              <svg width="12" height="12" viewBox="0 0 24 24" fill="rgba(255,255,255,0.5)"><path d="M15.852 8.981h-4.588V0h4.588c2.476 0 4.49 2.014 4.49 4.49s-2.014 4.491-4.49 4.491zM12.735 7.51h3.117c1.665 0 3.019-1.355 3.019-3.019s-1.355-3.019-3.019-3.019h-3.117V7.51zm0 1.471H8.148c-2.476 0-4.49-2.014-4.49-4.49S5.672 0 8.148 0h4.588v8.981zm-4.587-7.51c-1.665 0-3.019 1.355-3.019 3.019s1.354 3.02 3.019 3.02h3.117V1.471H8.148zm4.587 15.019H8.148c-2.476 0-4.49-2.014-4.49-4.49s2.014-4.49 4.49-4.49h4.588v8.98zM8.148 8.981c-1.665 0-3.019 1.355-3.019 3.019s1.355 3.019 3.019 3.019h3.117V8.981H8.148zM8.172 24c-2.489 0-4.515-2.014-4.515-4.49s2.014-4.49 4.49-4.49h4.588v4.441c0 2.503-2.047 4.539-4.563 4.539zm-.024-7.51a3.023 3.023 0 0 0-3.019 3.019c0 1.665 1.365 3.019 3.044 3.019 1.705 0 3.093-1.376 3.093-3.068v-2.97H8.148zm7.704 0h-.098c-2.476 0-4.49-2.014-4.49-4.49s2.014-4.49 4.49-4.49h.098c2.476 0 4.49 2.014 4.49 4.49s-2.014 4.49-4.49 4.49zm-.097-7.509c-1.665 0-3.019 1.355-3.019 3.019s1.355 3.019 3.019 3.019h.098c1.665 0 3.019-1.355 3.019-3.019s-1.355-3.019-3.019-3.019h-.098z"/></svg>
+              <span style="font-size:11px;color:rgba(255,255,255,0.45);">Figma Make</span>
             </div>
-            <div class="work-card__title">Let's Create Agency Website</div>
-            <p class="work-card__desc">Responsive website for a London creative agency — from UX strategy and visual design through to Webflow build and launch.</p>
-            <div class="work-card__outcomes">
-              <span class="work-card__outcome">Design to launch, end to end</span>
-              <span class="work-card__outcome">Delivered on time and on brief</span>
+            <div style="display:flex;align-items:center;gap:5px;background:rgba(255,255,255,0.05);border-radius:6px;padding:4px 8px;">
+              <svg width="12" height="12" viewBox="0 0 24 24" fill="rgba(255,255,255,0.5)"><path d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z"/><path d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z"/><path d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l2.85-2.22.81-.62z"/><path d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z"/></svg>
+              <span style="font-size:11px;color:rgba(255,255,255,0.45);">Stitch</span>
             </div>
           </div>
-          <div class="work-card__thumb">
-            <img src="assets/letscreate-n5.webp" alt="Let's Create project preview" loading="lazy" />
+        </div>
+
+        <!-- Card: Research synthesis -->
+        <div style="background:#0D1023; border-radius:4px; padding:36px 32px; display:flex; flex-direction:column;">
+          <div style="display:flex; align-items:center; justify-content:space-between; margin-bottom:28px;">
+            <div style="font-size:11px; font-weight:700; letter-spacing:0.08em; text-transform:uppercase; color:rgba(255,255,255,0.35);">Research synthesis</div>
+            <div style="background:rgba(192,132,252,0.12); border:1px solid rgba(192,132,252,0.25); border-radius:20px; padding:3px 10px; font-size:11px; font-weight:700; color:#C084FC; letter-spacing:0.02em;">−80% time</div>
           </div>
-        </a>
+          <div style="font-size:13px; color:rgba(255,255,255,0.3); text-decoration:line-through; margin-bottom:6px;">2–3 days</div>
+          <div style="display:flex; align-items:baseline; gap:8px; margin-bottom:20px;">
+            <span style="font-size:48px; font-weight:800; line-height:1; background:linear-gradient(135deg,#C084FC,#67E8F9); -webkit-background-clip:text; -webkit-text-fill-color:transparent; background-clip:text;">~5</span>
+            <span style="font-size:18px; font-weight:500; color:rgba(255,255,255,0.5);">hrs</span>
+          </div>
+          <p style="font-size:13px; color:rgba(255,255,255,0.4); line-height:1.65; margin:0 0 auto;">Interviews, affinity mapping, pattern finding — without losing the nuance.</p>
+          <div style="margin-top:24px; display:flex; align-items:center; gap:8px; flex-wrap:wrap;">
+            <div style="display:flex;align-items:center;gap:5px;background:rgba(255,255,255,0.05);border-radius:6px;padding:4px 8px;">
+              <svg width="12" height="12" viewBox="0 0 1200 1200" fill="rgba(255,255,255,0.5)"><path d="M 233.959793 800.214905 L 468.644287 668.536987 L 472.590637 657.100647 L 468.644287 650.738403 L 457.208069 650.738403 L 417.986633 648.322144 L 283.892639 644.69812 L 167.597321 639.865845 L 54.926208 633.825623 L 26.577238 627.785339 L 3.3e-05 592.751709 L 2.73832 575.27533 L 26.577238 559.248352 L 60.724873 562.228149 L 136.187973 567.382629 L 249.422867 575.194763 L 331.570496 580.026978 L 453.261841 592.671082 L 472.590637 592.671082 L 475.328857 584.859009 L 468.724915 580.026978 L 463.570557 575.194763 L 346.389313 495.785217 L 219.543671 411.865906 L 153.100723 363.543762 L 117.181267 339.060425 L 99.060455 316.107361 L 91.248367 266.01355 L 123.865784 230.093994 L 167.677887 233.073853 L 178.872513 236.053772 L 223.248367 270.201477 L 318.040283 343.570496 L 441.825592 434.738342 L 459.946411 449.798706 L 467.194672 444.64447 L 468.080597 441.020203 L 459.946411 427.409485 L 392.617493 305.718323 L 320.778564 181.932983 L 288.80542 130.630859 L 280.348999 99.865845 C 277.369171 87.221436 275.194641 76.590698 275.194641 63.624268 L 312.322174 13.20813 L 332.8591 6.604126 L 382.389313 13.20813 L 403.248352 31.328979 L 434.013519 101.71814 L 483.865753 212.537048 L 561.181274 363.221497 L 583.812134 407.919434 L 595.892639 449.315491 L 600.40271 461.959839 L 608.214783 461.959839 L 608.214783 454.711609 L 614.577271 369.825623 L 626.335632 265.61084 L 637.771851 131.516846 L 641.718201 93.745117 L 660.402832 48.483276 L 697.530334 24.000122 L 726.52356 37.852417 L 750.362549 72 L 747.060486 94.067139 L 732.886047 186.201416 L 705.100708 330.52356 L 686.979919 427.167847 L 697.530334 427.167847 L 709.61084 415.087341 L 758.496704 350.174561 L 840.644348 247.490051 L 876.885925 206.738342 L 919.167847 161.71814 L 946.308838 140.29541 L 997.61084 140.29541 L 1035.38269 196.429626 L 1018.469849 254.416199 L 965.637634 321.422852 L 921.825562 378.201538 L 859.006714 462.765259 L 819.785278 530.41626 L 823.409424 535.812073 L 832.75177 534.92627 L 974.657776 504.724915 L 1051.328979 490.872559 L 1142.818848 475.167786 L 1184.214844 494.496582 L 1188.724854 514.147644 L 1172.456421 554.335693 L 1074.604126 578.496765 L 959.838989 601.449829 L 788.939636 641.879272 L 786.845764 643.409485 L 789.261841 646.389343 L 866.255127 653.637634 L 899.194702 655.409424 L 979.812134 655.409424 L 1129.932861 666.604187 L 1169.154419 692.537109 L 1192.671265 724.268677 L 1188.724854 748.429688 L 1128.322144 779.194641 L 1046.818848 759.865845 L 856.590759 714.604126 L 791.355774 698.335754 L 782.335693 698.335754 L 782.335693 703.731567 L 836.69812 756.885986 L 936.322205 846.845581 L 1061.073975 962.81897 L 1067.436279 991.490112 L 1051.409424 1014.120911 L 1034.496704 1011.704712 L 924.885986 929.234924 L 882.604126 892.107544 L 786.845764 811.48999 L 780.483276 811.48999 L 780.483276 819.946289 L 802.550415 852.241699 L 919.087341 1027.409424 L 925.127625 1081.127686 L 916.671204 1098.604126 L 886.469849 1109.154419 L 853.288696 1103.114136 L 785.073914 1007.355835 L 714.684631 899.516785 L 657.906067 802.872498 L 650.979858 806.81897 L 617.476624 1167.704834 L 601.771851 1186.147705 L 565.530212 1200 L 535.328857 1177.046997 L 519.302124 1139.919556 L 535.328857 1066.550537 L 554.657776 970.792053 L 570.362488 894.68457 L 584.536926 800.134277 L 592.993347 768.724976 L 592.429626 766.630859 L 585.503479 767.516968 L 514.22821 865.369263 L 405.825531 1011.865906 L 320.053711 1103.677979 L 299.516815 1111.812256 L 263.919525 1093.369263 L 267.221497 1060.429688 L 287.114136 1031.114136 L 405.825531 880.107361 L 477.422913 786.52356 L 523.651062 732.483276 L 523.328918 724.671265 L 520.590698 724.671265 L 205.288605 929.395935 L 149.154434 936.644409 L 124.993355 914.01355 L 127.973183 876.885986 L 139.409409 864.80542 L 234.201385 799.570435 Z"/></svg>
+              <span style="font-size:11px;color:rgba(255,255,255,0.45);">Claude</span>
+            </div>
+            <div style="display:flex;align-items:center;gap:5px;background:rgba(255,255,255,0.05);border-radius:6px;padding:4px 8px;">
+              <svg width="12" height="12" viewBox="0 0 24 24" fill="rgba(255,255,255,0.5)"><path d="M11.04 19.32Q12 21.51 12 24q0-2.49.93-4.68.96-2.19 2.58-3.81t3.81-2.55Q21.51 12 24 12q-2.49 0-4.68-.93a12.3 12.3 0 0 1-3.81-2.58 12.3 12.3 0 0 1-2.58-3.81Q12 2.49 12 0q0 2.49-.96 4.68-.93 2.19-2.55 3.81a12.3 12.3 0 0 1-3.81 2.58Q2.49 12 0 12q2.49 0 4.68.96 2.19.93 3.81 2.55t2.55 3.81"/></svg>
+              <span style="font-size:11px;color:rgba(255,255,255,0.45);">Gemini</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Card: Prototyping -->
+        <div style="background:#0D1023; border-radius:4px 19px 19px 4px; padding:36px 32px; display:flex; flex-direction:column;">
+          <div style="display:flex; align-items:center; justify-content:space-between; margin-bottom:28px;">
+            <div style="font-size:11px; font-weight:700; letter-spacing:0.08em; text-transform:uppercase; color:rgba(255,255,255,0.35);">Prototyping</div>
+            <div style="background:rgba(192,132,252,0.12); border:1px solid rgba(192,132,252,0.25); border-radius:20px; padding:3px 10px; font-size:11px; font-weight:700; color:#C084FC; letter-spacing:0.02em;">−70% time</div>
+          </div>
+          <div style="font-size:13px; color:rgba(255,255,255,0.3); text-decoration:line-through; margin-bottom:6px;">8–10 hrs</div>
+          <div style="display:flex; align-items:baseline; gap:8px; margin-bottom:20px;">
+            <span style="font-size:48px; font-weight:800; line-height:1; background:linear-gradient(135deg,#C084FC,#67E8F9); -webkit-background-clip:text; -webkit-text-fill-color:transparent; background-clip:text;">2–3</span>
+            <span style="font-size:18px; font-weight:500; color:rgba(255,255,255,0.5);">hrs</span>
+          </div>
+          <p style="font-size:13px; color:rgba(255,255,255,0.4); line-height:1.65; margin:0 0 auto;">What used to take a full day is done before lunch, with the right prompts.</p>
+          <div style="margin-top:24px; display:flex; align-items:center; gap:6px; flex-wrap:nowrap;">
+            <div style="display:flex;align-items:center;gap:5px;background:rgba(255,255,255,0.05);border-radius:6px;padding:4px 8px;">
+              <svg width="12" height="12" viewBox="0 0 24 24" fill="rgba(255,255,255,0.5)"><path d="M11.503.131 1.891 5.678a.84.84 0 0 0-.42.726v11.188c0 .3.162.575.42.724l9.609 5.55a1 1 0 0 0 .998 0l9.61-5.55a.84.84 0 0 0 .42-.724V6.404a.84.84 0 0 0-.42-.726L12.497.131a1.01 1.01 0 0 0-.996 0M2.657 6.338h18.55c.263 0 .43.287.297.515L12.23 22.918c-.062.107-.229.064-.229-.06V12.335a.59.59 0 0 0-.295-.51l-9.11-5.257c-.109-.063-.064-.23.061-.23"/></svg>
+              <span style="font-size:11px;color:rgba(255,255,255,0.45);">Cursor</span>
+            </div>
+            <div style="display:flex;align-items:center;gap:5px;background:rgba(255,255,255,0.05);border-radius:6px;padding:4px 8px;">
+              <img src="assets/antigravity-icon__white.png" width="11" height="11" style="object-fit:contain;opacity:0.5;" alt="Antigravity" />
+              <span style="font-size:10px;color:rgba(255,255,255,0.45);">Antigravity</span>
+            </div>
+            <div style="display:flex;align-items:center;gap:5px;background:rgba(255,255,255,0.05);border-radius:6px;padding:4px 8px;">
+              <svg width="12" height="12" viewBox="0 0 1200 1200" fill="rgba(255,255,255,0.5)"><path d="M 233.959793 800.214905 L 468.644287 668.536987 L 472.590637 657.100647 L 468.644287 650.738403 L 457.208069 650.738403 L 417.986633 648.322144 L 283.892639 644.69812 L 167.597321 639.865845 L 54.926208 633.825623 L 26.577238 627.785339 L 3.3e-05 592.751709 L 2.73832 575.27533 L 26.577238 559.248352 L 60.724873 562.228149 L 136.187973 567.382629 L 249.422867 575.194763 L 331.570496 580.026978 L 453.261841 592.671082 L 472.590637 592.671082 L 475.328857 584.859009 L 468.724915 580.026978 L 463.570557 575.194763 L 346.389313 495.785217 L 219.543671 411.865906 L 153.100723 363.543762 L 117.181267 339.060425 L 99.060455 316.107361 L 91.248367 266.01355 L 123.865784 230.093994 L 167.677887 233.073853 L 178.872513 236.053772 L 223.248367 270.201477 L 318.040283 343.570496 L 441.825592 434.738342 L 459.946411 449.798706 L 467.194672 444.64447 L 468.080597 441.020203 L 459.946411 427.409485 L 392.617493 305.718323 L 320.778564 181.932983 L 288.80542 130.630859 L 280.348999 99.865845 C 277.369171 87.221436 275.194641 76.590698 275.194641 63.624268 L 312.322174 13.20813 L 332.8591 6.604126 L 382.389313 13.20813 L 403.248352 31.328979 L 434.013519 101.71814 L 483.865753 212.537048 L 561.181274 363.221497 L 583.812134 407.919434 L 595.892639 449.315491 L 600.40271 461.959839 L 608.214783 461.959839 L 608.214783 454.711609 L 614.577271 369.825623 L 626.335632 265.61084 L 637.771851 131.516846 L 641.718201 93.745117 L 660.402832 48.483276 L 697.530334 24.000122 L 726.52356 37.852417 L 750.362549 72 L 747.060486 94.067139 L 732.886047 186.201416 L 705.100708 330.52356 L 686.979919 427.167847 L 697.530334 427.167847 L 709.61084 415.087341 L 758.496704 350.174561 L 840.644348 247.490051 L 876.885925 206.738342 L 919.167847 161.71814 L 946.308838 140.29541 L 997.61084 140.29541 L 1035.38269 196.429626 L 1018.469849 254.416199 L 965.637634 321.422852 L 921.825562 378.201538 L 859.006714 462.765259 L 819.785278 530.41626 L 823.409424 535.812073 L 832.75177 534.92627 L 974.657776 504.724915 L 1051.328979 490.872559 L 1142.818848 475.167786 L 1184.214844 494.496582 L 1188.724854 514.147644 L 1172.456421 554.335693 L 1074.604126 578.496765 L 959.838989 601.449829 L 788.939636 641.879272 L 786.845764 643.409485 L 789.261841 646.389343 L 866.255127 653.637634 L 899.194702 655.409424 L 979.812134 655.409424 L 1129.932861 666.604187 L 1169.154419 692.537109 L 1192.671265 724.268677 L 1188.724854 748.429688 L 1128.322144 779.194641 L 1046.818848 759.865845 L 856.590759 714.604126 L 791.355774 698.335754 L 782.335693 698.335754 L 782.335693 703.731567 L 836.69812 756.885986 L 936.322205 846.845581 L 1061.073975 962.81897 L 1067.436279 991.490112 L 1051.409424 1014.120911 L 1034.496704 1011.704712 L 924.885986 929.234924 L 882.604126 892.107544 L 786.845764 811.48999 L 780.483276 811.48999 L 780.483276 819.946289 L 802.550415 852.241699 L 919.087341 1027.409424 L 925.127625 1081.127686 L 916.671204 1098.604126 L 886.469849 1109.154419 L 853.288696 1103.114136 L 785.073914 1007.355835 L 714.684631 899.516785 L 657.906067 802.872498 L 650.979858 806.81897 L 617.476624 1167.704834 L 601.771851 1186.147705 L 565.530212 1200 L 535.328857 1177.046997 L 519.302124 1139.919556 L 535.328857 1066.550537 L 554.657776 970.792053 L 570.362488 894.68457 L 584.536926 800.134277 L 592.993347 768.724976 L 592.429626 766.630859 L 585.503479 767.516968 L 514.22821 865.369263 L 405.825531 1011.865906 L 320.053711 1103.677979 L 299.516815 1111.812256 L 263.919525 1093.369263 L 267.221497 1060.429688 L 287.114136 1031.114136 L 405.825531 880.107361 L 477.422913 786.52356 L 523.651062 732.483276 L 523.328918 724.671265 L 520.590698 724.671265 L 205.288605 929.395935 L 149.154434 936.644409 L 124.993355 914.01355 L 127.973183 876.885986 L 139.409409 864.80542 L 234.201385 799.570435 Z"/></svg>
+              <span style="font-size:11px;color:rgba(255,255,255,0.45);">Claude Code</span>
+            </div>
+          </div>
+        </div>
 
       </div>
     </div>
@@ -363,7 +605,7 @@
 
         <div>
           <p class="eyebrow">About</p>
-          <h2 style="margin-bottom:20px;">I design for people, not pixels.</h2>
+          <h2 style="margin-bottom:20px;">I design for people, not pixels</h2>
           <p>
             Senior Product Designer based in London with 7 years across the full product cycle, from early discovery and research to UI polish and dev handoff.
           </p>
