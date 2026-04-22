@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Reed Combo Apply — Jacopo Maio</title>
+  <title>Reed Combo Apply · Jacopo Maio</title>
   <meta name="description" content="Research and design that helped Reed's bulk apply feature drive a 13% increase in applications per user." />
   <link rel="stylesheet" href="../css/style.css" />
   <script>window.va = window.va || function () { (window.vaq = window.vaq || []).push(arguments); };</script>
@@ -86,6 +86,33 @@
       .proto-wrap { grid-template-columns: 1fr; }
       .proto-wrap__qr { width: 80px; height: 80px; }
     }
+
+    .lightbox {
+      position: fixed; inset: 0; z-index: 1000;
+      background: rgba(7,9,26,0.92);
+      display: flex; align-items: center; justify-content: center;
+      padding: 24px;
+      opacity: 0; pointer-events: none;
+      transition: opacity 0.2s ease;
+    }
+    .lightbox.is-open { opacity: 1; pointer-events: all; }
+    .lightbox__img {
+      max-width: 100%; max-height: 90vh;
+      border-radius: 10px;
+      box-shadow: 0 32px 80px rgba(0,0,0,0.6);
+      transform: scale(0.96);
+      transition: transform 0.25s ease;
+    }
+    .lightbox.is-open .lightbox__img { transform: scale(1); }
+    .lightbox__close {
+      position: fixed; top: 20px; right: 24px;
+      width: 36px; height: 36px; border-radius: 50%;
+      background: rgba(255,255,255,0.1); border: 1px solid rgba(255,255,255,0.15);
+      color: white; font-size: 18px; line-height: 1;
+      cursor: pointer; display: flex; align-items: center; justify-content: center;
+      transition: background 0.15s;
+    }
+    .lightbox__close:hover { background: rgba(255,255,255,0.2); }
   </style>
 </head>
 <body>
@@ -116,7 +143,7 @@
       </div>
       <h1>Reed<br>Combo Apply</h1>
       <p class="lead">
-        Users couldn't find the bulk apply feature. We ran usability research to find out why, redesigned the entry point, and shipped it — driving a 13% increase in applications per user.
+        Users couldn't find the bulk apply feature. We ran usability research to find out why, redesigned the entry point, and shipped it, driving a 13% increase in applications per user.
       </p>
       <div class="cs-meta">
         <div class="cs-meta__item"><div class="cs-meta__label">Role</div><div class="cs-meta__value">Product Designer</div></div>
@@ -135,13 +162,13 @@
         <p class="eyebrow">The problem</p>
         <h2>A useful feature nobody was using</h2>
         <p>
-          Reed had built a bulk apply feature — Combo Apply — to help job seekers submit multiple applications at once. The business target was clear: increase applications per user from 0.66 to 0.8. But early data showed users weren't engaging with it. They were still applying one job at a time.
+          Reed had built a bulk apply feature, Combo Apply, to help job seekers submit multiple applications at once. The business target was clear: increase applications per user from 0.66 to 0.8. But early data showed users weren't engaging with it. They were still applying one job at a time.
         </p>
         <p>
           Before investing further in the feature, the team wanted to understand why. Were users ignoring it? Not finding it? Not understanding it? I ran a round of moderated usability testing to find out.
         </p>
         <div class="cs-callout">
-          <p>"Can users find and use the Combo Apply feature? And if not — why not?"</p>
+          <p>"Can users find and use the Combo Apply feature? And if not, why not?"</p>
           <cite>Research brief, Q3 2024</cite>
         </div>
       </div>
@@ -170,7 +197,7 @@
       <div style="background:white; border-radius:10px; padding:24px;" class="fade-up">
         <p style="font-size:13px; font-weight:600; color:var(--ink); margin-bottom:8px;">The core insight</p>
         <p style="font-size:13px; color:var(--secondary); line-height:1.65; margin:0;">
-          The feature wasn't hidden — it was <em>passive</em>. A tooltip that appears once puts the burden on the user to notice it at exactly the right moment. Most don't. And a broken save button meant users couldn't even build the saved jobs list that Combo Apply depends on.
+          The feature wasn't hidden, it was <em>passive</em>. A tooltip that appears once puts the burden on the user to notice it at exactly the right moment. Most don't. And a broken save button meant users couldn't even build the saved jobs list that Combo Apply depends on.
         </p>
       </div>
     </div>
@@ -182,9 +209,9 @@
       <div class="cs-section fade-up">
         <p class="eyebrow">User testing journey</p>
         <h2>How we tested the concept</h2>
-        <p>Each session walked participants through the full flow — from an empty saved jobs list through to submitting a Combo Apply. The journey diagram below maps the tasks, decision points and where users dropped off.</p>
+        <p>Each session walked participants through the full flow, from an empty saved jobs list through to submitting a Combo Apply. The journey diagram below maps the tasks, decision points and where users dropped off.</p>
         <div class="flow-img-wrap fade-up">
-          <img src="../assets/reed-app/user-testing-flow.png" alt="User testing journey — Combo Apply concept" />
+          <img src="../assets/reed-app/user-testing-flow.png" alt="User testing journey, Combo Apply concept" />
         </div>
       </div>
     </div>
@@ -196,14 +223,14 @@
       <p class="eyebrow fade-up">The fix</p>
       <h3 class="fade-up" style="margin-top:6px; margin-bottom:8px;">Three changes, no feature rebuild</h3>
       <p style="color:var(--secondary); max-width:580px; font-size:14px; line-height:1.65;" class="fade-up">
-        The research pointed to specific problems. None required rebuilding the feature — only changing how and where it was surfaced.
+        The research pointed to specific problems. None required rebuilding the feature, only changing how and where it was surfaced.
       </p>
       <div class="decision-list fade-up">
         <div class="decision-item">
           <div class="decision-num">01</div>
           <div class="decision-body">
             <div class="decision-title">Replace the tooltip with a persistent header CTA</div>
-            <div class="decision-text">A tooltip that appears once puts the burden on the user to notice it at the right moment. Most don't. Moving Combo Apply into the Saved Jobs page header made it visible on every visit — no timing required.</div>
+            <div class="decision-text">A tooltip that appears once puts the burden on the user to notice it at the right moment. Most don't. Moving Combo Apply into the Saved Jobs page header made it visible on every visit, no timing required.</div>
           </div>
         </div>
         <div class="decision-item">
@@ -217,7 +244,7 @@
           <div class="decision-num">03</div>
           <div class="decision-body">
             <div class="decision-title">Fix the save button tap target</div>
-            <div class="decision-text">Every tester who tried to save a job made an error — the heart icon was below the 44×44pt iOS minimum, causing misclicks that navigated away. This broke the core flow before users even reached Combo Apply.</div>
+            <div class="decision-text">Every tester who tried to save a job made an error, the heart icon was below the 44×44pt iOS minimum, causing misclicks that navigated away. This broke the core flow before users even reached Combo Apply.</div>
           </div>
         </div>
       </div>
@@ -244,7 +271,7 @@
       <div class="cs-outcomes fade-up">
         <div class="cs-outcome">
           <div class="cs-outcome__num">+13%</div>
-          <div class="cs-outcome__label">Application growth per user after shipping Combo Apply — moving toward the 0.8 target</div>
+          <div class="cs-outcome__label">Application growth per user after shipping Combo Apply, moving toward the 0.8 target</div>
         </div>
         <div class="cs-outcome">
           <div class="cs-outcome__num">0→1</div>
@@ -256,7 +283,7 @@
         </div>
       </div>
       <p style="color:var(--secondary); font-size:14px; line-height:1.65; max-width:580px; margin:24px auto 0; text-align:left;" class="fade-up">
-        The research didn't just validate a hypothesis — it changed what we built. The original plan was to promote the feature harder. The finding was that promotion wasn't the problem — placement was. That distinction saved the team from investing in the wrong solution.
+        The research didn't just validate a hypothesis, it changed what we built. The original plan was to promote the feature harder. The finding was that promotion wasn't the problem, placement was. That distinction saved the team from investing in the wrong solution.
       </p>
       <p style="color:var(--secondary); font-size:13px; line-height:1.65; max-width:580px; margin:12px auto 0; text-align:left; font-style:italic;" class="fade-up">
         Note: final shipped screens are under NDA. Mockups above represent the design direction approved for development.
@@ -292,6 +319,38 @@
   <script type="module">
     import { inject } from '../js/analytics.mjs';
     inject();
+  </script>
+
+  <!-- Lightbox -->
+  <div class="lightbox" id="lightbox" role="dialog" aria-modal="true">
+    <button class="lightbox__close" id="lightboxClose" aria-label="Close">✕</button>
+    <img class="lightbox__img" id="lightboxImg" src="" alt="" />
+  </div>
+
+  <script>
+    const lightbox = document.getElementById('lightbox');
+    const lightboxImg = document.getElementById('lightboxImg');
+    const lightboxClose = document.getElementById('lightboxClose');
+
+    document.querySelectorAll('img').forEach(img => {
+      if (img.closest('.nav, .footer')) return;
+      img.style.cursor = 'zoom-in';
+      img.addEventListener('click', () => {
+        lightboxImg.src = img.src;
+        lightboxImg.alt = img.alt;
+        lightbox.classList.add('is-open');
+        document.body.style.overflow = 'hidden';
+      });
+    });
+
+    function closeLightbox() {
+      lightbox.classList.remove('is-open');
+      document.body.style.overflow = '';
+    }
+
+    lightboxClose.addEventListener('click', closeLightbox);
+    lightbox.addEventListener('click', e => { if (e.target === lightbox) closeLightbox(); });
+    document.addEventListener('keydown', e => { if (e.key === 'Escape') closeLightbox(); });
   </script>
 </body>
 </html>

@@ -1,0 +1,582 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>FDP AI · Jacopo Maio</title>
+  <meta name="description" content="How I went from a strategic question about AI maturity to a shipped feature that helped the sales team win two enterprise deals before the code was in production." />
+  <link rel="stylesheet" href="../css/style.css" />
+  <link rel="icon" type="image/svg+xml" href="../assets/favicon.svg" />
+  <script>window.va = window.va || function () { (window.vaq = window.vaq || []).push(arguments); };</script>
+  <script defer src="/_vercel/insights/script.js"></script>
+  <style>
+    .cs-hero--fdp-ai {
+      background: linear-gradient(135deg, #07091A 0%, #0D0D2B 50%, #160D3A 100%);
+    }
+    .problem-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 12px;
+      margin: 24px 0;
+    }
+    .problem-card {
+      background: var(--pale);
+      border-radius: 10px;
+      padding: 20px 22px;
+      border: 1px solid var(--line);
+    }
+    .problem-card__title {
+      font-size: 13px;
+      font-weight: 600;
+      color: var(--ink);
+      margin-bottom: 8px;
+    }
+    .problem-card__text {
+      font-size: 12px;
+      color: var(--muted);
+      line-height: 1.65;
+    }
+    .finding-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 12px;
+      margin: 24px 0;
+    }
+    .finding-card {
+      background: var(--pale);
+      border-radius: 10px;
+      padding: 20px 22px;
+      border: 1px solid var(--line);
+    }
+    .finding-card__title {
+      font-size: 13px;
+      font-weight: 600;
+      color: var(--ink);
+      margin-bottom: 8px;
+    }
+    .finding-card__text {
+      font-size: 12px;
+      color: var(--muted);
+      line-height: 1.65;
+    }
+    .change-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 12px;
+      margin: 24px 0;
+    }
+    .change-card {
+      background: var(--pale);
+      border-radius: 10px;
+      padding: 20px 22px;
+      border: 1px solid var(--line);
+    }
+    .change-card__title {
+      font-size: 13px;
+      font-weight: 600;
+      color: var(--ink);
+      margin-bottom: 8px;
+    }
+    .change-card__text {
+      font-size: 12px;
+      color: var(--muted);
+      line-height: 1.65;
+    }
+    .outcome-pair {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 12px;
+      margin: 28px 0;
+    }
+    .outcome-box {
+      border-radius: 10px;
+      padding: 24px 26px;
+      border: 1px solid var(--line);
+    }
+    .outcome-box--before { background: var(--pale); }
+    .outcome-box--after { background: var(--ink); border-color: var(--ink); }
+    .outcome-box__label {
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      margin-bottom: 12px;
+    }
+    .outcome-box--before .outcome-box__label { color: var(--muted); }
+    .outcome-box--after .outcome-box__label { color: rgba(255,255,255,0.4); }
+    .outcome-box__num {
+      font-size: 36px;
+      font-weight: 700;
+      letter-spacing: -0.02em;
+      line-height: 1;
+      margin-bottom: 6px;
+    }
+    .outcome-box--before .outcome-box__num { color: var(--ink); }
+    .outcome-box--after .outcome-box__num { color: #fff; }
+    .outcome-box__desc { font-size: 13px; line-height: 1.5; }
+    .outcome-box--before .outcome-box__desc { color: var(--secondary); }
+    .outcome-box--after .outcome-box__desc { color: rgba(255,255,255,0.65); }
+    .ui-mockup-pair {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 12px;
+      margin: 24px 0;
+    }
+    .ui-mockup {
+      width: 100%;
+      border-radius: 10px;
+      overflow: hidden;
+      background: #0D1023;
+      border: 1px solid rgba(255,255,255,0.06);
+    }
+    .ui-mockup img { width: 100%; height: auto; display: block; cursor: zoom-in; }
+    .lightbox {
+      position: fixed; inset: 0; z-index: 1000;
+      background: rgba(7,9,26,0.92);
+      display: flex; align-items: center; justify-content: center;
+      padding: 24px;
+      opacity: 0; pointer-events: none;
+      transition: opacity 0.2s ease;
+    }
+    .lightbox.is-open { opacity: 1; pointer-events: all; }
+    .lightbox__img {
+      max-width: 100%; max-height: 90vh;
+      border-radius: 10px;
+      box-shadow: 0 32px 80px rgba(0,0,0,0.6);
+      transform: scale(0.96);
+      transition: transform 0.25s ease;
+    }
+    .lightbox.is-open .lightbox__img { transform: scale(1); }
+    .lightbox__close {
+      position: fixed; top: 20px; right: 24px;
+      width: 36px; height: 36px; border-radius: 50%;
+      background: rgba(255,255,255,0.1); border: 1px solid rgba(255,255,255,0.15);
+      color: white; font-size: 18px; line-height: 1;
+      cursor: pointer; display: flex; align-items: center; justify-content: center;
+      transition: background 0.15s;
+    }
+    .lightbox__close:hover { background: rgba(255,255,255,0.2); }
+    .img-caption {
+      font-size: 11px;
+      color: var(--muted);
+      margin-top: 8px;
+      line-height: 1.5;
+      letter-spacing: 0.02em;
+      text-align: center;
+    }
+    .beta-stats {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1px;
+      background: var(--line);
+      border-radius: 10px;
+      overflow: hidden;
+      margin: 32px 0;
+    }
+    .beta-stat { background: var(--white); padding: 24px; }
+    .beta-stat__num {
+      font-size: 40px;
+      font-weight: 700;
+      letter-spacing: -0.03em;
+      color: var(--ink);
+      line-height: 1;
+      margin-bottom: 6px;
+    }
+    .beta-stat__label { font-size: 12px; color: var(--muted); line-height: 1.4; }
+    @media (max-width: 768px) {
+      .problem-grid, .finding-grid, .change-grid,
+      .outcome-pair, .ui-mockup-pair { grid-template-columns: 1fr; }
+      .beta-stats { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+
+  <nav class="nav">
+    <a href="../index.html" class="nav__logo">
+      Jacopo Maio
+      <span>Product Designer</span>
+    </a>
+    <ul class="nav__links">
+      <li><a href="../index.html#work">Work</a></li>
+      <li><a href="../index.html#about">About</a></li>
+      <li><a href="mailto:jacopo.maio@gmail.com" class="btn-nav">Get in touch</a></li>
+    </ul>
+  </nav>
+
+  <div class="cs-hero cs-hero--fdp-ai">
+    <div class="cs-hero__inner">
+      <a href="../index.html#work" class="cs-hero__back">
+        <svg width="14" height="14" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path d="M19 12H5M12 19l-7-7 7-7"/></svg>
+        All work
+      </a>
+      <div class="cs-hero__tags">
+        <span class="tag tag--blue">AI UX</span>
+        <span class="tag">Cortex</span>
+        <span class="tag">Enterprise SaaS</span>
+        <span class="tag">2025</span>
+      </div>
+      <h1>FDP AI</h1>
+      <p class="lead">
+        How I went from a strategic question about AI maturity to a shipped feature that helped the sales team win two enterprise deals before the code was in production.
+      </p>
+      <div class="cs-meta">
+        <div class="cs-meta__item"><div class="cs-meta__label">Role</div><div class="cs-meta__value">Product Designer</div></div>
+        <div class="cs-meta__item"><div class="cs-meta__label">Timeline</div><div class="cs-meta__value">~6 months</div></div>
+        <div class="cs-meta__item"><div class="cs-meta__label">Shipped</div><div class="cs-meta__value">December 2025</div></div>
+        <div class="cs-meta__item"><div class="cs-meta__label">Team</div><div class="cs-meta__value">Design, Product, Engineering</div></div>
+      </div>
+    </div>
+  </div>
+
+  <section class="section cs-content">
+    <div class="cs-content__inner">
+
+      <div class="cs-section fade-up">
+        <p class="eyebrow">The problem</p>
+        <h2>Rich data, conservative results</h2>
+        <p>
+          The Cortex Fan Data Platform centralises fan data for sports organisations into a single profile: ticket buyers, hospitality guests, app users, email subscribers. The Audience Builder let marketing teams slice that data into segments and send campaigns. But it required knowing which filters to combine, understanding the data model, and spending real time building segments manually.
+        </p>
+        <p>
+          Marketing managers at clubs like Arsenal FC and Formula 1 were sitting on rich, unified data and not getting the most out of it. The process was slow, the outputs were conservative, and a lot of commercial insight was being left on the table.
+        </p>
+        <div class="cs-callout">
+          <p>"The question was not whether to add AI. It was how to add it in a way that actually changed what clients could do. Not just a feature for the demo."</p>
+          <cite>Design framing · FDP AI, Cortex 2025</cite>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- Discovery -->
+  <div style="background:var(--pale); padding:clamp(48px,6vw,72px) var(--gutter); border-top:1px solid var(--line);">
+    <div style="max-width:var(--max-w); margin:0 auto;">
+      <p class="eyebrow fade-up">Discovery</p>
+      <h3 class="fade-up" style="margin-top:6px; margin-bottom:8px;">Four problems worth solving</h3>
+      <p style="color:var(--secondary); max-width:600px; font-size:14px; line-height:1.65; margin-bottom:24px;" class="fade-up">
+        I started with two cross-functional workshops with product and commercial leadership. We mapped the Audience Builder journey end to end, identified where users got stuck, and asked which friction points an AI layer could realistically address.
+      </p>
+      <div class="problem-grid fade-up">
+        <div class="problem-card">
+          <div class="problem-card__title">Speed to insight</div>
+          <div class="problem-card__text">Building useful segments required manual querying across multiple data sources. Teams spent hours on setup before they could evaluate if a campaign was worth running.</div>
+        </div>
+        <div class="problem-card">
+          <div class="problem-card__title">Missed commercial value</div>
+          <div class="problem-card__text">Clients weren't exploring the full depth of their data. Without knowing what to look for, they defaulted to simple, broad segments that underperformed.</div>
+        </div>
+        <div class="problem-card">
+          <div class="problem-card__title">No revenue forecasting</div>
+          <div class="problem-card__text">There was no way to estimate the potential value of a campaign before building it. Budget decisions were made blind.</div>
+        </div>
+        <div class="problem-card">
+          <div class="problem-card__title">Expertise barrier</div>
+          <div class="problem-card__text">Getting the most out of the platform required knowing the data model well. New users and non-technical marketers struggled to get meaningful results.</div>
+        </div>
+      </div>
+      <p style="color:var(--secondary); font-size:14px; line-height:1.65;" class="fade-up">
+        From the workshops we produced a prioritised list of AI features to explore. The highest value, most feasible starting point: a natural language assistant inside the Audience Builder that could query fan data, recommend audiences, and estimate campaign revenue.
+      </p>
+    </div>
+  </div>
+
+  <!-- Design and feasibility -->
+  <section class="section cs-content">
+    <div class="cs-content__inner">
+
+      <div class="cs-section fade-up">
+        <p class="eyebrow">Design and feasibility</p>
+        <h2>Engineering shaped the design more than the brief</h2>
+        <p>
+          Before designing anything, I worked with engineering to understand what was actually possible. Key constraints: AI response time, reliability of natural language data queries, confidence scoring on recommendations, and how to communicate uncertainty without undermining trust.
+        </p>
+        <p>
+          The disclaimer visible in the final product came directly from those engineering conversations. Knowing the system's real accuracy ceiling shaped how we framed every output.
+        </p>
+        <p>
+          I ran the design process with engineers, not after them. Wireframes went in front of the team early. Each round surfaced technical constraints that changed the UX direction, and each design decision created new engineering questions.
+        </p>
+
+        <div class="cs-process">
+          <div class="cs-process__step">
+            <div class="cs-process__step-num">01</div>
+            <div class="cs-process__step-title">Framing</div>
+            <div class="cs-process__step-desc">Strategic workshops with product and commercial leadership to identify where AI was genuinely useful</div>
+          </div>
+          <div class="cs-process__step">
+            <div class="cs-process__step-num">02</div>
+            <div class="cs-process__step-title">Feasibility</div>
+            <div class="cs-process__step-desc">Close collaboration with engineering around latency, NL query reliability and confidence scoring</div>
+          </div>
+          <div class="cs-process__step">
+            <div class="cs-process__step-num">03</div>
+            <div class="cs-process__step-title">Iterate</div>
+            <div class="cs-process__step-desc">Wireframes with engineers from the start. Each loop changed both design and engineering direction</div>
+          </div>
+          <div class="cs-process__step">
+            <div class="cs-process__step-num">04</div>
+            <div class="cs-process__step-title">Validate</div>
+            <div class="cs-process__step-desc">Beta with selected clients in production conditions, structured interviews after, then redesign and ship</div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- Key design decision -->
+  <div style="background:var(--pale); padding:clamp(48px,6vw,72px) var(--gutter); border-top:1px solid var(--line);">
+    <div style="max-width:760px; margin:0 auto;">
+      <p class="eyebrow fade-up">Key design decision</p>
+      <h3 class="fade-up" style="margin-top:6px; margin-bottom:16px;">Embedded panel, not a separate tool</h3>
+      <p style="color:var(--secondary); max-width:640px; font-size:14px; line-height:1.65;" class="fade-up">
+        The AI panel lives inside the existing Audience Builder rather than as a separate surface. Users go from a natural language question to a built audience in one flow, without switching context. A separate tool would have introduced a handoff step that broke the task's momentum.
+      </p>
+      <div class="ui-mockup fade-up">
+        <img src="../assets/FDP/main chat.png" alt="AI assistant embedded in the Audience Builder" />
+      </div>
+      <p class="img-caption">The AI assistant embedded in the Audience Builder, empty state and response state side by side</p>
+    </div>
+  </div>
+
+  <!-- Beta -->
+  <section class="section cs-content">
+    <div class="cs-content__inner">
+
+      <div class="cs-section fade-up">
+        <p class="eyebrow">Beta</p>
+        <h2>Real users in production conditions</h2>
+        <p>
+          Before full release, I worked with product to run a two-month beta with a small group of existing clients, free in exchange for honest feedback. The goal was to understand what actually happened versus what we designed for.
+        </p>
+      </div>
+
+    </div>
+  </section>
+
+  <div style="background:var(--pale); padding:clamp(48px,6vw,72px) var(--gutter); border-top:1px solid var(--line);">
+    <div style="max-width:var(--max-w); margin:0 auto;">
+      <div class="beta-stats fade-up">
+        <div class="beta-stat">
+          <div class="beta-stat__num">2</div>
+          <div class="beta-stat__label">months beta with selected clients</div>
+        </div>
+        <div class="beta-stat">
+          <div class="beta-stat__num">Free</div>
+          <div class="beta-stat__label">access in exchange for structured feedback</div>
+        </div>
+        <div class="beta-stat">
+          <div class="beta-stat__num">100%</div>
+          <div class="beta-stat__label">of beta users interviewed after</div>
+        </div>
+      </div>
+      <p style="color:var(--secondary); max-width:640px; font-size:14px; line-height:1.65;" class="fade-up">
+        I ran structured user interviews with every participant after the beta concluded. Sessions covered what they used, what they avoided, what confused them, and what they wished it could do. Findings were synthesised in Dovetail, clustered across sessions.
+      </p>
+    </div>
+  </div>
+
+  <!-- Research findings -->
+  <section class="section cs-content">
+    <div class="cs-content__inner">
+
+      <div class="cs-section fade-up">
+        <p class="eyebrow">What we learned</p>
+        <h2>Four things the beta actually revealed</h2>
+        <p>None of these were obvious before users touched the product in real conditions.</p>
+
+        <div class="finding-grid">
+          <div class="finding-card">
+            <div class="finding-card__title">Trust and transparency</div>
+            <div class="finding-card__text">Users wanted to understand how the AI arrived at a recommendation before acting on it. The reasoning needed to be visible, not just the output. A black box made them stall.</div>
+          </div>
+          <div class="finding-card">
+            <div class="finding-card__title">Revenue context was the hook</div>
+            <div class="finding-card__text">Estimated revenue per campaign was the most valued feature. Users said it changed how they justified campaigns internally, from gut feel to a data-backed proposal.</div>
+          </div>
+          <div class="finding-card">
+            <div class="finding-card__title">The data visualisation gap</div>
+            <div class="finding-card__text">Users wanted charts, not just tables. When the AI surfaced a trend, they wanted to see it before acting on it. Tables were for exporting, not understanding.</div>
+          </div>
+          <div class="finding-card">
+            <div class="finding-card__title">Thinking state confusion</div>
+            <div class="finding-card__text">The processing state during longer queries left users uncertain about what the system was doing. Uncertainty eroded trust faster than slowness did.</div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- Redesign -->
+  <div style="background:var(--pale); padding:clamp(48px,6vw,72px) var(--gutter); border-top:1px solid var(--line);">
+    <div style="max-width:760px; margin:0 auto;">
+      <p class="eyebrow fade-up">Redesign</p>
+      <h3 class="fade-up" style="margin-top:6px; margin-bottom:16px;">Addressing each finding without reopening the scope</h3>
+      <p style="color:var(--secondary); max-width:640px; font-size:14px; line-height:1.65; margin-bottom:28px;" class="fade-up">
+        The second iteration targeted each of the four findings directly. Six weeks after the beta interviews, the redesigned version shipped.
+      </p>
+
+      <div class="change-grid fade-up">
+        <div class="change-card">
+          <div class="change-card__title">Transparent reasoning</div>
+          <div class="change-card__text">The thinking state now shows planning steps and SQL execution detail. Users see what the AI is querying before it returns results. The black box became a glass box.</div>
+        </div>
+        <div class="change-card">
+          <div class="change-card__title">Chart and table toggle</div>
+          <div class="change-card__text">Every data response now includes a visualisation option. Users switch between chart and table depending on whether they need to read a trend or export precise numbers.</div>
+        </div>
+        <div class="change-card">
+          <div class="change-card__title">Revenue estimations built in</div>
+          <div class="change-card__text">The AI proactively surfaces revenue estimates at 5%, 10% and 15% conversion rates. A manual calculation became an instant signal.</div>
+        </div>
+        <div class="change-card">
+          <div class="change-card__title">Clearer confidence signalling</div>
+          <div class="change-card__text">The accuracy disclaimer is more prominent and contextual, helping users calibrate how much to trust a specific response before acting.</div>
+        </div>
+      </div>
+
+      <div class="ui-mockup fade-up">
+        <img src="../assets/FDP/graph.png" alt="Chart and table toggle with revenue forecasting" />
+      </div>
+      <p class="img-caption" style="margin-bottom:16px;">Chart and table toggle with revenue forecasting built in</p>
+      <div class="ui-mockup fade-up">
+        <img src="../assets/FDP/thinking.png" alt="Redesigned thinking state showing planning steps" />
+      </div>
+      <p class="img-caption">Redesigned thinking state with planning steps and SQL execution visible</p>
+    </div>
+  </div>
+
+  <!-- Outcomes -->
+  <section class="section cs-content">
+    <div class="cs-content__inner">
+
+      <div class="cs-section fade-up">
+        <p class="eyebrow">Outcome</p>
+        <h2>Commercial impact started before the code shipped</h2>
+        <p>
+          While we were still building it, the sales team took the prototype into two enterprise pitches. FDP AI was on the prospect wishlist. They won both.
+        </p>
+
+        <div class="outcome-pair">
+          <div class="outcome-box outcome-box--before">
+            <div class="outcome-box__label">Before shipping</div>
+            <div class="outcome-box__num">2</div>
+            <div class="outcome-box__desc">enterprise deals won using a working prototype in live sales pitches</div>
+          </div>
+          <div class="outcome-box outcome-box--after">
+            <div class="outcome-box__label">After shipping</div>
+            <div class="outcome-box__num">Live</div>
+            <div class="outcome-box__desc">FDP AI shipped December 2025 with natural language querying, audience recommendations and revenue forecasting for all enterprise clients</div>
+          </div>
+        </div>
+
+        <div class="cs-callout">
+          <p>"While we were still building it, the sales team took the prototype into two pitches. FDP AI was on the client wishlist. They won both."</p>
+          <cite>Outcome · FDP AI, Cortex 2025</cite>
+        </div>
+
+        <p>
+          The process from first workshop to shipped product ran roughly six months. Two rounds of structured research, close collaboration with engineering throughout, and a beta that genuinely changed the direction of the final product rather than just validating what we had already decided.
+        </p>
+        <p>
+          The biggest design lesson: communicating uncertainty well matters as much as generating the right answer. Users who understood the AI's reasoning trusted it. Users who couldn't see the reasoning stalled. Transparent thinking states and clear confidence framing were load-bearing, not polish.
+        </p>
+      </div>
+
+      <div class="cs-section fade-up">
+        <p class="eyebrow">Tags</p>
+        <div style="display:flex; gap:8px; flex-wrap:wrap; margin-top:12px;">
+          <span class="tag">AI UX</span>
+          <span class="tag">Natural language interfaces</span>
+          <span class="tag">B2B SaaS</span>
+          <span class="tag">User research</span>
+          <span class="tag">Enterprise product</span>
+          <span class="tag">Sports tech</span>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- Next project -->
+  <div style="border-top:1px solid var(--line); padding:clamp(48px,6vw,72px) var(--gutter); background:var(--white);">
+    <div style="max-width:var(--max-w); margin:0 auto; display:flex; align-items:center; justify-content:space-between; flex-wrap:wrap; gap:20px;">
+      <div>
+        <p class="eyebrow" style="margin-bottom:6px;">Next case study</p>
+        <div style="font-size:20px; font-weight:600; color:var(--ink);">Fan Experience Platform</div>
+        <div style="font-size:13px; color:var(--muted); margin-top:4px;">Gamified rewards SaaS · 50+ sports organisations</div>
+      </div>
+      <a href="fandom.html" class="btn btn--primary">
+        Read case study
+        <svg width="14" height="14" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+      </a>
+    </div>
+  </div>
+
+  <!-- CTA -->
+  <section class="cta-section">
+    <div class="container" style="text-align:center;">
+      <p class="eyebrow" style="text-align:center;">Let's work together</p>
+      <h2 style="margin:12px 0 16px;">Got a problem worth solving?</h2>
+      <p style="color:var(--muted); max-width:400px; margin:0 auto 32px; font-size:15px; line-height:1.7;">
+        If you're building something where design matters, I'd like to hear about it.
+      </p>
+      <a href="mailto:jacopo.maio@gmail.com" class="btn btn--primary">
+        jacopo.maio@gmail.com
+        <svg width="14" height="14" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+      </a>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="footer__inner">
+      <div class="footer__logo">Jacopo Maio</div>
+      <ul class="footer__links">
+        <li><a href="https://www.linkedin.com/in/jacopomaio/" target="_blank" rel="noopener">LinkedIn</a></li>
+        <li><a href="mailto:jacopo.maio@gmail.com">Email</a></li>
+        <li><a href="../index.html#work">Work</a></li>
+      </ul>
+      <p class="footer__copy">© 2026 Jacopo Maio · London</p>
+    </div>
+  </footer>
+
+  <!-- Lightbox -->
+  <div class="lightbox" id="lightbox" role="dialog" aria-modal="true">
+    <button class="lightbox__close" id="lightboxClose" aria-label="Close">✕</button>
+    <img class="lightbox__img" id="lightboxImg" src="" alt="" />
+  </div>
+
+  <script src="../js/main.js"></script>
+  <script>
+    const lightbox = document.getElementById('lightbox');
+    const lightboxImg = document.getElementById('lightboxImg');
+    const lightboxClose = document.getElementById('lightboxClose');
+
+    document.querySelectorAll('.ui-mockup img').forEach(img => {
+      img.addEventListener('click', () => {
+        lightboxImg.src = img.src;
+        lightboxImg.alt = img.alt;
+        lightbox.classList.add('is-open');
+        document.body.style.overflow = 'hidden';
+      });
+    });
+
+    function closeLightbox() {
+      lightbox.classList.remove('is-open');
+      document.body.style.overflow = '';
+    }
+
+    lightboxClose.addEventListener('click', closeLightbox);
+    lightbox.addEventListener('click', e => { if (e.target === lightbox) closeLightbox(); });
+    document.addEventListener('keydown', e => { if (e.key === 'Escape') closeLightbox(); });
+  </script>
+  <script type="module">
+    import { inject } from '../js/analytics.mjs';
+    inject();
+  </script>
+</body>
+</html>

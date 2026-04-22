@@ -3,8 +3,8 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Fan Experience Platform — Jacopo Maio</title>
-  <meta name="description" content="Designing a gamified rewards platform for sports clubs to re-engage fans year-round — from zero to launch." />
+  <title>Fan Experience Platform · Jacopo Maio</title>
+  <meta name="description" content="Designing a gamified rewards platform for sports clubs to re-engage fans year-round, from zero to launch." />
   <link rel="stylesheet" href="../css/style.css" />
   <script>window.va = window.va || function () { (window.vaq = window.vaq || []).push(arguments); };</script>
   <script defer src="/_vercel/insights/script.js"></script>
@@ -44,6 +44,33 @@
       .img-showcase { grid-template-columns: 1fr; }
       .img-showcase .img-wide { grid-column: span 1; }
     }
+
+    .lightbox {
+      position: fixed; inset: 0; z-index: 1000;
+      background: rgba(7,9,26,0.92);
+      display: flex; align-items: center; justify-content: center;
+      padding: 24px;
+      opacity: 0; pointer-events: none;
+      transition: opacity 0.2s ease;
+    }
+    .lightbox.is-open { opacity: 1; pointer-events: all; }
+    .lightbox__img {
+      max-width: 100%; max-height: 90vh;
+      border-radius: 10px;
+      box-shadow: 0 32px 80px rgba(0,0,0,0.6);
+      transform: scale(0.96);
+      transition: transform 0.25s ease;
+    }
+    .lightbox.is-open .lightbox__img { transform: scale(1); }
+    .lightbox__close {
+      position: fixed; top: 20px; right: 24px;
+      width: 36px; height: 36px; border-radius: 50%;
+      background: rgba(255,255,255,0.1); border: 1px solid rgba(255,255,255,0.15);
+      color: white; font-size: 18px; line-height: 1;
+      cursor: pointer; display: flex; align-items: center; justify-content: center;
+      transition: background 0.15s;
+    }
+    .lightbox__close:hover { background: rgba(255,255,255,0.2); }
   </style>
 </head>
 <body>
@@ -72,7 +99,7 @@
         <span class="tag">Sports Tech</span>
         <span class="tag">2025–Present</span>
       </div>
-      <h1>Fan Experience<br>Platform — Cortex</h1>
+      <h1>Fan Experience<br>Platform</h1>
       <p class="lead">
         Cortex builds fan engagement software for sports organisations. I design their fan experience platform, a gamified product that rewards fans for physical and digital engagement, used by clubs including Arsenal FC, Formula 1 and the MLS.
       </p>
@@ -92,10 +119,10 @@
         <p class="eyebrow">Context</p>
         <h2>Cortex and the fan engagement problem</h2>
         <p>
-          Cortex builds fan engagement software for the world's biggest sports organisations — 50+ clubs and properties including Arsenal FC, Formula 1, Wembley Stadium, Sky Sports and the MLS. Their platform helps clubs build gamified fan ecosystems on owned channels, turning casual viewers into loyal, data-rich audiences.
+          Cortex builds fan engagement software for the world's biggest sports organisations, 50+ clubs and properties including Arsenal FC, Formula 1, Wembley Stadium, Sky Sports and the MLS. Their platform helps clubs build gamified fan ecosystems on owned channels, turning casual viewers into loyal, data-rich audiences.
         </p>
         <p>
-          The fan experience platform is Cortex's core SaaS product. It lets clubs reward fans for physical and digital engagement — checking in at a match, completing challenges, competing in leaderboards — all while collecting first-party fan data that drives sponsorship and commercial value.
+          The fan experience platform is Cortex's core SaaS product. It lets clubs reward fans for physical and digital engagement, checking in at a match, completing challenges, competing in leaderboards, all while collecting first-party fan data that drives sponsorship and commercial value.
         </p>
         <p>
           I joined as lead designer to build the platform from zero to one. That meant owning both the fan-facing web experience and the club-side SaaS CMS staff use to create challenges, badges and rewards.
@@ -121,28 +148,28 @@
       <p class="eyebrow fade-up">What I owned</p>
       <h3 class="fade-up" style="margin-top:6px; margin-bottom:8px;">Four surfaces, designed solo from zero</h3>
       <p style="color:var(--secondary); max-width:600px; font-size:14px; line-height:1.65; margin-bottom:4px;" class="fade-up">
-        No other designer on the project. I owned the full fan-facing experience and the club-side tooling — every screen, every component, every research round.
+        No other designer on the project. I owned the full fan-facing experience and the club-side tooling, every screen, every component, every research round.
       </p>
       <div style="margin-top:24px;" class="fade-up">
         <div class="component-row">
           <div class="component-row__num">01</div>
           <div class="component-row__name">Fan-facing web experience</div>
-          <div class="component-row__desc">Onboarding, challenges, rewards store, check-in, profile and leaderboard — the full fan journey from first visit to repeat engagement.</div>
+          <div class="component-row__desc">Onboarding, challenges, rewards store, check-in, profile and leaderboard, the full fan journey from first visit to repeat engagement.</div>
         </div>
         <div class="component-row">
           <div class="component-row__num">02</div>
           <div class="component-row__name">Gamified challenge system</div>
-          <div class="component-row__desc">Achievement-based tasks tied to things fans already do — watching matches, checking in, picking a favourite player. Engagement that doesn't feel like work.</div>
+          <div class="component-row__desc">Achievement-based tasks tied to things fans already do, watching matches, checking in, picking a favourite player. Engagement that doesn't feel like work.</div>
         </div>
         <div class="component-row">
           <div class="component-row__num">03</div>
           <div class="component-row__name">Club-side SaaS CMS</div>
-          <div class="component-row__desc">Challenge builder, badge creator, reward configuration and analytics dashboard — designed for non-technical club staff who needed to run the platform without developer support.</div>
+          <div class="component-row__desc">Challenge builder, badge creator, reward configuration and analytics dashboard, designed for non-technical club staff who needed to run the platform without developer support.</div>
         </div>
         <div class="component-row">
           <div class="component-row__num">04</div>
           <div class="component-row__name">Figma design system</div>
-          <div class="component-row__desc">Component library and token system built to scale across multiple clubs with different branding — so every new club could be onboarded without a redesign.</div>
+          <div class="component-row__desc">Component library and token system built to scale across multiple clubs with different branding, so every new club could be onboarded without a redesign.</div>
         </div>
       </div>
     </div>
@@ -150,7 +177,7 @@
 
   <div style="background:var(--pale); padding:clamp(48px,6vw,72px) var(--gutter); background:white;">
     <div style="max-width:var(--max-w); margin:0 auto;">
-      <p class="eyebrow fade-up">User Research · Round 1 — August 2025</p>
+      <p class="eyebrow fade-up">User Research · Round 1, August 2025</p>
       <h3 class="fade-up" style="margin-top:6px; margin-bottom:8px;">Understanding what fans actually want</h3>
       <p style="color:var(--secondary); max-width:600px; font-size:14px; line-height:1.65;" class="fade-up">
         We ran moderated usability sessions with five fans per round, testing onboarding, check-in, challenges and the rewards store. Each round shaped the next iteration directly.
@@ -175,7 +202,7 @@
         <div class="insight-grid">
           <div class="insight-card">
             <div class="insight-card__title">Earn time is the biggest concern</div>
-            <div class="insight-card__text">All five users in Round 1 raised concern about how long it takes to earn rewards. Tasks need to feel achievable quickly — comparable to Tesco Clubcard or Nectar.</div>
+            <div class="insight-card__text">All five users in Round 1 raised concern about how long it takes to earn rewards. Tasks need to feel achievable quickly, comparable to Tesco Clubcard or Nectar.</div>
           </div>
           <div class="insight-card">
             <div class="insight-card__title">Favourite player section wins</div>
@@ -187,7 +214,7 @@
           </div>
           <div class="insight-card">
             <div class="insight-card__title">Cheap and free rewards first</div>
-            <div class="insight-card__text">Users found competitions overpriced. Beer, hotdog and 10% off were the clear favourites — accessible rewards users could reach in a single session.</div>
+            <div class="insight-card__text">Users found competitions overpriced. Beer, hotdog and 10% off were the clear favourites, accessible rewards users could reach in a single session.</div>
           </div>
           <div class="insight-card">
             <div class="insight-card__title">Community and competition</div>
@@ -254,7 +281,7 @@
     </div>
   </section>
 
-  <!-- Outcomes — white -->
+  <!-- Outcomes, white -->
   <section class="section cs-content">
     <div class="cs-content__inner">
       <div class="cs-section fade-up">
@@ -263,47 +290,47 @@
         <div class="cs-outcomes">
           <div class="cs-outcome">
             <div class="cs-outcome__num">50+</div>
-            <div class="cs-outcome__label">Sports organisations on the platform — Arsenal FC, Formula 1, Wembley, Sky Sports, MLS and more</div>
+            <div class="cs-outcome__label">Sports organisations on the platform, Arsenal FC, Formula 1, Wembley, Sky Sports, MLS and more</div>
           </div>
           <div class="cs-outcome">
             <div class="cs-outcome__num">7 rounds</div>
-            <div class="cs-outcome__label">35+ real fans tested across the full product lifecycle — every decision validated before it shipped</div>
+            <div class="cs-outcome__label">35+ real fans tested across the full product lifecycle, every decision validated before it shipped</div>
           </div>
           <div class="cs-outcome">
             <div class="cs-outcome__num">0 → 1</div>
-            <div class="cs-outcome__label">Full platform designed solo — fan experience, CMS, challenge builder and design system</div>
+            <div class="cs-outcome__label">Full platform designed solo, fan experience, CMS, challenge builder and design system</div>
           </div>
         </div>
         <p>
-          We were right that personalisation and challenges drive engagement. We were wrong that users would engage with digital unlocks immediately — most needed tangible, low-cost rewards first. The check-in flow, reframed as a football diary, became one of the most-loved features.
+          We were right that personalisation and challenges drive engagement. We were wrong that users would engage with digital unlocks immediately, most needed tangible, low-cost rewards first. The check-in flow, reframed as a football diary, became one of the most-loved features.
         </p>
         <div class="cs-callout">
           <p>"Challenges and rewards encourage users to spend more time on the app and watching matches. Personalisation made users enjoy the experience more."</p>
-          <cite>Usability testing participant, Round 1 — August 2025</cite>
+          <cite>Usability testing participant, Round 1, August 2025</cite>
         </div>
         <p>
-          The biggest design lesson: users don't want to feel like they're working for rewards. The most successful challenges were built around things fans already do — watch matches, check the app before kick-off, pick a favourite player. Design that aligns with existing behaviour beats design that asks for new behaviour every time.
+          The biggest design lesson: users don't want to feel like they're working for rewards. The most successful challenges were built around things fans already do, watch matches, check the app before kick-off, pick a favourite player. Design that aligns with existing behaviour beats design that asks for new behaviour every time.
         </p>
       </div>
     </div>
   </section>
 
-  <!-- Final product — pale -->
+  <!-- Final product, pale -->
   <div style="background:var(--pale); padding:clamp(48px,6vw,72px) var(--gutter);">
     <div style="max-width:var(--max-w); margin:0 auto;">
       <p class="eyebrow fade-up">Final product</p>
       <h3 class="fade-up" style="margin-top:6px; margin-bottom:8px;">What shipped to Arsenal FC, Formula 1 and the MLS</h3>
       <p style="color:var(--secondary); max-width:600px; font-size:14px; line-height:1.65;" class="fade-up">
-        The fan-facing experience and the club-side CMS — designed from zero, tested across seven rounds, and handed to engineering with a complete design system.
+        The fan-facing experience and the club-side CMS, designed from zero, tested across seven rounds, and handed to engineering with a complete design system.
       </p>
       <div class="final-grid fade-up">
         <div>
-          <img src="../assets/fandom/01.07.png" alt="Fandom CMS — challenge builder step 1" class="final-img" />
-          <p class="img-caption">Club CMS — challenge builder: club staff configure event type, completion criteria, points and badge reward in a single guided flow.</p>
+          <img src="../assets/fandom/01.07.png" alt="Fandom CMS, challenge builder step 1" class="final-img" />
+          <p class="img-caption">Club CMS, challenge builder: club staff configure event type, completion criteria, points and badge reward in a single guided flow.</p>
         </div>
         <div>
-          <img src="../assets/fandom/02.14.png" alt="Fandom CMS — challenge builder step 2" class="final-img" />
-          <p class="img-caption">Challenge builder continued: reward logic, scheduling and publish controls — built so non-technical club staff can run the platform without developer support.</p>
+          <img src="../assets/fandom/02.14.png" alt="Fandom CMS, challenge builder step 2" class="final-img" />
+          <p class="img-caption">Challenge builder continued: reward logic, scheduling and publish controls, built so non-technical club staff can run the platform without developer support.</p>
         </div>
       </div>
     </div>
@@ -337,6 +364,38 @@
   <script type="module">
     import { inject } from '../js/analytics.mjs';
     inject();
+  </script>
+
+  <!-- Lightbox -->
+  <div class="lightbox" id="lightbox" role="dialog" aria-modal="true">
+    <button class="lightbox__close" id="lightboxClose" aria-label="Close">✕</button>
+    <img class="lightbox__img" id="lightboxImg" src="" alt="" />
+  </div>
+
+  <script>
+    const lightbox = document.getElementById('lightbox');
+    const lightboxImg = document.getElementById('lightboxImg');
+    const lightboxClose = document.getElementById('lightboxClose');
+
+    document.querySelectorAll('img').forEach(img => {
+      if (img.closest('.nav, .footer')) return;
+      img.style.cursor = 'zoom-in';
+      img.addEventListener('click', () => {
+        lightboxImg.src = img.src;
+        lightboxImg.alt = img.alt;
+        lightbox.classList.add('is-open');
+        document.body.style.overflow = 'hidden';
+      });
+    });
+
+    function closeLightbox() {
+      lightbox.classList.remove('is-open');
+      document.body.style.overflow = '';
+    }
+
+    lightboxClose.addEventListener('click', closeLightbox);
+    lightbox.addEventListener('click', e => { if (e.target === lightbox) closeLightbox(); });
+    document.addEventListener('keydown', e => { if (e.key === 'Escape') closeLightbox(); });
   </script>
 </body>
 </html>

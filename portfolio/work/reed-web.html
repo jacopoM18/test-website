@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Reed Course Discovery — Jacopo Maio</title>
+  <title>Reed Course Discovery · Jacopo Maio</title>
   <meta name="description" content="Redesigning the course card and discovery flow on Reed.co.uk to reduce abandonment and lift enrolment." />
   <link rel="stylesheet" href="../css/style.css" />
   <script>window.va = window.va || function () { (window.vaq = window.vaq || []).push(arguments); };</script>
@@ -24,7 +24,7 @@
     .card-label.before::before { background: #EF4444; }
     .card-label.after::before { background: #10B981; }
 
-    /* Before card — faithful Reed.co.uk reproduction */
+    /* Before card, faithful Reed.co.uk reproduction */
     .card-before {
       border: 1px solid #E5E7EB; border-radius: 4px; overflow: hidden;
       font-family: Arial, sans-serif; background: white;
@@ -89,7 +89,7 @@
       cursor: pointer; font-family: Arial, sans-serif; text-align: center;
     }
 
-    /* After card — real screenshot, capped height to match */
+    /* After card, real screenshot, capped height to match */
     .card-after {
       border: 1px solid var(--line); border-radius: 12px; overflow: hidden;
       font-family: var(--font); background: white;
@@ -108,6 +108,33 @@
     @media (max-width: 640px) {
       .card-comparison { grid-template-columns: 1fr; }
     }
+
+    .lightbox {
+      position: fixed; inset: 0; z-index: 1000;
+      background: rgba(7,9,26,0.92);
+      display: flex; align-items: center; justify-content: center;
+      padding: 24px;
+      opacity: 0; pointer-events: none;
+      transition: opacity 0.2s ease;
+    }
+    .lightbox.is-open { opacity: 1; pointer-events: all; }
+    .lightbox__img {
+      max-width: 100%; max-height: 90vh;
+      border-radius: 10px;
+      box-shadow: 0 32px 80px rgba(0,0,0,0.6);
+      transform: scale(0.96);
+      transition: transform 0.25s ease;
+    }
+    .lightbox.is-open .lightbox__img { transform: scale(1); }
+    .lightbox__close {
+      position: fixed; top: 20px; right: 24px;
+      width: 36px; height: 36px; border-radius: 50%;
+      background: rgba(255,255,255,0.1); border: 1px solid rgba(255,255,255,0.15);
+      color: white; font-size: 18px; line-height: 1;
+      cursor: pointer; display: flex; align-items: center; justify-content: center;
+      transition: background 0.15s;
+    }
+    .lightbox__close:hover { background: rgba(255,255,255,0.2); }
   </style>
 </head>
 <body>
@@ -156,7 +183,7 @@
         <p class="eyebrow">Context</p>
         <h2>A job site that also sells courses</h2>
         <p>
-          Reed.co.uk is best known as a job board, but the platform hosts thousands of online courses — from CPD certifications to professional development. The courses marketplace is a meaningful revenue stream, but users were landing on search pages and leaving without enrolling.
+          Reed.co.uk is best known as a job board, but the platform hosts thousands of online courses, from CPD certifications to professional development. The courses marketplace is a meaningful revenue stream, but users were landing on search pages and leaving without enrolling.
         </p>
         <p>
           My brief: find out why users weren't converting, redesign the course card to communicate value faster, and fix the search flow so people could find the right course without friction.
@@ -171,7 +198,7 @@
           <cite>User research participant, 2022</cite>
         </div>
         <p>
-          Analytics showed users landing on course search pages, scrolling, then leaving without clicking anything. Session recordings and heat maps told us why — they were looking for information the cards simply didn't show.
+          Analytics showed users landing on course search pages, scrolling, then leaving without clicking anything. Session recordings and heat maps told us why, they were looking for information the cards simply didn't show.
         </p>
         <p>Three things were missing:</p>
         <ul>
@@ -190,7 +217,7 @@
       <p class="eyebrow fade-up">Before and after</p>
       <h3 class="fade-up" style="margin:8px 0 8px;">The course card redesign</h3>
       <p style="color:var(--muted); max-width:540px; font-size:14px; margin-bottom:32px; line-height:1.65;" class="fade-up">
-        The original card had a title, a provider name, and a price. Nothing else. The redesign surfaces trust signals, level, duration and a direct CTA — all within the same footprint.
+        The original card had a title, a provider name, and a price. Nothing else. The redesign surfaces trust signals, level, duration and a direct CTA, all within the same footprint.
       </p>
 
       <div class="card-comparison fade-up">
@@ -270,7 +297,7 @@
         <p class="eyebrow">Discovery flow</p>
         <h2>The card was only half the problem</h2>
         <p>
-          Phase two was the discovery flow itself — filters, sorting and the zero-results state. Users were struggling with filters that gave no feedback, a default sort that felt arbitrary, and a blank page when filters returned nothing.
+          Phase two was the discovery flow itself, filters, sorting and the zero-results state. Users were struggling with filters that gave no feedback, a default sort that felt arbitrary, and a blank page when filters returned nothing.
         </p>
         <div class="cs-callout">
           <p>"I added three filters and got zero results. I thought the site was broken."</p>
@@ -281,22 +308,22 @@
           <div class="change-row">
             <div class="change-row__label">Filter options</div>
             <div class="change-row__old">No indication of how many results each filter had</div>
-            <div class="change-row__new">Live result count on every filter option — users see impact before committing</div>
+            <div class="change-row__new">Live result count on every filter option, users see impact before committing</div>
           </div>
           <div class="change-row">
             <div class="change-row__label">Default sort</div>
-            <div class="change-row__old">"Most recent" — surfaced low-quality listings, felt arbitrary</div>
-            <div class="change-row__new">"Most popular" — matched how users searched mentally, improved first-impression quality</div>
+            <div class="change-row__old">"Most recent", surfaced low-quality listings, felt arbitrary</div>
+            <div class="change-row__new">"Most popular", matched how users searched mentally, improved first-impression quality</div>
           </div>
           <div class="change-row">
             <div class="change-row__label">Zero results state</div>
-            <div class="change-row__old">Blank page — users assumed the site was broken</div>
-            <div class="change-row__new">Smart suggestions and filter relaxation prompts — users stayed in the flow</div>
+            <div class="change-row__old">Blank page, users assumed the site was broken</div>
+            <div class="change-row__new">Smart suggestions and filter relaxation prompts, users stayed in the flow</div>
           </div>
           <div class="change-row">
             <div class="change-row__label">Quick-filter chips</div>
-            <div class="change-row__old">No shortcuts — common queries required 4+ filter steps</div>
-            <div class="change-row__new">Top-level chips for the 5 most-searched filter combinations — one tap to the right results</div>
+            <div class="change-row__old">No shortcuts, common queries required 4+ filter steps</div>
+            <div class="change-row__new">Top-level chips for the 5 most-searched filter combinations, one tap to the right results</div>
           </div>
         </div>
       </div>
@@ -315,11 +342,11 @@
           </div>
           <div class="cs-outcome">
             <div class="cs-outcome__num">-35%</div>
-            <div class="cs-outcome__label">Support tickets about course level confusion — within 8 weeks of launch</div>
+            <div class="cs-outcome__label">Support tickets about course level confusion, within 8 weeks of launch</div>
           </div>
         </div>
         <p>
-          Search abandonment dropped 28% — users who previously left without clicking anything were now engaging with results. The support ticket reduction proved the design was solving the right problem: users were enrolling in the correct courses first time rather than requesting refunds after the fact.
+          Search abandonment dropped 28%, users who previously left without clicking anything were now engaging with results. The support ticket reduction proved the design was solving the right problem: users were enrolling in the correct courses first time rather than requesting refunds after the fact.
         </p>
       </div>
 
@@ -354,6 +381,38 @@
   <script type="module">
     import { inject } from '../js/analytics.mjs';
     inject();
+  </script>
+
+  <!-- Lightbox -->
+  <div class="lightbox" id="lightbox" role="dialog" aria-modal="true">
+    <button class="lightbox__close" id="lightboxClose" aria-label="Close">✕</button>
+    <img class="lightbox__img" id="lightboxImg" src="" alt="" />
+  </div>
+
+  <script>
+    const lightbox = document.getElementById('lightbox');
+    const lightboxImg = document.getElementById('lightboxImg');
+    const lightboxClose = document.getElementById('lightboxClose');
+
+    document.querySelectorAll('img').forEach(img => {
+      if (img.closest('.nav, .footer')) return;
+      img.style.cursor = 'zoom-in';
+      img.addEventListener('click', () => {
+        lightboxImg.src = img.src;
+        lightboxImg.alt = img.alt;
+        lightbox.classList.add('is-open');
+        document.body.style.overflow = 'hidden';
+      });
+    });
+
+    function closeLightbox() {
+      lightbox.classList.remove('is-open');
+      document.body.style.overflow = '';
+    }
+
+    lightboxClose.addEventListener('click', closeLightbox);
+    lightbox.addEventListener('click', e => { if (e.target === lightbox) closeLightbox(); });
+    document.addEventListener('keydown', e => { if (e.key === 'Escape') closeLightbox(); });
   </script>
 </body>
 </html>

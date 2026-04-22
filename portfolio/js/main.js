@@ -22,13 +22,16 @@ const observer = new IntersectionObserver((entries) => {
 
 document.querySelectorAll('.fade-up').forEach(el => observer.observe(el));
 
-// Password gate — Fandom project only
-if (window.location.pathname.includes('/work/fandom.html')) {
+// Password gate — Fandom + FDP AI, GB and CZ only
+const _isProtectedPage = ['/work/fandom.html', '/work/fdp-ai.html'].some(p => window.location.pathname.includes(p));
+
+if (_isProtectedPage) {
   const PASS = 'jacopo24';
   const SESSION_KEY = 'portfolio_unlocked';
 
-  if (!sessionStorage.getItem(SESSION_KEY)) {
-    // Build overlay
+  function showGate() {
+    if (sessionStorage.getItem(SESSION_KEY)) return;
+
     const overlay = document.createElement('div');
     overlay.id = 'pw-gate';
     overlay.innerHTML = `
@@ -52,57 +55,38 @@ if (window.location.pathname.includes('/work/fandom.html')) {
         font-family: 'Inter', system-ui, sans-serif;
       }
       #pw-gate__box {
-        text-align: center;
-        padding: 0 24px;
-        max-width: 360px;
-        width: 100%;
+        text-align: center; padding: 0 24px;
+        max-width: 360px; width: 100%;
       }
       #pw-gate__logo {
         font-size: 16px; font-weight: 700;
-        letter-spacing: -0.01em; color: #231E1D;
-        margin-bottom: 32px;
+        letter-spacing: -0.01em; color: #231E1D; margin-bottom: 32px;
       }
-      #pw-gate__hint {
-        font-size: 14px; color: #898073;
-        margin-bottom: 20px; line-height: 1.5;
-      }
-      #pw-gate__form {
-        display: flex; gap: 8px;
-      }
+      #pw-gate__hint { font-size: 14px; color: #898073; margin-bottom: 20px; line-height: 1.5; }
+      #pw-gate__form { display: flex; gap: 8px; }
       #pw-gate__input {
         flex: 1; padding: 10px 14px;
         border: 1.5px solid rgba(35,30,29,0.12);
         border-radius: 8px; font-size: 14px;
         font-family: inherit; color: #231E1D;
-        background: white; outline: none;
-        transition: border-color 0.2s;
+        background: white; outline: none; transition: border-color 0.2s;
       }
       #pw-gate__input:focus { border-color: #2563EB; }
       #pw-gate__form button {
-        padding: 10px 18px;
-        background: #2563EB; color: white;
-        border: none; border-radius: 8px;
-        font-size: 14px; font-weight: 500;
-        font-family: inherit; cursor: pointer;
-        transition: background 0.2s;
-        white-space: nowrap;
+        padding: 10px 18px; background: #2563EB; color: white;
+        border: none; border-radius: 8px; font-size: 14px; font-weight: 500;
+        font-family: inherit; cursor: pointer; transition: background 0.2s; white-space: nowrap;
       }
       #pw-gate__form button:hover { background: #1D4ED8; }
       #pw-gate__error {
-        font-size: 12px; color: #EF4444;
-        margin-top: 10px; opacity: 0;
-        transition: opacity 0.2s;
+        font-size: 12px; color: #EF4444; margin-top: 10px; opacity: 0; transition: opacity 0.2s;
       }
       #pw-gate__error.visible { opacity: 1; }
     `;
 
     document.head.appendChild(style);
     document.body.appendChild(overlay);
-
-    // Focus input after render
-    requestAnimationFrame(() => {
-      document.getElementById('pw-gate__input').focus();
-    });
+    requestAnimationFrame(() => document.getElementById('pw-gate__input').focus());
 
     document.getElementById('pw-gate__form').addEventListener('submit', (e) => {
       e.preventDefault();
@@ -120,5 +104,24 @@ if (window.location.pathname.includes('/work/fandom.html')) {
         setTimeout(() => err.classList.remove('visible'), 2000);
       }
     });
+  }
+
+  const _geoOverride = new URLSearchParams(location.search).get('_geo');
+  const _cachedCountry = sessionStorage.getItem('visitor_country');
+
+  function checkGeoAndGate(country) {
+    sessionStorage.setItem('visitor_country', country);
+    if (country === 'GB' || country === 'CZ') showGate();
+  }
+
+  if (_geoOverride) {
+    checkGeoAndGate(_geoOverride.toUpperCase());
+  } else if (_cachedCountry) {
+    checkGeoAndGate(_cachedCountry);
+  } else {
+    fetch('https://ipapi.co/country/')
+      .then(r => r.text())
+      .then(c => checkGeoAndGate(c.trim()))
+      .catch(() => {});
   }
 }

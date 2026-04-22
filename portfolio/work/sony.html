@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Sony eLearning Platform — Jacopo Maio</title>
+  <title>Sony eLearning Platform · Jacopo Maio</title>
   <meta name="description" content="Designing a multinational eLearning platform for Sony that delivered a 98% increase in conversion and scaled across 15+ countries in 11+ languages." />
   <link rel="stylesheet" href="../css/style.css" />
   <script>window.va = window.va || function () { (window.vaq = window.vaq || []).push(arguments); };</script>
@@ -92,6 +92,33 @@
       .final-grid { grid-template-columns: 1fr; }
       .final-grid__wide { grid-column: span 1; }
     }
+
+    .lightbox {
+      position: fixed; inset: 0; z-index: 1000;
+      background: rgba(7,9,26,0.92);
+      display: flex; align-items: center; justify-content: center;
+      padding: 24px;
+      opacity: 0; pointer-events: none;
+      transition: opacity 0.2s ease;
+    }
+    .lightbox.is-open { opacity: 1; pointer-events: all; }
+    .lightbox__img {
+      max-width: 100%; max-height: 90vh;
+      border-radius: 10px;
+      box-shadow: 0 32px 80px rgba(0,0,0,0.6);
+      transform: scale(0.96);
+      transition: transform 0.25s ease;
+    }
+    .lightbox.is-open .lightbox__img { transform: scale(1); }
+    .lightbox__close {
+      position: fixed; top: 20px; right: 24px;
+      width: 36px; height: 36px; border-radius: 50%;
+      background: rgba(255,255,255,0.1); border: 1px solid rgba(255,255,255,0.15);
+      color: white; font-size: 18px; line-height: 1;
+      cursor: pointer; display: flex; align-items: center; justify-content: center;
+      transition: background 0.15s;
+    }
+    .lightbox__close:hover { background: rgba(255,255,255,0.2); }
   </style>
 </head>
 <body>
@@ -122,7 +149,7 @@
       </div>
       <h1>Sony eLearning<br>Platform</h1>
       <p class="lead">
-        Designing a centralised training platform for Sony retailers across 15+ countries — reducing content lead times, supporting 11+ languages, and increasing learning conversion by 98%.
+        Designing a centralised training platform for Sony retailers across 15+ countries, reducing content lead times, supporting 11+ languages, and increasing learning conversion by 98%.
       </p>
       <div class="cs-meta">
         <div class="cs-meta__item"><div class="cs-meta__label">Role</div><div class="cs-meta__value">UX/UI Designer</div></div>
@@ -138,16 +165,16 @@
 
       <div class="cs-section fade-up">
         <p class="eyebrow">The problem</p>
-        <h2>Cost, speed, and consistency — all broken at once</h2>
+        <h2>Cost, speed, and consistency, all broken at once</h2>
         <div class="cs-callout">
           <p>"We need to get our product information out to our staff and audience as quickly as possible."</p>
           <cite>Sony stakeholder, project kick-off</cite>
         </div>
         <p>
-          Sony needed to modernise how they trained retail staff across Europe. Product information was being distributed slowly and inconsistently — regional teams rebuilt materials locally, introducing delays and version drift. There was no central source of truth, no engagement data, and localisation was a manual rebuild per market.
+          Sony needed to modernise how they trained retail staff across Europe. Product information was being distributed slowly and inconsistently, regional teams rebuilt materials locally, introducing delays and version drift. There was no central source of truth, no engagement data, and localisation was a manual rebuild per market.
         </p>
         <p>
-          The brief was clear: build a centralised platform that works across 15+ countries, supports 11+ languages, and can scale without regional production overhead. I was the sole UX/UI Designer on the project at Let's Create — responsible for the learner experience, authoring tools, mobile companion app and analytics dashboard.
+          The brief was clear: build a centralised platform that works across 15+ countries, supports 11+ languages, and can scale without regional production overhead. I was the sole UX/UI Designer on the project at Let's Create, responsible for the learner experience, authoring tools, mobile companion app and analytics dashboard.
         </p>
       </div>
 
@@ -160,28 +187,28 @@
       <p class="eyebrow fade-up">What I designed</p>
       <h3 class="fade-up" style="margin-top:6px; margin-bottom:8px;">Four components, one failure point each</h3>
       <p style="color:var(--secondary); max-width:600px; font-size:14px; line-height:1.65; margin-bottom:4px;" class="fade-up">
-        The platform wasn't a single product — it was four interconnected surfaces. I designed each one, and each one addressed a different breakdown in Sony's existing workflow.
+        The platform wasn't a single product, it was four interconnected surfaces. I designed each one, and each one addressed a different breakdown in Sony's existing workflow.
       </p>
       <div style="margin-top:24px;" class="fade-up">
         <div class="component-row">
           <div class="component-row__num">01</div>
           <div class="component-row__name">eLearning Training Platform</div>
-          <div class="component-row__desc">Structured course browser with SCORM 1.2/2004 compliance, persistent progress indicators, and module-level completion states — designed for retail staff with no prior experience of a learning platform.</div>
+          <div class="component-row__desc">Structured course browser with SCORM 1.2/2004 compliance, persistent progress indicators, and module-level completion states, designed for retail staff with no prior experience of a learning platform.</div>
         </div>
         <div class="component-row">
           <div class="component-row__num">02</div>
           <div class="component-row__name">Mobile Pocket Guide</div>
-          <div class="component-row__desc">A lightweight companion app for the shop floor — product specs and key selling points accessible in seconds, without needing to log into a full platform. Always current, zero friction.</div>
+          <div class="component-row__desc">A lightweight companion app for the shop floor, product specs and key selling points accessible in seconds, without needing to log into a full platform. Always current, zero friction.</div>
         </div>
         <div class="component-row">
           <div class="component-row__num">03</div>
           <div class="component-row__name">Authoring & Translation Tools</div>
-          <div class="component-row__desc">A content creation system where Sony's central team creates once and pushes to all regions. Translation is a configuration step built into the workflow — not a manual rebuild per market.</div>
+          <div class="component-row__desc">A content creation system where Sony's central team creates once and pushes to all regions. Translation is a configuration step built into the workflow, not a manual rebuild per market.</div>
         </div>
         <div class="component-row">
           <div class="component-row__num">04</div>
           <div class="component-row__name">Analytics Dashboard</div>
-          <div class="component-row__desc">A management-facing dashboard giving Sony visibility into completion rates, regional performance and engagement patterns. For the first time, they could see whether training was working — and where it wasn't.</div>
+          <div class="component-row__desc">A management-facing dashboard giving Sony visibility into completion rates, regional performance and engagement patterns. For the first time, they could see whether training was working, and where it wasn't.</div>
         </div>
       </div>
     </div>
@@ -194,7 +221,7 @@
         <p class="eyebrow">Design process</p>
         <h2>Research first, then build</h2>
         <p>
-          I ran stakeholder interviews with Sony's product and marketing teams at the start of the engagement to understand the full scope of the distribution problem. That research directly shaped the architecture decision — build a centralised authoring tool, not a shared file system. One content source, pushed everywhere.
+          I ran stakeholder interviews with Sony's product and marketing teams at the start of the engagement to understand the full scope of the distribution problem. That research directly shaped the architecture decision, build a centralised authoring tool, not a shared file system. One content source, pushed everywhere.
         </p>
         <p>
           I then reviewed Sony's existing training materials with users to understand what wasn't working from the learner's side: content was too long, structure was unclear, and staff had no sense of progress or where they were in a course. Those three problems became the core design constraints for the learning experience.
@@ -225,7 +252,7 @@
 
         <div class="wf-wrap fade-up">
           <div>
-            <p class="wf-label">Web platform — early wireframe</p>
+            <p class="wf-label">Web platform, early wireframe</p>
             <div class="wf-browser">
               <div class="wf-browser__bar">
                 <div class="wf-browser__dot"></div>
@@ -299,10 +326,10 @@
                 </div>
               </div>
             </div>
-            <p class="img-caption">Course browser: sidebar category filters, persistent progress tracker, module cards — establishing the core information hierarchy for the eLearning platform.</p>
+            <p class="img-caption">Course browser: sidebar category filters, persistent progress tracker, module cards, establishing the core information hierarchy for the eLearning platform.</p>
           </div>
           <div>
-            <p class="wf-label">Mobile pocket guide — early wireframe</p>
+            <p class="wf-label">Mobile pocket guide, early wireframe</p>
             <div class="wf-phone-wrap">
               <div class="wf-phone">
                 <div class="wf-phone__notch">
@@ -329,7 +356,7 @@
                 </div>
               </div>
             </div>
-            <p class="img-caption">Mobile pocket guide: product hero image, key specs in scannable list format, direct CTA — designed for a retail floor context where time and attention are scarce.</p>
+            <p class="img-caption">Mobile pocket guide: product hero image, key specs in scannable list format, direct CTA, designed for a retail floor context where time and attention are scarce.</p>
           </div>
         </div>
 
@@ -345,13 +372,13 @@
         <p class="eyebrow">Key design decisions</p>
         <h2>Designing for non-technical users at scale</h2>
         <p>
-          The platform's primary users were retail staff — people who sell Sony products, not product managers or developers. The design had to be intuitive enough to require no training to use the training platform itself.
+          The platform's primary users were retail staff, people who sell Sony products, not product managers or developers. The design had to be intuitive enough to require no training to use the training platform itself.
         </p>
         <p>Three design principles drove every decision:</p>
         <ul>
-          <li><strong>Clarity over comprehensiveness.</strong> Sony's product catalogue is vast. The temptation was to put everything in. We prioritised what retail staff actually needed on the shop floor — key specs, selling points, and course completion, not the full technical datasheet.</li>
+          <li><strong>Clarity over comprehensiveness.</strong> Sony's product catalogue is vast. The temptation was to put everything in. We prioritised what retail staff actually needed on the shop floor, key specs, selling points, and course completion, not the full technical datasheet.</li>
           <li><strong>Progress visibility.</strong> Staff needed to know exactly where they were in their training journey. Persistent progress indicators, clear module structures, and completion states were non-negotiable from the first round of user feedback.</li>
-          <li><strong>Localisation as a feature, not a fix.</strong> The content architecture was designed around the assumption that all content would exist in multiple languages. Translation wasn't an afterthought — it was built into the authoring workflow from day one.</li>
+          <li><strong>Localisation as a feature, not a fix.</strong> The content architecture was designed around the assumption that all content would exist in multiple languages. Translation wasn't an afterthought, it was built into the authoring workflow from day one.</li>
         </ul>
       </div>
 
@@ -364,20 +391,20 @@
       <p class="eyebrow fade-up">Final product</p>
       <h3 class="fade-up" style="margin-top:6px; margin-bottom:8px;">What shipped across 15 markets</h3>
       <p style="color:var(--secondary); max-width:600px; font-size:14px; line-height:1.65;" class="fade-up">
-        The eLearning platform, mobile companion app and authoring tooling — all designed from scratch and deployed simultaneously across all regions at launch.
+        The eLearning platform, mobile companion app and authoring tooling, all designed from scratch and deployed simultaneously across all regions at launch.
       </p>
       <div class="final-grid fade-up">
         <div>
-          <img src="../assets/sony/sony-header%201.png" alt="Sony eLearning Platform — course browsing and training interface" class="final-img" />
+          <img src="../assets/sony/sony-header%201.png" alt="Sony eLearning Platform, course browsing and training interface" class="final-img" />
           <p class="img-caption">Web platform: the course browser with category filters, progress tracking and structured module navigation.</p>
         </div>
         <div>
           <img src="../assets/sony/sony-mobile.png" alt="Sony mobile pocket guide app" class="final-img" />
-          <p class="img-caption">Mobile pocket guide: on-floor access to product specs and key selling points — no desk, no login, no friction.</p>
+          <p class="img-caption">Mobile pocket guide: on-floor access to product specs and key selling points, no desk, no login, no friction.</p>
         </div>
         <div class="final-grid__wide">
-          <img src="../assets/sony/3-build-image-p-2000%201.png" alt="Sony eLearning Platform — content authoring and course builder" class="final-img" />
-          <p class="img-caption">Content authoring environment: Sony's central team creates courses once, configures translations, and publishes to all markets — no regional rebuild required.</p>
+          <img src="../assets/sony/3-build-image-p-2000%201.png" alt="Sony eLearning Platform, content authoring and course builder" class="final-img" />
+          <p class="img-caption">Content authoring environment: Sony's central team creates courses once, configures translations, and publishes to all markets, no regional rebuild required.</p>
         </div>
       </div>
     </div>
@@ -392,7 +419,7 @@
         <div class="cs-outcomes">
           <div class="cs-outcome">
             <div class="cs-outcome__num">98%</div>
-            <div class="cs-outcome__label">Course completion rate — against a pre-platform baseline Sony described as critically low</div>
+            <div class="cs-outcome__label">Course completion rate, against a pre-platform baseline Sony described as critically low</div>
           </div>
           <div class="cs-outcome">
             <div class="cs-outcome__num">30+</div>
@@ -400,14 +427,14 @@
           </div>
           <div class="cs-outcome">
             <div class="cs-outcome__num">15 countries<br>11 languages</div>
-            <div class="cs-outcome__label">From a single platform — no regional content rebuild required</div>
+            <div class="cs-outcome__label">From a single platform, no regional content rebuild required</div>
           </div>
         </div>
         <p>
-          The platform launched on budget and on schedule. Before it existed, Sony had no visibility into whether training was being completed at all — the analytics dashboard I designed changed that. Three months of post-launch iteration, driven by real engagement data, refined the experience in ways upfront research couldn't predict.
+          The platform launched on budget and on schedule. Before it existed, Sony had no visibility into whether training was being completed at all, the analytics dashboard I designed changed that. Three months of post-launch iteration, driven by real engagement data, refined the experience in ways upfront research couldn't predict.
         </p>
         <p>
-          The hardest design constraint was scale: every component had to hold up across 11 language variants, including languages with significantly longer word lengths than English. The version that ships globally isn't the most locally-polished — it's the most structurally resilient.
+          The hardest design constraint was scale: every component had to hold up across 11 language variants, including languages with significantly longer word lengths than English. The version that ships globally isn't the most locally-polished, it's the most structurally resilient.
         </p>
       </div>
 
@@ -418,7 +445,7 @@
     <div class="container">
       <p class="eyebrow">Next project</p>
       <h2>Reed Course Discovery</h2>
-      <p style="color:var(--muted); max-width:380px; margin:12px auto 28px; font-size:14px; line-height:1.65;">Redesigning how people find and enrol in courses on Reed.co.uk — a +14% lift in click-through rate.</p>
+      <p style="color:var(--muted); max-width:380px; margin:12px auto 28px; font-size:14px; line-height:1.65;">Redesigning how people find and enrol in courses on Reed.co.uk, a +14% lift in click-through rate.</p>
       <a href="reed-web.html" class="btn btn--primary">
         Read case study
         <svg width="14" height="14" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
@@ -442,6 +469,38 @@
   <script type="module">
     import { inject } from '../js/analytics.mjs';
     inject();
+  </script>
+
+  <!-- Lightbox -->
+  <div class="lightbox" id="lightbox" role="dialog" aria-modal="true">
+    <button class="lightbox__close" id="lightboxClose" aria-label="Close">✕</button>
+    <img class="lightbox__img" id="lightboxImg" src="" alt="" />
+  </div>
+
+  <script>
+    const lightbox = document.getElementById('lightbox');
+    const lightboxImg = document.getElementById('lightboxImg');
+    const lightboxClose = document.getElementById('lightboxClose');
+
+    document.querySelectorAll('img').forEach(img => {
+      if (img.closest('.nav, .footer')) return;
+      img.style.cursor = 'zoom-in';
+      img.addEventListener('click', () => {
+        lightboxImg.src = img.src;
+        lightboxImg.alt = img.alt;
+        lightbox.classList.add('is-open');
+        document.body.style.overflow = 'hidden';
+      });
+    });
+
+    function closeLightbox() {
+      lightbox.classList.remove('is-open');
+      document.body.style.overflow = '';
+    }
+
+    lightboxClose.addEventListener('click', closeLightbox);
+    lightbox.addEventListener('click', e => { if (e.target === lightbox) closeLightbox(); });
+    document.addEventListener('keydown', e => { if (e.key === 'Escape') closeLightbox(); });
   </script>
 </body>
 </html>

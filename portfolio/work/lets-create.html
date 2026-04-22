@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Let's Create Agency Website — Jacopo Maio</title>
+  <title>Let's Create Agency Website · Jacopo Maio</title>
   <link rel="stylesheet" href="../css/style.css" />
   <script>window.va = window.va || function () { (window.vaq = window.vaq || []).push(arguments); };</script>
   <script defer src="/_vercel/insights/script.js"></script>
@@ -24,7 +24,7 @@
       </a>
       <div class="cs-hero__tags"><span class="tag">Web</span><span class="tag">Responsive</span><span class="tag">Webflow</span></div>
       <h1>Let's Create<br>Agency Website</h1>
-      <p class="lead">Responsive website for a London creative agency — designed and built in Webflow from brief to launch.</p>
+      <p class="lead">Responsive website for a London creative agency, designed and built in Webflow from brief to launch.</p>
       <div class="cs-meta">
         <div class="cs-meta__item"><div class="cs-meta__label">Role</div><div class="cs-meta__value">UX/UI Designer</div></div>
         <div class="cs-meta__item"><div class="cs-meta__label">Company</div><div class="cs-meta__value">Let's Create</div></div>
@@ -60,6 +60,38 @@
   <script type="module">
     import { inject } from '../js/analytics.mjs';
     inject();
+  </script>
+
+  <!-- Lightbox -->
+  <div class="lightbox" id="lightbox" role="dialog" aria-modal="true">
+    <button class="lightbox__close" id="lightboxClose" aria-label="Close">✕</button>
+    <img class="lightbox__img" id="lightboxImg" src="" alt="" />
+  </div>
+
+  <script>
+    const lightbox = document.getElementById('lightbox');
+    const lightboxImg = document.getElementById('lightboxImg');
+    const lightboxClose = document.getElementById('lightboxClose');
+
+    document.querySelectorAll('img').forEach(img => {
+      if (img.closest('.nav, .footer')) return;
+      img.style.cursor = 'zoom-in';
+      img.addEventListener('click', () => {
+        lightboxImg.src = img.src;
+        lightboxImg.alt = img.alt;
+        lightbox.classList.add('is-open');
+        document.body.style.overflow = 'hidden';
+      });
+    });
+
+    function closeLightbox() {
+      lightbox.classList.remove('is-open');
+      document.body.style.overflow = '';
+    }
+
+    lightboxClose.addEventListener('click', closeLightbox);
+    lightbox.addEventListener('click', e => { if (e.target === lightbox) closeLightbox(); });
+    document.addEventListener('keydown', e => { if (e.key === 'Escape') closeLightbox(); });
   </script>
 </body>
 </html>
