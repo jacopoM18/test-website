@@ -2,6 +2,13 @@
    JACOPO MAIO — PORTFOLIO
    ============================================ */
 
+// Immobiliare variant: rewrite home links on work pages
+if (sessionStorage.getItem('portfolio_variant') === 'immobiliare') {
+  document.querySelectorAll('a[href="../index.html"], a[href="/"]').forEach(link => {
+    link.href = '/immobiliare/';
+  });
+}
+
 // Nav scroll state
 const nav = document.querySelector('.nav');
 if (nav) {
