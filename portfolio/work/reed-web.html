@@ -9,131 +9,46 @@
   <script>window.va = window.va || function () { (window.vaq = window.vaq || []).push(arguments); };</script>
   <script defer src="/_vercel/insights/script.js"></script>
   <style>
-    .card-comparison {
-      display: grid; grid-template-columns: 1fr 1fr; gap: 32px; margin: 32px 0;
-      align-items: start;
-    }
-    .card-col {
-      display: flex; flex-direction: column;
-    }
-    .card-label {
-      font-size: 11px; font-weight: 500; letter-spacing: 0.08em; text-transform: uppercase;
-      color: var(--muted); margin-bottom: 12px; display: flex; align-items: center; gap: 8px;
-    }
+    .card-comparison { display: grid; grid-template-columns: 1fr 1fr; gap: 32px; margin: 32px 0; align-items: start; }
+    .card-col { display: flex; flex-direction: column; }
+    .card-label { font-size: 11px; font-weight: 500; letter-spacing: 0.08em; text-transform: uppercase; color: var(--muted); margin-bottom: 12px; display: flex; align-items: center; gap: 8px; }
     .card-label::before { content: ''; width: 8px; height: 8px; border-radius: 50%; }
     .card-label.before::before { background: #EF4444; }
     .card-label.after::before { background: #10B981; }
-
-    /* Before card, faithful Reed.co.uk reproduction */
-    .card-before {
-      border: 1px solid #E5E7EB; border-radius: 4px; overflow: hidden;
-      font-family: Arial, sans-serif; background: white;
-      box-shadow: 0 1px 3px rgba(0,0,0,0.08);
-      padding: 20px 0;
-    }
-    /* Reed red banner header */
-    .card-before__banner {
-      background: #CC0000; padding: 6px 12px;
-      display: flex; align-items: center; gap: 6px;
-    }
-    .card-before__banner-logo {
-      font-size: 13px; font-weight: 700; color: white; letter-spacing: -0.02em;
-    }
-    .card-before__banner-dot {
-      display: flex; gap: 2px; margin-left: 2px;
-    }
-    .card-before__banner-dot span {
-      width: 4px; height: 4px; border-radius: 50%; background: white; opacity: 0.7;
-    }
-    /* Thumbnail */
-    .card-before__img {
-      background: #F7F7F7; height: 148px;
-      display: flex; align-items: center; justify-content: center;
-      border-bottom: 1px solid #E5E7EB; position: relative; overflow: hidden;
-    }
-    .card-before__img-inner {
-      text-align: center;
-    }
-    .card-before__img-icon {
-      width: 48px; height: 48px; margin: 0 auto 8px;
-      background: #E5E7EB; border-radius: 4px;
-      display: flex; align-items: center; justify-content: center;
-    }
+    .card-before { border: 1px solid #E5E7EB; border-radius: 4px; overflow: hidden; font-family: Arial, sans-serif; background: white; box-shadow: 0 1px 3px rgba(0,0,0,0.08); padding: 20px 0; }
+    .card-before__banner { background: #CC0000; padding: 6px 12px; display: flex; align-items: center; gap: 6px; }
+    .card-before__banner-logo { font-size: 13px; font-weight: 700; color: white; letter-spacing: -0.02em; }
+    .card-before__banner-dot { display: flex; gap: 2px; margin-left: 2px; }
+    .card-before__banner-dot span { width: 4px; height: 4px; border-radius: 50%; background: white; opacity: 0.7; }
+    .card-before__img { background: #F7F7F7; height: 148px; display: flex; align-items: center; justify-content: center; border-bottom: 1px solid #E5E7EB; position: relative; overflow: hidden; }
+    .card-before__img-inner { text-align: center; }
+    .card-before__img-icon { width: 48px; height: 48px; margin: 0 auto 8px; background: #E5E7EB; border-radius: 4px; display: flex; align-items: center; justify-content: center; }
     .card-before__img-caption { font-size: 11px; color: #9CA3AF; }
-    /* Provider badge */
-    .card-before__provider-bar {
-      background: #F9F9F9; border-bottom: 1px solid #EFEFEF;
-      padding: 6px 12px; display: flex; align-items: center; gap: 6px;
-    }
-    .card-before__provider-logo {
-      width: 20px; height: 20px; background: #E5E7EB; border-radius: 2px; flex-shrink: 0;
-      display: flex; align-items: center; justify-content: center;
-    }
+    .card-before__provider-bar { background: #F9F9F9; border-bottom: 1px solid #EFEFEF; padding: 6px 12px; display: flex; align-items: center; gap: 6px; }
+    .card-before__provider-logo { width: 20px; height: 20px; background: #E5E7EB; border-radius: 2px; flex-shrink: 0; display: flex; align-items: center; justify-content: center; }
     .card-before__provider-name { font-size: 11px; color: #555; }
-    /* Body */
     .card-before__body { padding: 12px 12px 14px; }
-    .card-before__title {
-      font-size: 13px; font-weight: 400; color: #CC0000;
-      line-height: 1.4; margin-bottom: 10px;
-      display: -webkit-box; -webkit-line-clamp: 3; -webkit-box-orient: vertical; overflow: hidden;
-    }
-    .card-before__meta {
-      display: flex; align-items: baseline; justify-content: space-between;
-      margin-bottom: 10px;
-    }
+    .card-before__title { font-size: 13px; font-weight: 400; color: #CC0000; line-height: 1.4; margin-bottom: 10px; display: -webkit-box; -webkit-line-clamp: 3; -webkit-box-orient: vertical; overflow: hidden; }
+    .card-before__meta { display: flex; align-items: baseline; justify-content: space-between; margin-bottom: 10px; }
     .card-before__price { font-size: 20px; font-weight: 700; color: #222; }
     .card-before__vat { font-size: 10px; color: #999; margin-left: 3px; }
-    .card-before__cta {
-      width: 100%; background: #CC0000; border: none; border-radius: 3px;
-      padding: 9px; font-size: 13px; color: white; font-weight: 400;
-      cursor: pointer; font-family: Arial, sans-serif; text-align: center;
-    }
-
-    /* After card, real screenshot, capped height to match */
-    .card-after {
-      border: 1px solid var(--line); border-radius: 12px; overflow: hidden;
-      font-family: var(--font); background: white;
-      box-shadow: 0 4px 24px rgba(0,0,0,0.06);
-      padding: 20px 0;
-    }
+    .card-before__cta { width: 100%; background: #CC0000; border: none; border-radius: 3px; padding: 9px; font-size: 13px; color: white; font-weight: 400; cursor: pointer; font-family: Arial, sans-serif; text-align: center; }
+    .card-after { border: 1px solid var(--line); border-radius: 12px; overflow: hidden; font-family: var(--font); background: white; box-shadow: 0 4px 24px rgba(0,0,0,0.06); padding: 20px 0; }
     .card-after img { width: 100%; height: auto; display: block; }
-
-    .change-row {
-      display: flex; gap: 16px; padding: 14px 0; border-bottom: 1px solid var(--line); align-items: flex-start;
-    }
+    .change-row { display: flex; gap: 16px; padding: 14px 0; border-bottom: 1px solid var(--line); align-items: flex-start; }
     .change-row__label { font-size: 12px; font-weight: 500; color: var(--muted); width: 130px; flex-shrink: 0; padding-top: 2px; }
     .change-row__old { flex: 1; font-size: 13px; color: #EF4444; text-decoration: line-through; opacity: 0.65; }
     .change-row__new { flex: 1; font-size: 13px; color: var(--ink); }
-
-    @media (max-width: 640px) {
-      .card-comparison { grid-template-columns: 1fr; }
-    }
-
+    @media (max-width: 640px) { .card-comparison { grid-template-columns: 1fr; } }
     .lightbox {
-      position: fixed; inset: 0; z-index: 1000;
-      background: rgba(7,9,26,0.92);
-      display: flex; align-items: center; justify-content: center;
-      padding: 24px;
-      opacity: 0; pointer-events: none;
-      transition: opacity 0.2s ease;
+      position: fixed; inset: 0; z-index: 1000; background: rgba(7,9,26,0.92);
+      display: flex; align-items: center; justify-content: center; padding: 24px;
+      opacity: 0; pointer-events: none; transition: opacity 0.2s ease;
     }
     .lightbox.is-open { opacity: 1; pointer-events: all; }
-    .lightbox__img {
-      max-width: 100%; max-height: 90vh;
-      border-radius: 10px;
-      box-shadow: 0 32px 80px rgba(0,0,0,0.6);
-      transform: scale(0.96);
-      transition: transform 0.25s ease;
-    }
+    .lightbox__img { max-width: 100%; max-height: 90vh; border-radius: 10px; box-shadow: 0 32px 80px rgba(0,0,0,0.6); transform: scale(0.96); transition: transform 0.25s ease; }
     .lightbox.is-open .lightbox__img { transform: scale(1); }
-    .lightbox__close {
-      position: fixed; top: 20px; right: 24px;
-      width: 36px; height: 36px; border-radius: 50%;
-      background: rgba(255,255,255,0.1); border: 1px solid rgba(255,255,255,0.15);
-      color: white; font-size: 18px; line-height: 1;
-      cursor: pointer; display: flex; align-items: center; justify-content: center;
-      transition: background 0.15s;
-    }
+    .lightbox__close { position: fixed; top: 20px; right: 24px; width: 36px; height: 36px; border-radius: 50%; background: rgba(255,255,255,0.1); border: 1px solid rgba(255,255,255,0.15); color: white; font-size: 18px; line-height: 1; cursor: pointer; display: flex; align-items: center; justify-content: center; transition: background 0.15s; }
     .lightbox__close:hover { background: rgba(255,255,255,0.2); }
   </style>
 </head>
@@ -144,10 +59,17 @@
       Jacopo Maio
       <span>Product Designer</span>
     </a>
+    <div class="nav__extras">
+      <span class="nav__claude" data-key="claude-credit">Built with Claude 🧡</span>
+      <div class="nav__lang">
+        <button class="lang-btn is-active" data-lang="en">EN</button>
+        <button class="lang-btn" data-lang="it">IT</button>
+      </div>
+    </div>
     <ul class="nav__links">
-      <li><a href="../index.html#work">Work</a></li>
-      <li><a href="../index.html#about">About</a></li>
-      <li><a href="mailto:jacopo.maio@gmail.com" class="btn-nav">Get in touch</a></li>
+      <li><a href="../index.html#work" data-key="nav-work">Work</a></li>
+      <li><a href="../index.html#about" data-key="nav-about">About</a></li>
+      <li><a href="mailto:jacopo.maio@gmail.com" class="btn-nav" data-key="nav-cta">Get in touch</a></li>
     </ul>
   </nav>
 
@@ -155,7 +77,7 @@
     <div class="cs-hero__inner">
       <a href="../index.html#work" class="cs-hero__back">
         <svg width="14" height="14" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path d="M19 12H5M12 19l-7-7 7-7"/></svg>
-        All work
+        <span data-key="cs-back">All work</span>
       </a>
       <div class="cs-hero__tags">
         <span class="tag">Web</span>
@@ -164,14 +86,14 @@
         <span class="tag">2024</span>
       </div>
       <h1>Reed Course<br>Discovery</h1>
-      <p class="lead">
+      <p class="lead" data-key="reedweb-lead">
         Redesigning how people find and choose courses on Reed.co.uk. The goal was simple: get people to the right course faster, and give them enough information to commit.
       </p>
       <div class="cs-meta">
-        <div class="cs-meta__item"><div class="cs-meta__label">Role</div><div class="cs-meta__value">Product Designer</div></div>
-        <div class="cs-meta__item"><div class="cs-meta__label">Timeline</div><div class="cs-meta__value">Q1–Q2 2024</div></div>
-        <div class="cs-meta__item"><div class="cs-meta__label">Platform</div><div class="cs-meta__value">Web (Desktop + Mobile)</div></div>
-        <div class="cs-meta__item"><div class="cs-meta__label">Focus</div><div class="cs-meta__value">Course card, search, filters</div></div>
+        <div class="cs-meta__item"><div class="cs-meta__label" data-key="cs-meta-role">Role</div><div class="cs-meta__value">Product Designer</div></div>
+        <div class="cs-meta__item"><div class="cs-meta__label" data-key="cs-meta-timeline">Timeline</div><div class="cs-meta__value">Q1–Q2 2024</div></div>
+        <div class="cs-meta__item"><div class="cs-meta__label" data-key="cs-meta-platform">Platform</div><div class="cs-meta__value">Web (Desktop + Mobile)</div></div>
+        <div class="cs-meta__item"><div class="cs-meta__label" data-key="cs-meta-focus">Focus</div><div class="cs-meta__value">Course card, search, filters</div></div>
       </div>
     </div>
   </div>
@@ -180,31 +102,31 @@
     <div class="cs-content__inner">
 
       <div class="cs-section fade-up">
-        <p class="eyebrow">Context</p>
-        <h2>A job site that also sells courses</h2>
-        <p>
+        <p class="eyebrow" data-key="reedweb-s1-eyebrow">Context</p>
+        <h2 data-key="reedweb-s1-h2">A job site that also sells courses</h2>
+        <p data-key="reedweb-s1-p1">
           Reed.co.uk is best known as a job board, but the platform hosts thousands of online courses, from CPD certifications to professional development. The courses marketplace is a meaningful revenue stream, but users were landing on search pages and leaving without enrolling.
         </p>
-        <p>
+        <p data-key="reedweb-s1-p2">
           My brief: find out why users weren't converting, redesign the course card to communicate value faster, and fix the search flow so people could find the right course without friction.
         </p>
       </div>
 
       <div class="cs-section fade-up">
-        <p class="eyebrow">The problem</p>
-        <h2>The card wasn't earning the click</h2>
+        <p class="eyebrow" data-key="reedweb-s2-eyebrow">The problem</p>
+        <h2 data-key="reedweb-s2-h2">The card wasn't earning the click</h2>
         <div class="cs-callout">
           <p>"I can see there are loads of courses but I can't tell which one is right for me without clicking into every single one."</p>
           <cite>User research participant, 2022</cite>
         </div>
-        <p>
+        <p data-key="reedweb-s2-p1">
           Analytics showed users landing on course search pages, scrolling, then leaving without clicking anything. Session recordings and heat maps told us why, they were looking for information the cards simply didn't show.
         </p>
-        <p>Three things were missing:</p>
+        <p data-key="reedweb-s2-p2">Three things were missing:</p>
         <ul>
-          <li>No rating or review count. Users had no way to assess quality at a glance</li>
-          <li>No level indicator. Users feared enrolling in something pitched at the wrong level</li>
-          <li>No duration. Working professionals need to know the time commitment before committing money</li>
+          <li data-key="reedweb-s2-li1">No rating or review count. Users had no way to assess quality at a glance</li>
+          <li data-key="reedweb-s2-li2">No level indicator. Users feared enrolling in something pitched at the wrong level</li>
+          <li data-key="reedweb-s2-li3">No duration. Working professionals need to know the time commitment before committing money</li>
         </ul>
       </div>
 
@@ -214,30 +136,30 @@
   <!-- Card comparison -->
   <div style="background:var(--pale); padding:clamp(48px,6vw,72px) var(--gutter);">
     <div style="max-width:var(--max-w); margin:0 auto;">
-      <p class="eyebrow fade-up">Before and after</p>
-      <h3 class="fade-up" style="margin:8px 0 8px;">The course card redesign</h3>
-      <p style="color:var(--muted); max-width:540px; font-size:14px; margin-bottom:32px; line-height:1.65;" class="fade-up">
+      <p class="eyebrow fade-up" data-key="reedweb-ba-eyebrow">Before and after</p>
+      <h3 class="fade-up" style="margin:8px 0 8px;" data-key="reedweb-ba-h3">The course card redesign</h3>
+      <p style="color:var(--muted); max-width:540px; font-size:14px; margin-bottom:32px; line-height:1.65;" class="fade-up" data-key="reedweb-ba-p">
         The original card had a title, a provider name, and a price. Nothing else. The redesign surfaces trust signals, level, duration and a direct CTA, all within the same footprint.
       </p>
 
       <div class="card-comparison fade-up">
         <div class="card-col">
-          <div class="card-label before">Before</div>
+          <div class="card-label before" data-key="reedweb-before-label">Before</div>
           <div class="card-before">
             <img src="../assets/pre-card.png" alt="Original Reed course card" style="width:50%;height:auto;display:block;margin:0 auto;" />
           </div>
           <div style="margin-top:14px; padding:14px 16px; background:#FEF2F2; border-radius:8px; border-left:3px solid #EF4444;">
-            <p style="font-size:12px; color:#DC2626; font-weight:500; margin:0; line-height:1.5;">No rating · No level · No social proof · Generic CTA</p>
+            <p style="font-size:12px; color:#DC2626; font-weight:500; margin:0; line-height:1.5;" data-key="reedweb-before-note">No rating · No level · No social proof · Generic CTA</p>
           </div>
         </div>
 
         <div class="card-col">
-          <div class="card-label after">After</div>
+          <div class="card-label after" data-key="reedweb-after-label">After</div>
           <div class="card-after">
             <img src="../assets/after-card.png" alt="Redesigned Reed course card" style="width:50%;height:auto;display:block;margin:0 auto;" />
           </div>
           <div style="margin-top:14px; padding:14px 16px; background:#F0FDF4; border-radius:8px; border-left:3px solid #10B981;">
-            <p style="font-size:12px; color:#15803D; font-weight:500; margin:0; line-height:1.5;">Rating + review count · Level tag · Duration · Social proof · Discount + clear price · Add to basket CTA</p>
+            <p style="font-size:12px; color:#15803D; font-weight:500; margin:0; line-height:1.5;" data-key="reedweb-after-note">Rating + review count · Level tag · Duration · Social proof · Discount + clear price · Add to basket CTA</p>
           </div>
         </div>
       </div>
@@ -248,55 +170,55 @@
     <div class="cs-content__inner">
 
       <div class="cs-section fade-up">
-        <p class="eyebrow">Design decisions</p>
-        <h2>Every element earned its place</h2>
-        <p>
+        <p class="eyebrow" data-key="reedweb-dd-eyebrow">Design decisions</p>
+        <h2 data-key="reedweb-dd-h2">Every element earned its place</h2>
+        <p data-key="reedweb-dd-p">
           Before designing anything, I ran a content audit across 12 competitor course platforms (Udemy, Coursera, LinkedIn Learning, Skillshare). I identified which pieces of information power-users actually look at before enrolling. That list became the spec for the new card.
         </p>
 
         <div style="margin-top:24px; background:var(--pale); padding:24px; border-radius:10px;">
           <div class="change-row">
-            <div class="change-row__label">Title</div>
-            <div class="change-row__old">Full unformatted title, truncated at 2 lines</div>
-            <div class="change-row__new">Shortened to topic + level. Full title visible on detail page</div>
+            <div class="change-row__label" data-key="reedweb-cr-title-label">Title</div>
+            <div class="change-row__old" data-key="reedweb-cr-title-old">Full unformatted title, truncated at 2 lines</div>
+            <div class="change-row__new" data-key="reedweb-cr-title-new">Shortened to topic + level. Full title visible on detail page</div>
           </div>
           <div class="change-row">
-            <div class="change-row__label">Rating</div>
-            <div class="change-row__old">Not shown</div>
-            <div class="change-row__new">Star score + review count above the fold</div>
+            <div class="change-row__label" data-key="reedweb-cr-rating-label">Rating</div>
+            <div class="change-row__old" data-key="reedweb-cr-rating-old">Not shown</div>
+            <div class="change-row__new" data-key="reedweb-cr-rating-new">Star score + review count above the fold</div>
           </div>
           <div class="change-row">
-            <div class="change-row__label">Level</div>
-            <div class="change-row__old">Buried in description text</div>
-            <div class="change-row__new">Colour-coded tag (Beginner / Intermediate / Advanced / CPD)</div>
+            <div class="change-row__label" data-key="reedweb-cr-level-label">Level</div>
+            <div class="change-row__old" data-key="reedweb-cr-level-old">Buried in description text</div>
+            <div class="change-row__new" data-key="reedweb-cr-level-new">Colour-coded tag (Beginner / Intermediate / Advanced / CPD)</div>
           </div>
           <div class="change-row">
-            <div class="change-row__label">Duration</div>
-            <div class="change-row__old">Not shown</div>
-            <div class="change-row__new">Hours displayed directly on card</div>
+            <div class="change-row__label" data-key="reedweb-cr-dur-label">Duration</div>
+            <div class="change-row__old" data-key="reedweb-cr-dur-old">Not shown</div>
+            <div class="change-row__new" data-key="reedweb-cr-dur-new">Hours displayed directly on card</div>
           </div>
           <div class="change-row">
-            <div class="change-row__label">Social proof</div>
-            <div class="change-row__old">Not shown</div>
-            <div class="change-row__new">Student count adds trust and urgency</div>
+            <div class="change-row__label" data-key="reedweb-cr-social-label">Social proof</div>
+            <div class="change-row__old" data-key="reedweb-cr-social-old">Not shown</div>
+            <div class="change-row__new" data-key="reedweb-cr-social-new">Student count adds trust and urgency</div>
           </div>
           <div class="change-row">
-            <div class="change-row__label">Pricing</div>
-            <div class="change-row__old">Price shown, no discount context</div>
-            <div class="change-row__new">Discount percentage + original price creates anchoring</div>
+            <div class="change-row__label" data-key="reedweb-cr-price-label">Pricing</div>
+            <div class="change-row__old" data-key="reedweb-cr-price-old">Price shown, no discount context</div>
+            <div class="change-row__new" data-key="reedweb-cr-price-new">Discount percentage + original price creates anchoring</div>
           </div>
           <div class="change-row">
-            <div class="change-row__label">CTA</div>
-            <div class="change-row__old">Generic "View course" link</div>
-            <div class="change-row__new">"Add to basket" removes an extra step from the funnel</div>
+            <div class="change-row__label" data-key="reedweb-cr-cta-label">CTA</div>
+            <div class="change-row__old" data-key="reedweb-cr-cta-old">Generic "View course" link</div>
+            <div class="change-row__new" data-key="reedweb-cr-cta-new">"Add to basket" removes an extra step from the funnel</div>
           </div>
         </div>
       </div>
 
       <div class="cs-section fade-up">
-        <p class="eyebrow">Discovery flow</p>
-        <h2>The card was only half the problem</h2>
-        <p>
+        <p class="eyebrow" data-key="reedweb-disc-eyebrow">Discovery flow</p>
+        <h2 data-key="reedweb-disc-h2">The card was only half the problem</h2>
+        <p data-key="reedweb-disc-p1">
           Phase two was the discovery flow itself, filters, sorting and the zero-results state. Users were struggling with filters that gave no feedback, a default sort that felt arbitrary, and a blank page when filters returned nothing.
         </p>
         <div class="cs-callout">
@@ -306,46 +228,46 @@
 
         <div style="margin-top:24px; background:var(--pale); padding:24px; border-radius:10px;">
           <div class="change-row">
-            <div class="change-row__label">Filter options</div>
-            <div class="change-row__old">No indication of how many results each filter had</div>
-            <div class="change-row__new">Live result count on every filter option, users see impact before committing</div>
+            <div class="change-row__label" data-key="reedweb-cr-filter-label">Filter options</div>
+            <div class="change-row__old" data-key="reedweb-cr-filter-old">No indication of how many results each filter had</div>
+            <div class="change-row__new" data-key="reedweb-cr-filter-new">Live result count on every filter option, users see impact before committing</div>
           </div>
           <div class="change-row">
-            <div class="change-row__label">Default sort</div>
-            <div class="change-row__old">"Most recent", surfaced low-quality listings, felt arbitrary</div>
-            <div class="change-row__new">"Most popular", matched how users searched mentally, improved first-impression quality</div>
+            <div class="change-row__label" data-key="reedweb-cr-sort-label">Default sort</div>
+            <div class="change-row__old" data-key="reedweb-cr-sort-old">"Most recent", surfaced low-quality listings, felt arbitrary</div>
+            <div class="change-row__new" data-key="reedweb-cr-sort-new">"Most popular", matched how users searched mentally, improved first-impression quality</div>
           </div>
           <div class="change-row">
-            <div class="change-row__label">Zero results state</div>
-            <div class="change-row__old">Blank page, users assumed the site was broken</div>
-            <div class="change-row__new">Smart suggestions and filter relaxation prompts, users stayed in the flow</div>
+            <div class="change-row__label" data-key="reedweb-cr-zero-label">Zero results state</div>
+            <div class="change-row__old" data-key="reedweb-cr-zero-old">Blank page, users assumed the site was broken</div>
+            <div class="change-row__new" data-key="reedweb-cr-zero-new">Smart suggestions and filter relaxation prompts, users stayed in the flow</div>
           </div>
           <div class="change-row">
-            <div class="change-row__label">Quick-filter chips</div>
-            <div class="change-row__old">No shortcuts, common queries required 4+ filter steps</div>
-            <div class="change-row__new">Top-level chips for the 5 most-searched filter combinations, one tap to the right results</div>
+            <div class="change-row__label" data-key="reedweb-cr-chips-label">Quick-filter chips</div>
+            <div class="change-row__old" data-key="reedweb-cr-chips-old">No shortcuts, common queries required 4+ filter steps</div>
+            <div class="change-row__new" data-key="reedweb-cr-chips-new">Top-level chips for the 5 most-searched filter combinations, one tap to the right results</div>
           </div>
         </div>
       </div>
 
       <div class="cs-section fade-up">
-        <p class="eyebrow">Results</p>
-        <h2>What moved</h2>
+        <p class="eyebrow" data-key="reedweb-results-eyebrow">Results</p>
+        <h2 data-key="reedweb-results-h2">What moved</h2>
         <div class="cs-outcomes">
           <div class="cs-outcome">
             <div class="cs-outcome__num">+14%</div>
-            <div class="cs-outcome__label">Course card click-through rate after launch</div>
+            <div class="cs-outcome__label" data-key="reedweb-result1-label">Course card click-through rate after launch</div>
           </div>
           <div class="cs-outcome">
             <div class="cs-outcome__num">+19%</div>
-            <div class="cs-outcome__label">Enrolment conversion from card view to purchase</div>
+            <div class="cs-outcome__label" data-key="reedweb-result2-label">Enrolment conversion from card view to purchase</div>
           </div>
           <div class="cs-outcome">
             <div class="cs-outcome__num">-35%</div>
-            <div class="cs-outcome__label">Support tickets about course level confusion, within 8 weeks of launch</div>
+            <div class="cs-outcome__label" data-key="reedweb-result3-label">Support tickets about course level confusion, within 8 weeks of launch</div>
           </div>
         </div>
-        <p>
+        <p data-key="reedweb-results-p">
           Search abandonment dropped 28%, users who previously left without clicking anything were now engaging with results. The support ticket reduction proved the design was solving the right problem: users were enrolling in the correct courses first time rather than requesting refunds after the fact.
         </p>
       </div>
@@ -355,11 +277,11 @@
 
   <div class="next-project">
     <div class="container">
-      <p class="eyebrow">Next project</p>
-      <h2>Fandom Fan Experience Platform</h2>
-      <p style="color:var(--muted); max-width:380px; margin:12px auto 28px; font-size:14px; line-height:1.65;">A gamified rewards SaaS platform designed from scratch for sports clubs.</p>
+      <p class="eyebrow" data-key="cs-next-eyebrow">Next project</p>
+      <h2 data-key="reedweb-next-h2">Fandom Fan Experience Platform</h2>
+      <p style="color:var(--muted); max-width:380px; margin:12px auto 28px; font-size:14px; line-height:1.65;" data-key="reedweb-next-desc">A gamified rewards SaaS platform designed from scratch for sports clubs.</p>
       <a href="fandom.html" class="btn btn--primary">
-        Read case study
+        <span data-key="cs-read-btn">Read case study</span>
         <svg width="14" height="14" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
       </a>
     </div>
@@ -371,13 +293,17 @@
       <ul class="footer__links">
         <li><a href="https://www.linkedin.com/in/jacopomaio/" target="_blank" rel="noopener">LinkedIn</a></li>
         <li><a href="mailto:jacopo.maio@gmail.com">Email</a></li>
-        <li><a href="../index.html#work">Work</a></li>
+        <li><a href="../index.html#work" data-key="footer-work">Work</a></li>
       </ul>
-      <p class="footer__copy">© 2026 Jacopo Maio · London</p>
+      <div>
+        <p class="footer__copy" data-key="footer-copy">© 2026 Jacopo Maio</p>
+        <p class="footer__claude" data-key="claude-credit">Built with Claude 🧡</p>
+      </div>
     </div>
   </footer>
 
   <script src="../js/main.js"></script>
+  <script src="../js/i18n.js"></script>
   <script type="module">
     import { inject } from '../js/analytics.mjs';
     inject();

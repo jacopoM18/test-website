@@ -198,6 +198,31 @@ p + p { margin-top: 16px; }
 .footer__links a { font-size: 13px; color: var(--muted); transition: color 0.2s; }
 .footer__links a:hover { color: var(--ink); }
 .footer__copy { font-size: 12px; color: var(--muted); }
+.footer__claude { font-size: 11px; color: var(--muted); margin-top: 3px; }
+
+/* ─── Language switcher ──────────────────────── */
+.nav__extras {
+  display: flex; align-items: center; gap: 14px; margin-right: 20px;
+}
+.nav__claude {
+  font-size: 11px; color: var(--muted); white-space: nowrap;
+}
+.nav__lang {
+  display: flex; align-items: center; gap: 2px;
+  background: var(--pale); border-radius: 6px; padding: 3px;
+}
+.lang-btn {
+  font-size: 11px; font-weight: 600;
+  padding: 3px 8px; border-radius: 4px;
+  border: none; background: transparent; color: var(--muted);
+  cursor: pointer; letter-spacing: 0.04em; font-family: var(--font);
+  transition: background 0.15s, color 0.15s;
+}
+.lang-btn.is-active {
+  background: var(--white); color: var(--ink);
+  box-shadow: 0 1px 3px rgba(35,30,29,0.1);
+}
+.lang-btn:hover:not(.is-active) { color: var(--ink); }
 
 /* ─── Case Study Hero ────────────────────────── */
 .cs-hero { padding: 160px var(--gutter) 72px; }

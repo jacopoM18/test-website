@@ -259,6 +259,73 @@
     }
     .project-card--wide .project-card__stat { font-size: 36px; }
 
+    /* ── AI cards grid ─────────────────────────────────────── */
+    .ai-cards-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1px;
+      margin-bottom: 40px;
+      background: linear-gradient(135deg, rgba(147,51,234,0.5), rgba(6,182,212,0.5));
+      border-radius: 20px;
+      padding: 1px;
+    }
+    .ai-card {
+      background: #0D1023;
+      padding: 36px 32px;
+      display: flex;
+      flex-direction: column;
+      border-radius: 4px;
+    }
+    .ai-cards-grid .ai-card:first-child { border-radius: 19px 4px 4px 19px; }
+    .ai-cards-grid .ai-card:last-child  { border-radius: 4px 19px 19px 4px; }
+
+    /* ── Language switcher ─────────────────────────────────── */
+    .nav__extras {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      margin-right: 20px;
+    }
+    .nav__claude {
+      font-size: 11px;
+      color: var(--muted);
+      white-space: nowrap;
+    }
+    .nav__lang {
+      display: flex;
+      align-items: center;
+      gap: 2px;
+      background: var(--pale);
+      border-radius: 6px;
+      padding: 3px;
+    }
+    .lang-btn {
+      font-size: 11px;
+      font-weight: 600;
+      padding: 3px 8px;
+      border-radius: 4px;
+      border: none;
+      background: transparent;
+      color: var(--muted);
+      cursor: pointer;
+      letter-spacing: 0.04em;
+      font-family: var(--font);
+      transition: background 0.15s, color 0.15s;
+    }
+    .lang-btn.is-active {
+      background: var(--white);
+      color: var(--ink);
+      box-shadow: 0 1px 3px rgba(35,30,29,0.1);
+    }
+    .lang-btn:hover:not(.is-active) { color: var(--ink); }
+
+    /* ── Footer Claude credit ──────────────────────────────── */
+    .footer__claude {
+      font-size: 11px;
+      color: var(--muted);
+      margin-top: 3px;
+    }
+
     @media (max-width: 900px) {
       .hero__inner { grid-template-columns: 1fr; gap: 40px; }
       .hero__photo { max-width: 240px; aspect-ratio: 1; }
@@ -268,6 +335,13 @@
       .featured-project__image { display: none; }
       .project-card--wide { flex-direction: column; }
       .project-card--wide .project-card__img { width: 100%; height: 200px; }
+    }
+
+    @media (max-width: 768px) {
+      .nav__claude { display: none; }
+      .ai-cards-grid { grid-template-columns: 1fr; }
+      .ai-cards-grid .ai-card:first-child { border-radius: 19px 19px 4px 4px; }
+      .ai-cards-grid .ai-card:last-child  { border-radius: 4px 4px 19px 19px; }
     }
 
     @media (max-width: 640px) {
@@ -303,10 +377,17 @@
       Jacopo Maio
       <span>Product Designer</span>
     </a>
+    <div class="nav__extras">
+      <span class="nav__claude" data-key="claude-credit">Built with Claude 🧡</span>
+      <div class="nav__lang">
+        <button class="lang-btn is-active" data-lang="en">EN</button>
+        <button class="lang-btn" data-lang="it">IT</button>
+      </div>
+    </div>
     <ul class="nav__links">
-      <li><a href="#work">Work</a></li>
-      <li><a href="#about">About</a></li>
-      <li><a href="mailto:jacopo.maio@gmail.com" class="btn-nav">Get in touch</a></li>
+      <li><a href="#work" data-key="nav-work">Work</a></li>
+      <li><a href="#about" data-key="nav-about">About</a></li>
+      <li><a href="mailto:jacopo.maio@gmail.com" class="btn-nav" data-key="nav-cta">Get in touch</a></li>
     </ul>
   </nav>
 
@@ -321,31 +402,31 @@
         </div>
         <div class="hero__photo-caption">
           <strong>Jacopo Maio</strong>
-          <span>Senior Product Designer</span>
+          <span data-key="hero-caption-role">Senior Product Designer</span>
         </div>
       </div>
 
       <!-- Content col -->
       <div class="hero__content">
-        <h1 class="hero__headline">
+        <h1 class="hero__headline" data-key-html="hero-headline">
           Product<br>
           Design<br>
           <em>that ships</em>
         </h1>
         <div class="hero__meta">
-          <p style="font-weight:500; color:var(--ink);">
+          <p style="font-weight:500; color:var(--ink);" data-key="hero-lead">
             Senior Product Designer architecting cross-platform B2B and B2C ecosystems across iOS, Android, and Web.
           </p>
-          <p style="font-weight:300;">
+          <p style="font-weight:300;" data-key="hero-bio">
             With 7+ years of experience at Cortex (Enterprise Data) and Reed (10M+ users), I specialise in turning complex technical logic into frictionless mobile and desktop experiences. I bridge the gap between user empathy and engineering reality to deliver products that scale.
           </p>
         </div>
         <div class="hero__actions">
           <a href="#work" class="btn btn--primary">
-            See my work
+            <span data-key="cta-work">See my work</span>
             <svg width="14" height="14" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
           </a>
-          <a href="mailto:jacopo.maio@gmail.com" class="btn btn--outline">Say hello</a>
+          <a href="mailto:jacopo.maio@gmail.com" class="btn btn--outline" data-key="cta-hello">Say hello</a>
         </div>
       </div>
 
@@ -357,15 +438,15 @@
     <div class="stats-bar__inner">
         <div class="stat fade-up">
           <div class="stat__num">7+</div>
-          <div class="stat__label">Years of experience</div>
+          <div class="stat__label" data-key="stat-years">Years of experience</div>
         </div>
         <div class="stat fade-up">
           <div class="stat__num">10M+</div>
-          <div class="stat__label">Users reached across shipped products</div>
+          <div class="stat__label" data-key="stat-users">Users reached across shipped products</div>
         </div>
         <div class="stat fade-up">
           <div class="stat__num">5M+</div>
-          <div class="stat__label">App downloads on products I designed</div>
+          <div class="stat__label" data-key="stat-downloads">App downloads on products I designed</div>
           <div class="stat__platforms">
             <img src="assets/logo-apple.png" alt="iOS" style="width:10px;height:12px;object-fit:contain;filter:brightness(0);opacity:0.4;">
             <img src="assets/logo-google-play.png" alt="Android" style="width:12px;height:12px;object-fit:contain;opacity:0.55;">
@@ -373,19 +454,19 @@
         </div>
         <div class="stat fade-up">
           <div class="stat__num">6</div>
-          <div class="stat__label">Design systems built or maintained</div>
+          <div class="stat__label" data-key="stat-systems">Design systems built or maintained</div>
         </div>
         <div class="stat fade-up">
           <div class="stat__num stat__num--positive">+19%</div>
-          <div class="stat__label">Enrolment conversion on Reed.co.uk</div>
+          <div class="stat__label" data-key="stat-enrolment">Enrolment conversion on Reed.co.uk</div>
         </div>
         <div class="stat fade-up">
           <div class="stat__num stat__num--positive">−40%</div>
-          <div class="stat__label">CS tickets from a UX overhaul</div>
+          <div class="stat__label" data-key="stat-cs">CS tickets from a UX overhaul</div>
         </div>
         <div class="stat fade-up">
           <div class="stat__num stat__num--positive">+14%</div>
-          <div class="stat__label">Card click-through rate on Reed.co.uk</div>
+          <div class="stat__label" data-key="stat-ctr">Card click-through rate on Reed.co.uk</div>
         </div>
       </div>
   </div>
@@ -396,9 +477,9 @@
 
       <div class="section-header fade-up">
         <div>
-          <p class="eyebrow">Selected work</p>
-          <h2>What I've shipped</h2>
-          <p style="font-size:13px; color:var(--muted); margin-top:8px;">
+          <p class="eyebrow" data-key="work-eyebrow">Selected work</p>
+          <h2 data-key="work-title">What I've shipped</h2>
+          <p style="font-size:13px; color:var(--muted); margin-top:8px;" data-key="work-subtitle">
             Each project starts with a real problem. Here's how I found the right answer.
           </p>
         </div>
@@ -406,7 +487,7 @@
 
       <!-- Filters -->
       <div class="work-filters fade-up">
-        <button class="filter-btn is-active" data-filter="all">All</button>
+        <button class="filter-btn is-active" data-filter="all" data-key="filter-all">All</button>
         <button class="filter-btn" data-filter="saas">SaaS</button>
         <button class="filter-btn" data-filter="mobile">Mobile</button>
         <button class="filter-btn" data-filter="b2b">B2B</button>
@@ -431,9 +512,9 @@
             </div>
             <div class="project-card__title">FDP AI</div>
             <div class="project-card__stat">2 deals</div>
-            <div class="project-card__stat-label">won with a prototype before the feature shipped</div>
+            <div class="project-card__stat-label" data-key="fdp-stat-label">won with a prototype before the feature shipped</div>
             <span class="project-card__cta">
-              Read case study
+              <span data-key="read-cs">Read case study</span>
               <svg width="12" height="12" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
             </span>
           </div>
@@ -454,9 +535,9 @@
             </div>
             <div class="project-card__title">Fan Experience Platform</div>
             <div class="project-card__stat">50+</div>
-            <div class="project-card__stat-label">sports organisations including Arsenal FC and Formula 1</div>
+            <div class="project-card__stat-label" data-key="fandom-stat-label">sports organisations including Arsenal FC and Formula 1</div>
             <span class="project-card__cta">
-              Read case study
+              <span data-key="read-cs">Read case study</span>
               <svg width="12" height="12" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
             </span>
           </div>
@@ -477,9 +558,9 @@
             </div>
             <div class="project-card__title">Reed Combo Apply</div>
             <div class="project-card__stat">+13%</div>
-            <div class="project-card__stat-label">application growth after shipping</div>
+            <div class="project-card__stat-label" data-key="reedapp-stat-label">application growth after shipping</div>
             <span class="project-card__cta">
-              Read case study
+              <span data-key="read-cs">Read case study</span>
               <svg width="12" height="12" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
             </span>
           </div>
@@ -500,9 +581,9 @@
             </div>
             <div class="project-card__title">Reed Course Discovery</div>
             <div class="project-card__stat">+19%</div>
-            <div class="project-card__stat-label">enrolment conversion after redesign</div>
+            <div class="project-card__stat-label" data-key="reedweb-stat-label">enrolment conversion after redesign</div>
             <span class="project-card__cta">
-              Read case study
+              <span data-key="read-cs">Read case study</span>
               <svg width="12" height="12" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
             </span>
           </div>
@@ -524,9 +605,9 @@
             </div>
             <div class="project-card__title">Sony eLearning Platform</div>
             <div class="project-card__stat" style="font-size:36px;">98%</div>
-            <div class="project-card__stat-label">course completion rate across 15 countries and 11 languages</div>
+            <div class="project-card__stat-label" data-key="sony-stat-label">course completion rate across 15 countries and 11 languages</div>
             <span class="project-card__cta" style="margin-top:20px;">
-              Read case study
+              <span data-key="read-cs">Read case study</span>
               <svg width="12" height="12" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
             </span>
           </div>
@@ -543,26 +624,26 @@
     <div style="position:absolute;bottom:-160px;right:-80px;width:500px;height:500px;background:radial-gradient(circle,rgba(6,182,212,0.1) 0%,transparent 70%);pointer-events:none;"></div>
     <div class="container" style="position:relative;">
       <div style="max-width:600px; margin-bottom:56px;">
-        <p class="eyebrow" style="color:rgba(255,255,255,0.4);">How I work</p>
-        <h2 style="color:#fff; margin-bottom:16px;">AI-native from day one</h2>
-        <p style="color:rgba(255,255,255,0.55); font-size:1rem; line-height:1.75; margin:0;">I use AI across every phase of design, not to replace craft, but to spend more time on the thinking that matters.</p>
+        <p class="eyebrow" style="color:rgba(255,255,255,0.4);" data-key="ai-eyebrow">How I work</p>
+        <h2 style="color:#fff; margin-bottom:16px;" data-key="ai-title">AI-native from day one</h2>
+        <p style="color:rgba(255,255,255,0.55); font-size:1rem; line-height:1.75; margin:0;" data-key="ai-desc">I use AI across every phase of design, not to replace craft, but to spend more time on the thinking that matters.</p>
       </div>
 
       <!-- Cards -->
-      <div style="display:grid; grid-template-columns:repeat(3,1fr); gap:1px; margin-bottom:40px; background:linear-gradient(135deg,rgba(147,51,234,0.5),rgba(6,182,212,0.5)); border-radius:20px; padding:1px;">
+      <div class="ai-cards-grid">
 
         <!-- Card: Early concepts -->
-        <div style="background:#0D1023; border-radius:19px 4px 4px 19px; padding:36px 32px; display:flex; flex-direction:column;">
+        <div class="ai-card">
           <div style="display:flex; align-items:center; justify-content:space-between; margin-bottom:28px;">
-            <div style="font-size:11px; font-weight:700; letter-spacing:0.08em; text-transform:uppercase; color:rgba(255,255,255,0.35);">Early concepts</div>
-            <div style="background:rgba(192,132,252,0.12); border:1px solid rgba(192,132,252,0.25); border-radius:20px; padding:3px 10px; font-size:11px; font-weight:700; color:#C084FC; letter-spacing:0.02em;">−75% time</div>
+            <div style="font-size:11px; font-weight:700; letter-spacing:0.08em; text-transform:uppercase; color:rgba(255,255,255,0.35);" data-key="ai-card1-label">Early concepts</div>
+            <div style="background:rgba(192,132,252,0.12); border:1px solid rgba(192,132,252,0.25); border-radius:20px; padding:3px 10px; font-size:11px; font-weight:700; color:#C084FC; letter-spacing:0.02em;" data-key="ai-card1-badge">−75% time</div>
           </div>
-          <div style="font-size:13px; color:rgba(255,255,255,0.3); text-decoration:line-through; margin-bottom:6px;">1–2 days</div>
+          <div style="font-size:13px; color:rgba(255,255,255,0.3); text-decoration:line-through; margin-bottom:6px;" data-key="ai-card1-before">1–2 days</div>
           <div style="display:flex; align-items:baseline; gap:8px; margin-bottom:20px;">
             <span style="font-size:48px; font-weight:800; line-height:1; background:linear-gradient(135deg,#C084FC,#67E8F9); -webkit-background-clip:text; -webkit-text-fill-color:transparent; background-clip:text;">3–6</span>
-            <span style="font-size:18px; font-weight:500; color:rgba(255,255,255,0.5);">hrs</span>
+            <span style="font-size:18px; font-weight:500; color:rgba(255,255,255,0.5);" data-key="ai-hrs">hrs</span>
           </div>
-          <p style="font-size:13px; color:rgba(255,255,255,0.4); line-height:1.65; margin:0 0 auto;">From brief to multiple directions before the afternoon standup.</p>
+          <p style="font-size:13px; color:rgba(255,255,255,0.4); line-height:1.65; margin:0 0 auto;" data-key="ai-card1-desc">From brief to multiple directions before the afternoon standup.</p>
           <div style="margin-top:24px; display:flex; align-items:center; gap:8px; flex-wrap:wrap;">
             <div style="display:flex;align-items:center;gap:5px;background:rgba(255,255,255,0.05);border-radius:6px;padding:4px 8px;">
               <svg width="12" height="12" viewBox="0 0 24 24" fill="rgba(255,255,255,0.5)"><path d="M15.852 8.981h-4.588V0h4.588c2.476 0 4.49 2.014 4.49 4.49s-2.014 4.491-4.49 4.491zM12.735 7.51h3.117c1.665 0 3.019-1.355 3.019-3.019s-1.355-3.019-3.019-3.019h-3.117V7.51zm0 1.471H8.148c-2.476 0-4.49-2.014-4.49-4.49S5.672 0 8.148 0h4.588v8.981zm-4.587-7.51c-1.665 0-3.019 1.355-3.019 3.019s1.354 3.02 3.019 3.02h3.117V1.471H8.148zm4.587 15.019H8.148c-2.476 0-4.49-2.014-4.49-4.49s2.014-4.49 4.49-4.49h4.588v8.98zM8.148 8.981c-1.665 0-3.019 1.355-3.019 3.019s1.355 3.019 3.019 3.019h3.117V8.981H8.148zM8.172 24c-2.489 0-4.515-2.014-4.515-4.49s2.014-4.49 4.49-4.49h4.588v4.441c0 2.503-2.047 4.539-4.563 4.539zm-.024-7.51a3.023 3.023 0 0 0-3.019 3.019c0 1.665 1.365 3.019 3.044 3.019 1.705 0 3.093-1.376 3.093-3.068v-2.97H8.148zm7.704 0h-.098c-2.476 0-4.49-2.014-4.49-4.49s2.014-4.49 4.49-4.49h.098c2.476 0 4.49 2.014 4.49 4.49s-2.014 4.49-4.49 4.49zm-.097-7.509c-1.665 0-3.019 1.355-3.019 3.019s1.355 3.019 3.019 3.019h.098c1.665 0 3.019-1.355 3.019-3.019s-1.355-3.019-3.019-3.019h-.098z"/></svg>
@@ -576,17 +657,17 @@
         </div>
 
         <!-- Card: Research synthesis -->
-        <div style="background:#0D1023; border-radius:4px; padding:36px 32px; display:flex; flex-direction:column;">
+        <div class="ai-card">
           <div style="display:flex; align-items:center; justify-content:space-between; margin-bottom:28px;">
-            <div style="font-size:11px; font-weight:700; letter-spacing:0.08em; text-transform:uppercase; color:rgba(255,255,255,0.35);">Research synthesis</div>
-            <div style="background:rgba(192,132,252,0.12); border:1px solid rgba(192,132,252,0.25); border-radius:20px; padding:3px 10px; font-size:11px; font-weight:700; color:#C084FC; letter-spacing:0.02em;">−80% time</div>
+            <div style="font-size:11px; font-weight:700; letter-spacing:0.08em; text-transform:uppercase; color:rgba(255,255,255,0.35);" data-key="ai-card2-label">Research synthesis</div>
+            <div style="background:rgba(192,132,252,0.12); border:1px solid rgba(192,132,252,0.25); border-radius:20px; padding:3px 10px; font-size:11px; font-weight:700; color:#C084FC; letter-spacing:0.02em;" data-key="ai-card2-badge">−80% time</div>
           </div>
-          <div style="font-size:13px; color:rgba(255,255,255,0.3); text-decoration:line-through; margin-bottom:6px;">2–3 days</div>
+          <div style="font-size:13px; color:rgba(255,255,255,0.3); text-decoration:line-through; margin-bottom:6px;" data-key="ai-card2-before">2–3 days</div>
           <div style="display:flex; align-items:baseline; gap:8px; margin-bottom:20px;">
             <span style="font-size:48px; font-weight:800; line-height:1; background:linear-gradient(135deg,#C084FC,#67E8F9); -webkit-background-clip:text; -webkit-text-fill-color:transparent; background-clip:text;">~5</span>
-            <span style="font-size:18px; font-weight:500; color:rgba(255,255,255,0.5);">hrs</span>
+            <span style="font-size:18px; font-weight:500; color:rgba(255,255,255,0.5);" data-key="ai-hrs">hrs</span>
           </div>
-          <p style="font-size:13px; color:rgba(255,255,255,0.4); line-height:1.65; margin:0 0 auto;">Interviews, affinity mapping, pattern finding, without losing the nuance.</p>
+          <p style="font-size:13px; color:rgba(255,255,255,0.4); line-height:1.65; margin:0 0 auto;" data-key="ai-card2-desc">Interviews, affinity mapping, pattern finding, without losing the nuance.</p>
           <div style="margin-top:24px; display:flex; align-items:center; gap:8px; flex-wrap:wrap;">
             <div style="display:flex;align-items:center;gap:5px;background:rgba(255,255,255,0.05);border-radius:6px;padding:4px 8px;">
               <svg width="12" height="12" viewBox="0 0 1200 1200" fill="rgba(255,255,255,0.5)"><path d="M 233.959793 800.214905 L 468.644287 668.536987 L 472.590637 657.100647 L 468.644287 650.738403 L 457.208069 650.738403 L 417.986633 648.322144 L 283.892639 644.69812 L 167.597321 639.865845 L 54.926208 633.825623 L 26.577238 627.785339 L 3.3e-05 592.751709 L 2.73832 575.27533 L 26.577238 559.248352 L 60.724873 562.228149 L 136.187973 567.382629 L 249.422867 575.194763 L 331.570496 580.026978 L 453.261841 592.671082 L 472.590637 592.671082 L 475.328857 584.859009 L 468.724915 580.026978 L 463.570557 575.194763 L 346.389313 495.785217 L 219.543671 411.865906 L 153.100723 363.543762 L 117.181267 339.060425 L 99.060455 316.107361 L 91.248367 266.01355 L 123.865784 230.093994 L 167.677887 233.073853 L 178.872513 236.053772 L 223.248367 270.201477 L 318.040283 343.570496 L 441.825592 434.738342 L 459.946411 449.798706 L 467.194672 444.64447 L 468.080597 441.020203 L 459.946411 427.409485 L 392.617493 305.718323 L 320.778564 181.932983 L 288.80542 130.630859 L 280.348999 99.865845 C 277.369171 87.221436 275.194641 76.590698 275.194641 63.624268 L 312.322174 13.20813 L 332.8591 6.604126 L 382.389313 13.20813 L 403.248352 31.328979 L 434.013519 101.71814 L 483.865753 212.537048 L 561.181274 363.221497 L 583.812134 407.919434 L 595.892639 449.315491 L 600.40271 461.959839 L 608.214783 461.959839 L 608.214783 454.711609 L 614.577271 369.825623 L 626.335632 265.61084 L 637.771851 131.516846 L 641.718201 93.745117 L 660.402832 48.483276 L 697.530334 24.000122 L 726.52356 37.852417 L 750.362549 72 L 747.060486 94.067139 L 732.886047 186.201416 L 705.100708 330.52356 L 686.979919 427.167847 L 697.530334 427.167847 L 709.61084 415.087341 L 758.496704 350.174561 L 840.644348 247.490051 L 876.885925 206.738342 L 919.167847 161.71814 L 946.308838 140.29541 L 997.61084 140.29541 L 1035.38269 196.429626 L 1018.469849 254.416199 L 965.637634 321.422852 L 921.825562 378.201538 L 859.006714 462.765259 L 819.785278 530.41626 L 823.409424 535.812073 L 832.75177 534.92627 L 974.657776 504.724915 L 1051.328979 490.872559 L 1142.818848 475.167786 L 1184.214844 494.496582 L 1188.724854 514.147644 L 1172.456421 554.335693 L 1074.604126 578.496765 L 959.838989 601.449829 L 788.939636 641.879272 L 786.845764 643.409485 L 789.261841 646.389343 L 866.255127 653.637634 L 899.194702 655.409424 L 979.812134 655.409424 L 1129.932861 666.604187 L 1169.154419 692.537109 L 1192.671265 724.268677 L 1188.724854 748.429688 L 1128.322144 779.194641 L 1046.818848 759.865845 L 856.590759 714.604126 L 791.355774 698.335754 L 782.335693 698.335754 L 782.335693 703.731567 L 836.69812 756.885986 L 936.322205 846.845581 L 1061.073975 962.81897 L 1067.436279 991.490112 L 1051.409424 1014.120911 L 1034.496704 1011.704712 L 924.885986 929.234924 L 882.604126 892.107544 L 786.845764 811.48999 L 780.483276 811.48999 L 780.483276 819.946289 L 802.550415 852.241699 L 919.087341 1027.409424 L 925.127625 1081.127686 L 916.671204 1098.604126 L 886.469849 1109.154419 L 853.288696 1103.114136 L 785.073914 1007.355835 L 714.684631 899.516785 L 657.906067 802.872498 L 650.979858 806.81897 L 617.476624 1167.704834 L 601.771851 1186.147705 L 565.530212 1200 L 535.328857 1177.046997 L 519.302124 1139.919556 L 535.328857 1066.550537 L 554.657776 970.792053 L 570.362488 894.68457 L 584.536926 800.134277 L 592.993347 768.724976 L 592.429626 766.630859 L 585.503479 767.516968 L 514.22821 865.369263 L 405.825531 1011.865906 L 320.053711 1103.677979 L 299.516815 1111.812256 L 263.919525 1093.369263 L 267.221497 1060.429688 L 287.114136 1031.114136 L 405.825531 880.107361 L 477.422913 786.52356 L 523.651062 732.483276 L 523.328918 724.671265 L 520.590698 724.671265 L 205.288605 929.395935 L 149.154434 936.644409 L 124.993355 914.01355 L 127.973183 876.885986 L 139.409409 864.80542 L 234.201385 799.570435 Z"/></svg>
@@ -600,17 +681,17 @@
         </div>
 
         <!-- Card: Prototyping -->
-        <div style="background:#0D1023; border-radius:4px 19px 19px 4px; padding:36px 32px; display:flex; flex-direction:column;">
+        <div class="ai-card">
           <div style="display:flex; align-items:center; justify-content:space-between; margin-bottom:28px;">
-            <div style="font-size:11px; font-weight:700; letter-spacing:0.08em; text-transform:uppercase; color:rgba(255,255,255,0.35);">Prototyping</div>
-            <div style="background:rgba(192,132,252,0.12); border:1px solid rgba(192,132,252,0.25); border-radius:20px; padding:3px 10px; font-size:11px; font-weight:700; color:#C084FC; letter-spacing:0.02em;">−70% time</div>
+            <div style="font-size:11px; font-weight:700; letter-spacing:0.08em; text-transform:uppercase; color:rgba(255,255,255,0.35);" data-key="ai-card3-label">Prototyping</div>
+            <div style="background:rgba(192,132,252,0.12); border:1px solid rgba(192,132,252,0.25); border-radius:20px; padding:3px 10px; font-size:11px; font-weight:700; color:#C084FC; letter-spacing:0.02em;" data-key="ai-card3-badge">−70% time</div>
           </div>
-          <div style="font-size:13px; color:rgba(255,255,255,0.3); text-decoration:line-through; margin-bottom:6px;">8–10 hrs</div>
+          <div style="font-size:13px; color:rgba(255,255,255,0.3); text-decoration:line-through; margin-bottom:6px;" data-key="ai-card3-before">8–10 hrs</div>
           <div style="display:flex; align-items:baseline; gap:8px; margin-bottom:20px;">
             <span style="font-size:48px; font-weight:800; line-height:1; background:linear-gradient(135deg,#C084FC,#67E8F9); -webkit-background-clip:text; -webkit-text-fill-color:transparent; background-clip:text;">2–3</span>
-            <span style="font-size:18px; font-weight:500; color:rgba(255,255,255,0.5);">hrs</span>
+            <span style="font-size:18px; font-weight:500; color:rgba(255,255,255,0.5);" data-key="ai-hrs">hrs</span>
           </div>
-          <p style="font-size:13px; color:rgba(255,255,255,0.4); line-height:1.65; margin:0 0 auto;">What used to take a full day is done before lunch, with the right prompts.</p>
+          <p style="font-size:13px; color:rgba(255,255,255,0.4); line-height:1.65; margin:0 0 auto;" data-key="ai-card3-desc">What used to take a full day is done before lunch, with the right prompts.</p>
           <div style="margin-top:24px; display:flex; align-items:center; gap:6px; flex-wrap:nowrap;">
             <div style="display:flex;align-items:center;gap:5px;background:rgba(255,255,255,0.05);border-radius:6px;padding:4px 8px;">
               <svg width="12" height="12" viewBox="0 0 24 24" fill="rgba(255,255,255,0.5)"><path d="M11.503.131 1.891 5.678a.84.84 0 0 0-.42.726v11.188c0 .3.162.575.42.724l9.609 5.55a1 1 0 0 0 .998 0l9.61-5.55a.84.84 0 0 0 .42-.724V6.404a.84.84 0 0 0-.42-.726L12.497.131a1.01 1.01 0 0 0-.996 0M2.657 6.338h18.55c.263 0 .43.287.297.515L12.23 22.918c-.062.107-.229.064-.229-.06V12.335a.59.59 0 0 0-.295-.51l-9.11-5.257c-.109-.063-.064-.23.061-.23"/></svg>
@@ -637,52 +718,52 @@
       <div class="about-grid">
 
         <div>
-          <p class="eyebrow">About</p>
-          <h2 style="margin-bottom:20px;">I design for people, not pixels</h2>
-          <p>
+          <p class="eyebrow" data-key="about-eyebrow">About</p>
+          <h2 style="margin-bottom:20px;" data-key="about-title">I design for people, not pixels</h2>
+          <p data-key="about-p1">
             Senior Product Designer based in London with 7 years across the full product cycle, from early discovery and research to UI polish and dev handoff.
           </p>
-          <p>
+          <p data-key="about-p2">
             Currently at Cortex, designing their fan experience platform for sports clubs like Arsenal FC and Formula 1. Before that I spent three years at Reed leading design across mobile, web and internal tools. Earlier at Let's Create I built responsive sites for brands end to end.
           </p>
-          <p>
+          <p data-key="about-p3">
             I work best where design has a seat at the table and shipping something good matters.
           </p>
 
           <div class="experience-list">
             <div class="exp-item">
               <div class="exp-item__company">Cortex</div>
-              <div class="exp-item__role">Senior Product Designer, Fan Experience</div>
-              <div class="exp-item__period">Jul 2025 – Present</div>
+              <div class="exp-item__role" data-key="role-cortex">Senior Product Designer, Fan Experience</div>
+              <div class="exp-item__period" data-key="period-cortex">Jul 2025 – Present</div>
             </div>
             <div class="exp-item">
               <div class="exp-item__company">Reed Online</div>
-              <div class="exp-item__role">Product Designer, Mobile, Web, Internal Tools</div>
-              <div class="exp-item__period">Nov 2021 – Feb 2025</div>
+              <div class="exp-item__role" data-key="role-reed">Product Designer, Mobile, Web, Internal Tools</div>
+              <div class="exp-item__period" data-key="period-reed">Nov 2021 – Feb 2025</div>
             </div>
             <div class="exp-item">
               <div class="exp-item__company">mmob</div>
-              <div class="exp-item__role">Product Designer, Embedded Finance</div>
-              <div class="exp-item__period">Jul 2021 – Sep 2021</div>
+              <div class="exp-item__role" data-key="role-mmob">Product Designer, Embedded Finance</div>
+              <div class="exp-item__period" data-key="period-mmob">Jul 2021 – Sep 2021</div>
             </div>
             <div class="exp-item">
               <div class="exp-item__company">Let's Create</div>
-              <div class="exp-item__role">Product Designer, Digital Agency</div>
-              <div class="exp-item__period">Mar 2019 – Jul 2021</div>
+              <div class="exp-item__role" data-key="role-letscreate">Product Designer, Digital Agency</div>
+              <div class="exp-item__period" data-key="period-letscreate">Mar 2019 – Jul 2021</div>
             </div>
             <div class="exp-item">
               <div class="exp-item__company">Freelance</div>
-              <div class="exp-item__role">UX/UI Designer</div>
-              <div class="exp-item__period">Sep 2018 – Jul 2019</div>
+              <div class="exp-item__role" data-key="role-freelance">UX/UI Designer</div>
+              <div class="exp-item__period" data-key="period-freelance">Sep 2018 – Jul 2019</div>
             </div>
           </div>
         </div>
 
         <div>
-          <p class="eyebrow">Skills</p>
+          <p class="eyebrow" data-key="skills-eyebrow">Skills</p>
           <div class="skills-grid" style="margin-top:16px;">
             <div class="skill-group">
-              <div class="skill-group__label">Design</div>
+              <div class="skill-group__label" data-key="skills-design-lbl">Design</div>
               <div class="skill-group__items">
                 <div class="skill-item">Product Design</div>
                 <div class="skill-item">UX Research</div>
@@ -692,7 +773,7 @@
               </div>
             </div>
             <div class="skill-group">
-              <div class="skill-group__label">Tools</div>
+              <div class="skill-group__label" data-key="skills-tools-lbl">Tools</div>
               <div class="skill-group__items">
                 <div class="skill-item">Figma</div>
                 <div class="skill-item">Webflow</div>
@@ -702,7 +783,7 @@
               </div>
             </div>
             <div class="skill-group">
-              <div class="skill-group__label">AI</div>
+              <div class="skill-group__label" data-key="skills-ai-lbl">AI</div>
               <div class="skill-group__items">
                 <div class="skill-item">Claude Code</div>
                 <div class="skill-item">Figma Make</div>
@@ -711,7 +792,7 @@
               </div>
             </div>
             <div class="skill-group">
-              <div class="skill-group__label">Platforms</div>
+              <div class="skill-group__label" data-key="skills-plat-lbl">Platforms</div>
               <div class="skill-group__items">
                 <div class="skill-item">iOS + Android</div>
                 <div class="skill-item">SaaS / B2B</div>
@@ -720,7 +801,7 @@
               </div>
             </div>
             <div class="skill-group">
-              <div class="skill-group__label">Process</div>
+              <div class="skill-group__label" data-key="skills-proc-lbl">Process</div>
               <div class="skill-group__items">
                 <div class="skill-item">Agile / Scrum</div>
                 <div class="skill-item">User testing</div>
@@ -731,7 +812,7 @@
           </div>
 
           <div style="margin-top:32px; padding:20px; background:var(--white); border-radius:10px; border:1px solid var(--line);">
-            <p class="eyebrow" style="margin-bottom:12px;">Education</p>
+            <p class="eyebrow" style="margin-bottom:12px;" data-key="edu-eyebrow">Education</p>
             <div style="margin-bottom:12px;">
               <div style="font-size:13px; font-weight:600; color:var(--ink);">Interaction Design Foundation</div>
               <div style="font-size:12px; color:var(--muted);">UX Design</div>
@@ -758,9 +839,9 @@
   <!-- CTA -->
   <section class="cta-section">
     <div class="container" style="text-align:center;">
-      <p class="eyebrow" style="text-align:center;">Let's work together</p>
-      <h2 style="margin:12px 0 16px;">Got a problem worth solving?</h2>
-      <p style="color:var(--muted); max-width:400px; margin:0 auto 32px; font-size:15px; line-height:1.7;">
+      <p class="eyebrow" style="text-align:center;" data-key="cta-eyebrow">Let's work together</p>
+      <h2 style="margin:12px 0 16px;" data-key="cta-title">Got a problem worth solving?</h2>
+      <p style="color:var(--muted); max-width:400px; margin:0 auto 32px; font-size:15px; line-height:1.7;" data-key="cta-desc">
         If you're building something where design matters, I'd like to hear about it.
       </p>
       <a href="mailto:jacopo.maio@gmail.com" class="btn btn--primary">
@@ -777,9 +858,12 @@
       <ul class="footer__links">
         <li><a href="https://www.linkedin.com/in/jacopomaio/" target="_blank" rel="noopener">LinkedIn</a></li>
         <li><a href="mailto:jacopo.maio@gmail.com">Email</a></li>
-        <li><a href="#work">Work</a></li>
+        <li><a href="#work" data-key="nav-work">Work</a></li>
       </ul>
-      <p class="footer__copy">© 2026 Jacopo Maio · London</p>
+      <div>
+        <p class="footer__copy" data-key="footer-copy">© 2026 Jacopo Maio</p>
+        <p class="footer__claude" data-key="claude-credit">Built with Claude 🧡</p>
+      </div>
     </div>
   </footer>
 
@@ -788,7 +872,186 @@
     // Clear any application-specific variant flag
     sessionStorage.removeItem('portfolio_variant');
 
-    // Filter
+    // ── Language switcher ──────────────────────────────────────
+    const translations = {
+      en: {
+        'claude-credit':     'Built with Claude 🧡',
+        'nav-work':          'Work',
+        'nav-about':         'About',
+        'nav-cta':           'Get in touch',
+        'hero-caption-role': 'Senior Product Designer',
+        'hero-headline':     'Product<br>Design<br><em>that ships</em>',
+        'hero-lead':         'Senior Product Designer architecting cross-platform B2B and B2C ecosystems across iOS, Android, and Web.',
+        'hero-bio':          'With 7+ years of experience at Cortex (Enterprise Data) and Reed (10M+ users), I specialise in turning complex technical logic into frictionless mobile and desktop experiences. I bridge the gap between user empathy and engineering reality to deliver products that scale.',
+        'cta-work':          'See my work',
+        'cta-hello':         'Say hello',
+        'stat-years':        'Years of experience',
+        'stat-users':        'Users reached across shipped products',
+        'stat-downloads':    'App downloads on products I designed',
+        'stat-systems':      'Design systems built or maintained',
+        'stat-enrolment':    'Enrolment conversion on Reed.co.uk',
+        'stat-cs':           'CS tickets from a UX overhaul',
+        'stat-ctr':          'Card click-through rate on Reed.co.uk',
+        'work-eyebrow':      'Selected work',
+        'work-title':        "What I've shipped",
+        'work-subtitle':     "Each project starts with a real problem. Here's how I found the right answer.",
+        'filter-all':        'All',
+        'fdp-stat-label':    'won with a prototype before the feature shipped',
+        'fandom-stat-label': 'sports organisations including Arsenal FC and Formula 1',
+        'reedapp-stat-label':'application growth after shipping',
+        'reedweb-stat-label':'enrolment conversion after redesign',
+        'sony-stat-label':   'course completion rate across 15 countries and 11 languages',
+        'read-cs':           'Read case study',
+        'ai-eyebrow':        'How I work',
+        'ai-title':          'AI-native from day one',
+        'ai-desc':           'I use AI across every phase of design, not to replace craft, but to spend more time on the thinking that matters.',
+        'ai-card1-label':    'Early concepts',
+        'ai-card1-badge':    '−75% time',
+        'ai-card1-before':   '1–2 days',
+        'ai-hrs':            'hrs',
+        'ai-card1-desc':     'From brief to multiple directions before the afternoon standup.',
+        'ai-card2-label':    'Research synthesis',
+        'ai-card2-badge':    '−80% time',
+        'ai-card2-before':   '2–3 days',
+        'ai-card2-desc':     'Interviews, affinity mapping, pattern finding, without losing the nuance.',
+        'ai-card3-label':    'Prototyping',
+        'ai-card3-badge':    '−70% time',
+        'ai-card3-before':   '8–10 hrs',
+        'ai-card3-desc':     'What used to take a full day is done before lunch, with the right prompts.',
+        'about-eyebrow':     'About',
+        'about-title':       'I design for people, not pixels',
+        'about-p1':          'Senior Product Designer based in London with 7 years across the full product cycle, from early discovery and research to UI polish and dev handoff.',
+        'about-p2':          "Currently at Cortex, designing their fan experience platform for sports clubs like Arsenal FC and Formula 1. Before that I spent three years at Reed leading design across mobile, web and internal tools. Earlier at Let's Create I built responsive sites for brands end to end.",
+        'about-p3':          'I work best where design has a seat at the table and shipping something good matters.',
+        'role-cortex':       'Senior Product Designer, Fan Experience',
+        'role-reed':         'Product Designer, Mobile, Web, Internal Tools',
+        'role-mmob':         'Product Designer, Embedded Finance',
+        'role-letscreate':   'Product Designer, Digital Agency',
+        'role-freelance':    'UX/UI Designer',
+        'period-cortex':     'Jul 2025 – Present',
+        'period-reed':       'Nov 2021 – Feb 2025',
+        'period-mmob':       'Jul 2021 – Sep 2021',
+        'period-letscreate': 'Mar 2019 – Jul 2021',
+        'period-freelance':  'Sep 2018 – Jul 2019',
+        'skills-eyebrow':    'Skills',
+        'skills-design-lbl': 'Design',
+        'skills-tools-lbl':  'Tools',
+        'skills-ai-lbl':     'AI',
+        'skills-plat-lbl':   'Platforms',
+        'skills-proc-lbl':   'Process',
+        'edu-eyebrow':       'Education',
+        'cta-eyebrow':       "Let's work together",
+        'cta-title':         'Got a problem worth solving?',
+        'cta-desc':          "If you're building something where design matters, I'd like to hear about it.",
+        'footer-copy':       '© 2026 Jacopo Maio',
+      },
+      it: {
+        'claude-credit':     'Creato con Claude 🧡',
+        'nav-work':          'Lavori',
+        'nav-about':         'Chi sono',
+        'nav-cta':           'Contattami',
+        'hero-caption-role': 'Senior Product Designer',
+        'hero-headline':     'Product<br>Design<br><em>che funziona</em>',
+        'hero-lead':         'Senior Product Designer specializzato in ecosistemi B2B e B2C multi-piattaforma per iOS, Android e Web.',
+        'hero-bio':          "Con oltre 7 anni di esperienza in Cortex (Enterprise Data) e Reed (10M+ utenti), trasformo logiche tecniche complesse in esperienze mobile e desktop fluide. Unisco empatia verso l'utente e realtà ingegneristica per prodotti che scalano.",
+        'cta-work':          'Guarda i miei lavori',
+        'cta-hello':         'Scrivimi',
+        'stat-years':        'Anni di esperienza',
+        'stat-users':        'Utenti raggiunti con i prodotti lanciati',
+        'stat-downloads':    "Download dell'app sui prodotti che ho progettato",
+        'stat-systems':      'Design system costruiti o mantenuti',
+        'stat-enrolment':    'Conversione iscrizioni su Reed.co.uk',
+        'stat-cs':           'Ticket supporto grazie al redesign UX',
+        'stat-ctr':          'Click-through rate delle card su Reed.co.uk',
+        'work-eyebrow':      'Lavori selezionati',
+        'work-title':        'Cosa ho lanciato',
+        'work-subtitle':     'Ogni progetto nasce da un problema reale. Ecco come ho trovato la risposta giusta.',
+        'filter-all':        'Tutti',
+        'fdp-stat-label':    'vinti con un prototipo prima del rilascio',
+        'fandom-stat-label': 'organizzazioni sportive tra cui Arsenal FC e Formula 1',
+        'reedapp-stat-label':'crescita delle candidature dopo il lancio',
+        'reedweb-stat-label':'conversione iscrizioni dopo il redesign',
+        'sony-stat-label':   'tasso di completamento in 15 paesi e 11 lingue',
+        'read-cs':           'Leggi il caso studio',
+        'ai-eyebrow':        'Come lavoro',
+        'ai-title':          'AI-native fin dal primo giorno',
+        'ai-desc':           "Uso l'AI in ogni fase del design, non per sostituire il mestiere, ma per dedicare più tempo a ciò che conta davvero.",
+        'ai-card1-label':    'Concetti iniziali',
+        'ai-card1-badge':    '−75% tempo',
+        'ai-card1-before':   '1–2 giorni',
+        'ai-hrs':            'ore',
+        'ai-card1-desc':     'Dal brief a più direzioni prima dello standup pomeridiano.',
+        'ai-card2-label':    'Sintesi della ricerca',
+        'ai-card2-badge':    '−80% tempo',
+        'ai-card2-before':   '2–3 giorni',
+        'ai-card2-desc':     'Interviste, affinity mapping, ricerca di pattern, senza perdere le sfumature.',
+        'ai-card3-label':    'Prototipazione',
+        'ai-card3-badge':    '−70% tempo',
+        'ai-card3-before':   '8–10 ore',
+        'ai-card3-desc':     'Quello che richiedeva una giornata intera è pronto prima di pranzo, con i prompt giusti.',
+        'about-eyebrow':     'Chi sono',
+        'about-title':       'Progetto per le persone, non per i pixel',
+        'about-p1':          "Senior Product Designer a Londra con 7 anni di esperienza nell'intero ciclo di prodotto, dalla ricerca iniziale alla consegna agli sviluppatori.",
+        'about-p2':          "Attualmente in Cortex, dove progetto la piattaforma fan experience per club sportivi come Arsenal FC e Formula 1. In precedenza ho trascorso tre anni in Reed guidando il design su mobile, web e strumenti interni. Prima ancora in Let's Create ho costruito siti responsive per brand da zero.",
+        'about-p3':          'Lavoro meglio dove il design ha voce in capitolo e dove conta davvero spedire qualcosa di buono.',
+        'role-cortex':       'Senior Product Designer, Fan Experience',
+        'role-reed':         'Product Designer, Mobile, Web, Strumenti Interni',
+        'role-mmob':         'Product Designer, Finanza Integrata',
+        'role-letscreate':   'Product Designer, Agenzia Digitale',
+        'role-freelance':    'Designer UX/UI',
+        'period-cortex':     'Lug 2025 – Presente',
+        'period-reed':       'Nov 2021 – Feb 2025',
+        'period-mmob':       'Lug 2021 – Set 2021',
+        'period-letscreate': 'Mar 2019 – Lug 2021',
+        'period-freelance':  'Set 2018 – Lug 2019',
+        'skills-eyebrow':    'Competenze',
+        'skills-design-lbl': 'Design',
+        'skills-tools-lbl':  'Strumenti',
+        'skills-ai-lbl':     'AI',
+        'skills-plat-lbl':   'Piattaforme',
+        'skills-proc-lbl':   'Processo',
+        'edu-eyebrow':       'Formazione',
+        'cta-eyebrow':       'Lavoriamo insieme',
+        'cta-title':         'Hai un problema da risolvere?',
+        'cta-desc':          'Se stai costruendo qualcosa dove il design fa la differenza, mi piacerebbe sentirtene parlare.',
+        'footer-copy':       '© 2026 Jacopo Maio',
+      }
+    };
+
+    let currentLang = localStorage.getItem('lang') || 'en';
+
+    function applyLang(lang) {
+      currentLang = lang;
+      document.documentElement.lang = lang;
+      localStorage.setItem('lang', lang);
+
+      // Plain text elements
+      document.querySelectorAll('[data-key]').forEach(el => {
+        const val = translations[lang][el.dataset.key];
+        if (val !== undefined) el.textContent = val;
+      });
+
+      // HTML elements (headline etc.)
+      document.querySelectorAll('[data-key-html]').forEach(el => {
+        const val = translations[lang][el.dataset.keyHtml];
+        if (val !== undefined) el.innerHTML = val;
+      });
+
+      // Update buttons
+      document.querySelectorAll('.lang-btn').forEach(btn => {
+        btn.classList.toggle('is-active', btn.dataset.lang === lang);
+      });
+    }
+
+    // Init language on load
+    applyLang(currentLang);
+
+    // Language button listeners
+    document.querySelectorAll('.lang-btn').forEach(btn => {
+      btn.addEventListener('click', () => applyLang(btn.dataset.lang));
+    });
+
+    // ── Work filters ─────────────────────────────────────────
     const filterBtns = document.querySelectorAll('.filter-btn');
     const workCards = document.querySelectorAll('[data-categories]');
 
@@ -805,7 +1068,7 @@
       });
     });
 
-    // Geo-restriction (GB + CZ hide both Cortex cards)
+    // ── Geo-restriction (GB + CZ hide both Cortex cards) ─────
     const _geoOverride = new URLSearchParams(location.search).get('_geo');
     const _cachedCountry = sessionStorage.getItem('visitor_country');
 

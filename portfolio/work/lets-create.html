@@ -11,10 +11,17 @@
 <body>
   <nav class="nav">
     <a href="../index.html" class="nav__logo">Jacopo Maio<span>Product Designer</span></a>
+    <div class="nav__extras">
+      <span class="nav__claude" data-key="claude-credit">Built with Claude 🧡</span>
+      <div class="nav__lang">
+        <button class="lang-btn is-active" data-lang="en">EN</button>
+        <button class="lang-btn" data-lang="it">IT</button>
+      </div>
+    </div>
     <ul class="nav__links">
-      <li><a href="../index.html#work">Work</a></li>
-      <li><a href="../index.html#about">About</a></li>
-      <li><a href="mailto:jacopo.maio@gmail.com" class="btn-nav">Get in touch</a></li>
+      <li><a href="../index.html#work" data-key="nav-work">Work</a></li>
+      <li><a href="../index.html#about" data-key="nav-about">About</a></li>
+      <li><a href="mailto:jacopo.maio@gmail.com" class="btn-nav" data-key="nav-cta">Get in touch</a></li>
     </ul>
   </nav>
   <div class="cs-hero" style="background:linear-gradient(135deg,#1A0A2E,#2D1A44);">
@@ -53,10 +60,14 @@
         <li><a href="mailto:jacopo.maio@gmail.com">Email</a></li>
         <li><a href="../index.html#work">Work</a></li>
       </ul>
-      <p class="footer__copy">© 2026 Jacopo Maio · London</p>
+      <div>
+        <p class="footer__copy" data-key="footer-copy">© 2026 Jacopo Maio</p>
+        <p class="footer__claude" data-key="claude-credit">Built with Claude 🧡</p>
+      </div>
     </div>
   </footer>
   <script src="../js/main.js"></script>
+  <script src="../js/i18n.js"></script>
   <script type="module">
     import { inject } from '../js/analytics.mjs';
     inject();
